@@ -1,7 +1,7 @@
 ---
 city: "Cartersville"
 state: "GA"
-metaTitle: "CPA in Cartersville, GA — Tax, Bookkeeping & Payroll | Wayne Jones"
+metaTitle: "CPA in Cartersville, GA — Tax & Accounting | Wayne Jones"
 metaDescription: "Wayne Jones, CPA serves Cartersville and Bartow County with tax prep, bookkeeping, payroll, and business consulting. Licensed GA & AL CPA, 35+ years."
 keywords: ["cpa cartersville ga","accountant cartersville georgia","tax preparation bartow county","bookkeeping cartersville","small business cpa bartow county"]
 order: 2

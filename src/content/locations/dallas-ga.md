@@ -1,7 +1,7 @@
 ---
 city: "Dallas"
 state: "GA"
-metaTitle: "CPA in Dallas, GA — Tax, Bookkeeping and Payroll | Wayne Jones"
+metaTitle: "CPA in Dallas, GA — Tax & Accounting | Wayne Jones"
 metaDescription: "Wayne Jones, CPA serves Dallas and Paulding County with tax prep, bookkeeping, payroll, and business consulting. Licensed GA and AL CPA, 35+ years."
 keywords: ["cpa dallas ga","accountant dallas georgia","tax preparation paulding county"]
 order: 11

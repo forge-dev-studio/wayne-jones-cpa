@@ -1,7 +1,7 @@
 ---
 city: "Summerville"
 state: "GA"
-metaTitle: "CPA in Summerville, GA — Tax, Bookkeeping and Payroll | Wayne Jones"
+metaTitle: "CPA in Summerville, GA — Tax & Accounting | Wayne Jones"
 metaDescription: "Wayne Jones, CPA serves Summerville and Chattooga County with tax preparation, bookkeeping, and payroll. Licensed GA and AL. Call (706) 232-8565."
 keywords: ["cpa summerville ga","accountant summerville georgia","tax preparation chattooga county"]
 order: 8

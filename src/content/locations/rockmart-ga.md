@@ -1,7 +1,7 @@
 ---
 city: "Rockmart"
 state: "GA"
-metaTitle: "CPA in Rockmart, GA — Tax, Bookkeeping and Payroll | Wayne Jones"
+metaTitle: "CPA in Rockmart, GA — Tax & Accounting | Wayne Jones"
 metaDescription: "Wayne Jones, CPA serves Rockmart and Polk County with tax prep, bookkeeping, and payroll. Licensed GA and AL CPA. Call (706) 232-8565."
 keywords: ["cpa rockmart ga","accountant rockmart georgia","tax preparation polk county"]
 order: 12

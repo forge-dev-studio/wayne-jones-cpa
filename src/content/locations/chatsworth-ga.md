@@ -1,7 +1,7 @@
 ---
 city: "Chatsworth"
 state: "GA"
-metaTitle: "CPA in Chatsworth, GA — Tax, Bookkeeping and Payroll | Wayne Jones"
+metaTitle: "CPA in Chatsworth, GA — Tax & Accounting | Wayne Jones"
 metaDescription: "Wayne Jones CPA serves Chatsworth and Murray County with tax preparation, bookkeeping, payroll, and business consulting. Call (706) 232-8565."
 keywords: ["cpa chatsworth ga","accountant chatsworth georgia","tax preparation murray county"]
 order: 10

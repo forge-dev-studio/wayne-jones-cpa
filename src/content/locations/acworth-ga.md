@@ -1,7 +1,7 @@
 ---
 city: "Acworth"
 state: "GA"
-metaTitle: "CPA in Acworth, GA — Tax, Bookkeeping and Payroll | Wayne Jones"
+metaTitle: "CPA in Acworth, GA — Tax & Accounting | Wayne Jones"
 metaDescription: "Wayne Jones, CPA serves Acworth and Cobb County with tax prep, bookkeeping, payroll, and business consulting. Licensed GA and AL CPA, 35+ years experience."
 keywords: ["cpa acworth ga","accountant acworth georgia","tax preparation cobb county"]
 order: 17

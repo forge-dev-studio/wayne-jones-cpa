@@ -1,7 +1,7 @@
 ---
 city: "Piedmont"
 state: "AL"
-metaTitle: "CPA Serving Piedmont, AL — GA and AL Licensed | Wayne Jones"
+metaTitle: "CPA Serving Piedmont, AL — GA & AL Licensed | Wayne Jones"
 metaDescription: "Wayne Jones, CPA serves Piedmont and Calhoun County AL with tax prep, bookkeeping, and payroll. Licensed in Georgia and Alabama. Call (706) 232-8565."
 keywords: ["cpa piedmont al","accountant piedmont alabama","tax preparation calhoun county alabama"]
 order: 21

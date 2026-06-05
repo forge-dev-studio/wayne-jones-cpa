@@ -1,7 +1,7 @@
 ---
 city: "Rome"
 state: "GA"
-metaTitle: "CPA in Rome, GA — Tax, Bookkeeping & Payroll | Wayne Jones"
+metaTitle: "CPA in Rome, GA — Tax & Accounting | Wayne Jones"
 metaDescription: "Wayne Jones, CPA has served Rome, GA and Floyd County since 2008. Tax prep, bookkeeping, payroll, and IRS resolution — downtown office at 101 E 2nd Ave."
 keywords: ["cpa rome ga","accountant rome ga","tax preparation rome georgia","bookkeeping rome ga","small business cpa rome georgia"]
 order: 1

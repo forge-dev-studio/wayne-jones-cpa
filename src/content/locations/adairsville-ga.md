@@ -1,7 +1,7 @@
 ---
 city: "Adairsville"
 state: "GA"
-metaTitle: "CPA in Adairsville, GA — Tax, Bookkeeping and Payroll | Wayne Jones"
+metaTitle: "CPA in Adairsville, GA — Tax & Accounting | Wayne Jones"
 metaDescription: "Wayne Jones CPA serves Adairsville and Bartow County with tax preparation, bookkeeping, payroll, and business consulting. Call (706) 232-8565."
 keywords: ["cpa adairsville ga","accountant adairsville georgia","tax preparation bartow county"]
 order: 13

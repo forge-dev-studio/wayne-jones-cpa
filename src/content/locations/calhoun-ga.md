@@ -1,7 +1,7 @@
 ---
 city: "Calhoun"
 state: "GA"
-metaTitle: "CPA in Calhoun, GA — Tax, Bookkeeping & Payroll | Wayne Jones"
+metaTitle: "CPA in Calhoun, GA — Tax & Accounting | Wayne Jones"
 metaDescription: "Wayne Jones CPA serves Calhoun, GA and Gordon County with tax preparation, bookkeeping, payroll, and business consulting. Call (706) 232-8565."
 keywords: ["cpa calhoun ga","accountant calhoun georgia","tax preparation gordon county"]
 order: 3

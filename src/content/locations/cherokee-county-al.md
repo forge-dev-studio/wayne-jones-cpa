@@ -1,7 +1,7 @@
 ---
 city: "Cherokee County"
 state: "AL"
-metaTitle: "CPA Serving Cherokee County, AL — Centre & Weiss Lake | Wayne Jones"
+metaTitle: "CPA in Cherokee County, AL — GA & AL Licensed | Wayne Jones"
 metaDescription: "Wayne Jones, CPA is licensed in Alabama and Georgia, serving Cherokee County AL residents near Centre and Weiss Lake. Tax prep, bookkeeping, payroll."
 keywords: ["cpa cherokee county al","accountant centre al","tax preparation cherokee county alabama","alabama licensed cpa rome ga","weiss lake business accountant"]
 order: 5
