@@ -187,6 +187,7 @@
       <!-- PLACEHOLDER: confirm legal name (Harold Wayne Jones?) -->
       <!-- PLACEHOLDER: confirm AICPA / Georgia Society of CPAs membership -->
       <div class="container about-inner">
+        <!-- PLACEHOLDER: when a real headshot <img alt="Wayne Jones, CPA"> is added, remove role="img" + aria-label from this div -->
         <div class="portrait reveal" role="img" aria-label="Wayne Jones, CPA">
           <span class="portrait-mono">WJ</span>
           <span class="portrait-cap">Wayne Jones, CPA</span>
@@ -233,14 +234,16 @@
             <li><strong>Phone</strong><a href="tel:+17062328565">(706) 232-8565</a></li>
             <li><strong>Hours</strong>Mon–Fri 9:00 AM – 4:00 PM<br>Sat–Sun closed</li>
           </ul>
+          <!-- NOTE: legacy maps embed, no API key needed; swap to Maps Embed API if a key becomes available -->
           <iframe class="map" title="Map to Wayne Jones Accounting Services" loading="lazy" src="https://maps.google.com/maps?q=101%20E%202nd%20Ave%20Suite%20330%20Rome%20GA%2030161&output=embed"></iframe>
         </div>
-        <form class="lead-form reveal" action="https://formspree.io/f/FORMSPREE_ID" method="POST" novalidate>
+        <form class="lead-form reveal" action="https://formspree.io/f/FORMSPREE_ID" method="POST">
           <div class="field"><label for="name">Full name</label><input id="name" name="name" type="text" required></div>
           <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required></div>
           <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel"></div>
           <div class="field"><label for="interest">I'm interested in</label>
             <select id="interest" name="interest">
+              <option value="" disabled selected>Select a service…</option>
               <option>Tax preparation</option><option>Bookkeeping</option><option>Payroll</option>
               <option>IRS / tax problem</option><option>Business consulting</option><option>Something else</option>
             </select></div>
@@ -264,7 +267,7 @@
       <nav class="footer-nav" aria-label="Footer"><a href="#services">Services</a><a href="#about">About</a><a href="#why">Why Us</a><a href="#contact">Contact</a></nav>
       <div class="footer-meta">
         <p><strong>(706) 232-8565</strong><br>Mon–Fri 9:00 AM – 4:00 PM</p>
-        <a class="fb" href="https://www.facebook.com/p/Wayne-Jones-Accounting-Services-100063056748027/" aria-label="Facebook page for Wayne Jones Accounting Services">Facebook ↗</a>
+        <a class="fb" href="https://www.facebook.com/p/Wayne-Jones-Accounting-Services-100063056748027/" aria-label="Facebook page for Wayne Jones Accounting Services" rel="noopener noreferrer">Facebook ↗</a>
       </div>
     </div>
     <div class="container footer-base"><span>© 2026 Wayne Jones Accounting Services. All rights reserved.</span><span>Website by Synergy</span></div>

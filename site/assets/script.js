@@ -5,17 +5,29 @@ const header = document.querySelector('.site-header');
 const toggle = document.querySelector('.nav-toggle');
 const nav = document.getElementById('nav');
 
-addEventListener('scroll', () => header.classList.toggle('is-scrolled', scrollY > 24), { passive: true });
+if (header) {
+  addEventListener('scroll', () => header.classList.toggle('is-scrolled', scrollY > 24), { passive: true });
+}
 
 // === Mobile nav ===
-toggle.addEventListener('click', () => {
-  const open = nav.classList.toggle('is-open');
-  toggle.setAttribute('aria-expanded', String(open));
-});
-nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-  nav.classList.remove('is-open');
-  toggle.setAttribute('aria-expanded', 'false');
-}));
+if (toggle && nav) {
+  toggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.focus();
+  }));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav.classList.contains('is-open')) {
+      nav.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.focus();
+    }
+  });
+}
 
 // === Scroll reveals ===
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -32,9 +44,8 @@ if (reduce || !('IntersectionObserver' in window)) {
 // === Lead form ===
 const form = document.querySelector('.lead-form');
 if (form) form.addEventListener('submit', async (e) => {
-  const status = form.querySelector('.form-status');
-  if (!form.checkValidity()) return; // let native validation show
   e.preventDefault();
+  const status = form.querySelector('.form-status');
   const placeholder = form.action.includes('FORMSPREE_ID');
   if (placeholder) {
     status.className = 'form-status ok';
