@@ -2,3 +2,5 @@ node_modules/
 previews/*.png
 mockups/renders/
 /tmp/
+dist/
+.astro/
