@@ -27,6 +27,7 @@
   --font-body:    'Spectral', Georgia, serif;
 
   --max-w: 1280px;
+  --max-w-prose: 760px;
   --gutter: clamp(24px, 5vw, 96px);
   --header-h: 68px;
 
@@ -85,6 +86,13 @@ a { color: inherit; }
   padding-right: var(--gutter);
   position: relative;
   z-index: 1;
+}
+
+/* Narrow, centered reading column for single-column text pages
+   (service/location/blog detail, faq, about prose). Higher specificity
+   than .section-wrap so it overrides the 1280px max-width. */
+.section-wrap.section-wrap--prose {
+  max-width: var(--max-w-prose);
 }
 
 /* ─── Shared type — eyebrows / titles / decks ───────────── */
