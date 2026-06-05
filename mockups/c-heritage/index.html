@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wayne Jones, CPA — Heritage Trust Mockup C</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Libre+Franklin:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
+
+<style>
+/* ─── DESIGN TOKENS ─────────────────────────────────────────── */
+:root {
+  --paper:      #F3EDE3;
+  --paper-deep: #EAE0CE;
+  --green:      #1E3A2F;
+  --green-mid:  #264D3E;
+  --green-light:#2F6050;
+  --brass:      #A8823C;
+  --brass-light:#C8A25C;
+  --brass-pale: #D4B87A;
+  --charcoal:   #2A2A28;
+  --ink-mid:    #4A4840;
+  --ink-light:  #7A7568;
+  --white:      #FDFAF5;
+
+  --font-display: 'Libre Caslon Display', Georgia, serif;
+  --font-serif:   'Libre Caslon Text', Georgia, serif;
+  --font-sans:    'Libre Franklin', system-ui, sans-serif;
+}
+
+/* ─── RESET ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+body {
+  background: var(--paper);
+  color: var(--charcoal);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── GRAIN OVERLAY ─────────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.6;
+}
+
+/* ─── BRASS HAIRLINE TOP BAND ───────────────────────────────── */
+.top-band {
+  height: 3px;
+  background: linear-gradient(90deg, var(--green) 0%, var(--brass) 40%, var(--brass-light) 60%, var(--brass) 100%);
+}
+
+/* ─── NAVIGATION ────────────────────────────────────────────── */
+nav {
+  background: var(--paper);
+  border-bottom: 1px solid rgba(168,130,60,0.25);
+  padding: 0 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  position: relative;
+}
+
+.wordmark {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.wordmark-name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--green);
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.wordmark-title {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--green); }
+
+.nav-cta {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--white) !important;
+  background: var(--green);
+  padding: 11px 24px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 3px rgba(30,58,47,0.25);
+}
+
+.nav-cta:hover {
+  background: var(--green-mid) !important;
+  box-shadow: 0 4px 12px rgba(30,58,47,0.3);
+}
+
+/* ─── BRASS RULE UNDER NAV ──────────────────────────────────── */
+.nav-brass-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--brass) 20%, var(--brass) 80%, transparent 100%);
+  opacity: 0.35;
+  margin: 0 64px;
+}
+
+/* ─── HERO SECTION ──────────────────────────────────────────── */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 84px);
+  max-height: 860px;
+  overflow: hidden;
+}
+
+/* ─── LEFT COLUMN ───────────────────────────────────────────── */
+.hero-left {
+  padding: 72px 56px 72px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+  background: var(--paper);
+  position: relative;
+}
+
+/* Subtle radial warmth on left */
+.hero-left::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: -100px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(168,130,60,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ─── EYEBROW ───────────────────────────────────────────────── */
+.eyebrow-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp 0.7s ease 0.1s forwards;
+}
+
+.eyebrow-rule {
+  width: 32px;
+  height: 1px;
+  background: var(--brass);
+}
+
+.eyebrow {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.875rem;
+  color: var(--brass);
+  letter-spacing: 0.05em;
+}
+
+/* ─── H1 ────────────────────────────────────────────────────── */
+.hero-h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 4.5vw, 5.5rem);
+  line-height: 1.0;
+  color: var(--green);
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.2s forwards;
+}
+
+/* The period — brass accent */
+.hero-h1 .period { color: var(--brass); }
+
+/* ─── TAGLINE ───────────────────────────────────────────────── */
+.hero-tagline {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  color: var(--ink-mid);
+  margin-bottom: 28px;
+  letter-spacing: 0.01em;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.3s forwards;
+}
+
+/* ─── BRASS HAIRLINE DIVIDER ────────────────────────────────── */
+.hero-divider {
+  width: 48px;
+  height: 1px;
+  background: var(--brass);
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease 0.4s forwards;
+}
+
+/* ─── BODY COPY ─────────────────────────────────────────────── */
+.hero-body {
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--ink-mid);
+  max-width: 480px;
+  margin-bottom: 44px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.45s forwards;
+}
+
+/* ─── CTAs ──────────────────────────────────────────────────── */
+.cta-group {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-bottom: 52px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.55s forwards;
+}
+
+.cta-primary {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--green);
+  padding: 16px 32px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: background 0.2s, box-shadow 0.25s, transform 0.15s;
+  box-shadow: 0 2px 8px rgba(30,58,47,0.3), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.cta-primary:hover {
+  background: var(--green-mid);
+  box-shadow: 0 6px 20px rgba(30,58,47,0.35);
+  transform: translateY(-1px);
+}
+
+.cta-primary:focus {
+  outline: 3px solid var(--brass);
+  outline-offset: 3px;
+}
+
+.cta-phone {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--charcoal);
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1.5px solid var(--brass);
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.cta-phone:hover {
+  color: var(--brass);
+  border-color: var(--brass-light);
+}
+
+.cta-phone:focus {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+/* ─── PROOF STRIP ───────────────────────────────────────────── */
+.proof-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(168,130,60,0.3);
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.65s forwards;
+}
+
+.proof-item {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+
+.proof-dot {
+  font-size: 0.5rem;
+  color: var(--brass);
+  margin: 0 12px;
+  opacity: 0.7;
+}
+
+/* ─── RIGHT COLUMN: PHOTO PANEL ─────────────────────────────── */
+.hero-right {
+  position: relative;
+  overflow: visible; /* allow seal to overflow */
+  opacity: 0;
+  animation: fadeIn 1.1s ease 0.15s forwards;
+}
+
+/* ─── BRASS FRAME INSET ─────────────────────────────────────── */
+.photo-frame-outer {
+  position: absolute;
+  inset: 40px 48px 40px 32px;
+  border: 1.5px solid var(--brass);
+  border-radius: 2px;
+  z-index: 2;
+  pointer-events: none;
+  box-shadow:
+    inset 0 0 0 5px var(--paper),
+    inset 0 0 0 6.5px rgba(168,130,60,0.25);
+}
+
+/* ─── DUOTONE PHOTO PANEL ───────────────────────────────────── */
+.photo-panel {
+  position: absolute;
+  inset: 46px 54px 46px 38px;
+  border-radius: 1px;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow:
+    0 8px 40px rgba(30,58,47,0.18),
+    0 2px 8px rgba(0,0,0,0.12);
+}
+
+/* Base warm mid-tone */
+.photo-panel-base {
+  position: absolute;
+  inset: 0;
+  background: #6B8C72;
+}
+
+/* The SVG scene sits here */
+.photo-scene {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* Duotone green-to-brass gradient overlay */
+.photo-duotone {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      160deg,
+      rgba(30, 58, 47, 0.82) 0%,
+      rgba(30, 58, 47, 0.62) 35%,
+      rgba(82, 60, 15, 0.45) 65%,
+      rgba(168, 130, 60, 0.58) 100%
+    );
+  mix-blend-mode: multiply;
+  z-index: 2;
+}
+
+/* Soft vignette */
+.photo-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 40%,
+    transparent 30%,
+    rgba(20, 35, 25, 0.45) 100%
+  );
+  z-index: 3;
+}
+
+/* Grain over photo */
+.photo-grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23grain)' opacity='0.18'/%3E%3C/svg%3E");
+  z-index: 4;
+  mix-blend-mode: overlay;
+  opacity: 0.9;
+}
+
+/* Caption overlay on photo */
+.photo-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 32px 28px 24px;
+  background: linear-gradient(to top, rgba(20,40,30,0.85) 0%, transparent 100%);
+  z-index: 5;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.photo-caption-text {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(212, 184, 122, 0.9);
+}
+
+/* ─── EST. SEAL ─────────────────────────────────────────────── */
+.seal-wrap {
+  position: absolute;
+  left: 16px;    /* overlaps frame edge */
+  bottom: 80px;
+  width: 116px;
+  height: 116px;
+  z-index: 10;
+  filter: drop-shadow(0 3px 10px rgba(0,0,0,0.3));
+  opacity: 0;
+  animation: sealReveal 0.9s ease 0.75s forwards;
+}
+
+/* ─── DECORATIVE CORNER MARKS ON FRAME ──────────────────────── */
+.frame-corner {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  z-index: 3;
+  pointer-events: none;
+}
+.frame-corner::before, .frame-corner::after {
+  content: '';
+  position: absolute;
+  background: var(--brass);
+}
+.frame-corner--tl { top: 35px; left: 27px; }
+.frame-corner--tr { top: 35px; right: 49px; }
+.frame-corner--bl { bottom: 35px; left: 27px; }
+.frame-corner--br { bottom: 35px; right: 49px; }
+
+.frame-corner--tl::before { top: 0; left: 0; width: 12px; height: 1.5px; }
+.frame-corner--tl::after  { top: 0; left: 0; width: 1.5px; height: 12px; }
+.frame-corner--tr::before { top: 0; right: 0; width: 12px; height: 1.5px; }
+.frame-corner--tr::after  { top: 0; right: 0; width: 1.5px; height: 12px; }
+.frame-corner--bl::before { bottom: 0; left: 0; width: 12px; height: 1.5px; }
+.frame-corner--bl::after  { bottom: 0; left: 0; width: 1.5px; height: 12px; }
+.frame-corner--br::before { bottom: 0; right: 0; width: 12px; height: 1.5px; }
+.frame-corner--br::after  { bottom: 0; right: 0; width: 1.5px; height: 12px; }
+
+/* ─── FOOTER BAND ───────────────────────────────────────────── */
+.footer-band {
+  background: var(--green);
+  padding: 28px 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 2px solid var(--brass);
+}
+
+.footer-text {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: rgba(212,184,122,0.75);
+}
+
+.footer-accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.8125rem;
+  color: var(--brass-pale);
+}
+
+/* ─── KEYFRAMES ─────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes sealReveal {
+  from { opacity: 0; transform: rotate(-8deg) scale(0.85); }
+  to   { opacity: 1; transform: rotate(0deg) scale(1); }
+}
+
+/* ─── RESPONSIVE ────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  nav { padding: 0 40px; }
+  .nav-links { gap: 24px; }
+  .hero-left { padding: 56px 40px 56px 40px; }
+  .nav-brass-rule { margin: 0 40px; }
+  .footer-band { padding: 24px 40px; }
+}
+
+@media (max-width: 800px) {
+  nav {
+    padding: 0 24px;
+    height: 68px;
+  }
+  .nav-links { display: none; }
+  .nav-brass-rule { margin: 0 24px; }
+
+  .hero {
+    grid-template-columns: 1fr;
+    max-height: none;
+    min-height: auto;
+  }
+
+  .hero-left {
+    padding: 48px 24px;
+    order: 2;
+  }
+
+  .hero-right {
+    order: 1;
+    min-height: 340px;
+    position: relative;
+  }
+
+  .photo-frame-outer {
+    inset: 20px 20px 20px 20px;
+  }
+  .photo-panel {
+    inset: 26px 26px 26px 26px;
+  }
+
+  .seal-wrap {
+    left: 10px;
+    bottom: 30px;
+    width: 90px;
+    height: 90px;
+  }
+
+  .frame-corner--tl { top: 14px; left: 14px; }
+  .frame-corner--tr { top: 14px; right: 21px; }
+  .frame-corner--bl { bottom: 14px; left: 14px; }
+  .frame-corner--br { bottom: 14px; right: 21px; }
+
+  .footer-band {
+    padding: 20px 24px;
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- BRASS TOP BAND -->
+<div class="top-band"></div>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="wordmark">
+    <span class="wordmark-name">Wayne Jones, CPA</span>
+    <span class="wordmark-title">Certified Public Accountant &nbsp;·&nbsp; Rome, Georgia</span>
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="#">Services</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Resources</a></li>
+    <li><a href="#">Contact</a></li>
+    <li><a href="#" class="nav-cta">Request a Consultation</a></li>
+  </ul>
+</nav>
+
+<div class="nav-brass-rule"></div>
+
+<!-- HERO -->
+<section class="hero">
+
+  <!-- LEFT: EDITORIAL COPY -->
+  <div class="hero-left">
+
+    <!-- Eyebrow -->
+    <div class="eyebrow-wrap">
+      <div class="eyebrow-rule"></div>
+      <span class="eyebrow">Rome, Georgia &nbsp;·&nbsp; Since 2008</span>
+    </div>
+
+    <!-- H1 -->
+    <h1 class="hero-h1">Your neighbor<br>in numbers<span class="period">.</span></h1>
+
+    <!-- Tagline -->
+    <p class="hero-tagline">A Rome CPA who actually answers&nbsp;the&nbsp;phone.</p>
+
+    <!-- Brass divider -->
+    <div class="hero-divider"></div>
+
+    <!-- Body -->
+    <p class="hero-body">
+      Personal tax, bookkeeping, and payroll for small businesses and families across Georgia and Alabama — with the same trusted hand for over 35 years.
+    </p>
+
+    <!-- CTAs -->
+    <div class="cta-group">
+      <a href="#" class="cta-primary">Request a Consultation</a>
+      <a href="tel:7062328565" class="cta-phone">(706)&nbsp;232-8565</a>
+    </div>
+
+    <!-- Proof strip -->
+    <div class="proof-strip">
+      <span class="proof-item">Licensed in GA &amp; AL</span>
+      <span class="proof-dot">◆</span>
+      <span class="proof-item">35+ Years</span>
+      <span class="proof-dot">◆</span>
+      <span class="proof-item">GA CPA #026715</span>
+      <span class="proof-dot">◆</span>
+      <span class="proof-item">Family-owned · Downtown Rome</span>
+    </div>
+
+  </div>
+
+  <!-- RIGHT: DUOTONE PHOTO PANEL -->
+  <div class="hero-right">
+
+    <!-- Brass corner registration marks -->
+    <div class="frame-corner frame-corner--tl"></div>
+    <div class="frame-corner frame-corner--tr"></div>
+    <div class="frame-corner frame-corner--bl"></div>
+    <div class="frame-corner frame-corner--br"></div>
+
+    <!-- Outer brass frame rule -->
+    <div class="photo-frame-outer"></div>
+
+    <!-- The duotone panel -->
+    <div class="photo-panel">
+      <div class="photo-panel-base"></div>
+
+      <!-- SVG SCENE: Rome GA rooftops + courthouse dome abstraction -->
+      <div class="photo-scene">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 820" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block;">
+          <defs>
+            <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#8AAF94"/>
+              <stop offset="100%" stop-color="#5C8268"/>
+            </linearGradient>
+            <linearGradient id="buildingGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#4A7060"/>
+              <stop offset="100%" stop-color="#2E5045"/>
+            </linearGradient>
+            <linearGradient id="darkBldg" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#3A6050"/>
+              <stop offset="100%" stop-color="#1E3A2F"/>
+            </linearGradient>
+            <linearGradient id="groundGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#3D5E4E"/>
+              <stop offset="100%" stop-color="#1A3028"/>
+            </linearGradient>
+            <linearGradient id="windowGlow" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#C8A25C" stop-opacity="0.6"/>
+              <stop offset="100%" stop-color="#A8823C" stop-opacity="0.2"/>
+            </linearGradient>
+          </defs>
+
+          <!-- SKY -->
+          <rect width="700" height="820" fill="url(#skyGrad)"/>
+
+          <!-- Atmospheric haze band -->
+          <rect x="0" y="340" width="700" height="80" fill="rgba(180,210,190,0.12)"/>
+
+          <!-- ─── DISTANT TREE LINE ─────────────────────── -->
+          <!-- Rolling foliage silhouette -->
+          <ellipse cx="60"  cy="400" rx="55" ry="38" fill="#3D6650" opacity="0.6"/>
+          <ellipse cx="130" cy="390" rx="60" ry="44" fill="#3A6248" opacity="0.65"/>
+          <ellipse cx="200" cy="395" rx="50" ry="36" fill="#3E6A52" opacity="0.55"/>
+          <ellipse cx="560" cy="393" rx="58" ry="40" fill="#3D6650" opacity="0.6"/>
+          <ellipse cx="630" cy="386" rx="52" ry="42" fill="#3A6248" opacity="0.65"/>
+          <ellipse cx="695" cy="396" rx="48" ry="34" fill="#3E6A52" opacity="0.55"/>
+
+          <!-- ─── BACKGROUND BUILDINGS (far) ────────────── -->
+          <!-- Far-left block -->
+          <rect x="20" y="360" width="70" height="220" fill="#4A7060" opacity="0.5"/>
+          <rect x="38" y="340" width="36" height="30" fill="#4A7060" opacity="0.45"/>
+          <!-- Window grid far-left -->
+          <rect x="28" y="375" width="8" height="10" fill="url(#windowGlow)" opacity="0.5"/>
+          <rect x="42" y="375" width="8" height="10" fill="url(#windowGlow)" opacity="0.4"/>
+          <rect x="56" y="375" width="8" height="10" fill="url(#windowGlow)" opacity="0.5"/>
+          <rect x="28" y="395" width="8" height="10" fill="url(#windowGlow)" opacity="0.3"/>
+          <rect x="56" y="395" width="8" height="10" fill="url(#windowGlow)" opacity="0.35"/>
+
+          <!-- Far-right block -->
+          <rect x="620" y="355" width="80" height="230" fill="#4A7060" opacity="0.5"/>
+          <rect x="636" y="335" width="48" height="28" fill="#4A7060" opacity="0.42"/>
+          <rect x="628" y="370" width="8" height="10" fill="url(#windowGlow)" opacity="0.45"/>
+          <rect x="644" y="370" width="8" height="10" fill="url(#windowGlow)" opacity="0.4"/>
+          <rect x="660" y="370" width="8" height="10" fill="url(#windowGlow)" opacity="0.45"/>
+          <rect x="628" y="392" width="8" height="10" fill="url(#windowGlow)" opacity="0.3"/>
+          <rect x="660" y="392" width="8" height="10" fill="url(#windowGlow)" opacity="0.38"/>
+
+          <!-- ─── COURTHOUSE / ANCHOR BUILDING (center) ── -->
+          <!-- Main body -->
+          <rect x="230" y="280" width="240" height="380" fill="url(#buildingGrad)"/>
+          <!-- Colonnade base detail -->
+          <rect x="220" y="500" width="260" height="160" fill="url(#darkBldg)"/>
+
+          <!-- Classical pediment -->
+          <polygon points="290,250 350,215 410,250" fill="#4A7060"/>
+          <rect x="290" y="248" width="120" height="34" fill="#4A7060"/>
+
+          <!-- Dome structure -->
+          <rect x="323" y="185" width="54" height="70" fill="#558070" opacity="0.85"/>
+          <!-- Dome cap (half ellipse) -->
+          <ellipse cx="350" cy="182" rx="40" ry="32" fill="#507868"/>
+          <!-- Lantern on dome -->
+          <rect x="343" y="152" width="14" height="28" fill="#4A7060"/>
+          <ellipse cx="350" cy="150" rx="10" ry="8" fill="#507868"/>
+          <!-- Flag post -->
+          <line x1="350" y1="142" x2="350" y2="108" stroke="#3D6050" stroke-width="2"/>
+          <!-- Small flag suggestion -->
+          <polygon points="350,108 372,116 350,124" fill="#A8823C" opacity="0.7"/>
+
+          <!-- Columns on colonnade -->
+          <rect x="240" y="460" width="10" height="110" fill="rgba(255,255,255,0.07)"/>
+          <rect x="265" y="460" width="10" height="110" fill="rgba(255,255,255,0.07)"/>
+          <rect x="290" y="460" width="10" height="110" fill="rgba(255,255,255,0.07)"/>
+          <rect x="400" y="460" width="10" height="110" fill="rgba(255,255,255,0.07)"/>
+          <rect x="425" y="460" width="10" height="110" fill="rgba(255,255,255,0.07)"/>
+          <rect x="450" y="460" width="10" height="110" fill="rgba(255,255,255,0.07)"/>
+
+          <!-- Windows main building -->
+          <!-- Row 1 -->
+          <rect x="255" y="300" width="28" height="34" rx="3" fill="url(#windowGlow)" opacity="0.55"/>
+          <rect x="295" y="300" width="28" height="34" rx="3" fill="url(#windowGlow)" opacity="0.45"/>
+          <rect x="337" y="300" width="26" height="34" rx="3" fill="url(#windowGlow)" opacity="0.6"/>
+          <rect x="378" y="300" width="28" height="34" rx="3" fill="url(#windowGlow)" opacity="0.45"/>
+          <rect x="418" y="300" width="28" height="34" rx="3" fill="url(#windowGlow)" opacity="0.55"/>
+          <!-- Row 2 -->
+          <rect x="255" y="350" width="28" height="34" rx="3" fill="url(#windowGlow)" opacity="0.4"/>
+          <rect x="295" y="350" width="28" height="34" rx="3" fill="url(#windowGlow)" opacity="0.55"/>
+          <rect x="337" y="350" width="26" height="34" rx="3" fill="url(#windowGlow)" opacity="0.4"/>
+          <rect x="378" y="350" width="28" height="34" rx="3" fill="url(#windowGlow)" opacity="0.55"/>
+          <rect x="418" y="350" width="28" height="34" rx="3" fill="url(#windowGlow)" opacity="0.4"/>
+          <!-- Row 3 -->
+          <rect x="255" y="400" width="28" height="34" rx="3" fill="url(#windowGlow)" opacity="0.5"/>
+          <rect x="337" y="400" width="26" height="34" rx="3" fill="url(#windowGlow)" opacity="0.35"/>
+          <rect x="418" y="400" width="28" height="34" rx="3" fill="url(#windowGlow)" opacity="0.5"/>
+
+          <!-- Cornice line -->
+          <rect x="225" y="275" width="250" height="7" fill="rgba(200,162,92,0.25)"/>
+
+          <!-- ─── LEFT WING BUILDING ────────────────────── -->
+          <rect x="100" y="335" width="150" height="330" fill="url(#buildingGrad)" opacity="0.88"/>
+          <!-- Parapet detail -->
+          <rect x="96"  y="328" width="158" height="12" fill="#4A7060" opacity="0.7"/>
+          <!-- Left wing windows -->
+          <rect x="112" y="355" width="22" height="28" rx="2" fill="url(#windowGlow)" opacity="0.5"/>
+          <rect x="144" y="355" width="22" height="28" rx="2" fill="url(#windowGlow)" opacity="0.4"/>
+          <rect x="176" y="355" width="22" height="28" rx="2" fill="url(#windowGlow)" opacity="0.5"/>
+          <rect x="208" y="355" width="22" height="28" rx="2" fill="url(#windowGlow)" opacity="0.4"/>
+          <rect x="112" y="397" width="22" height="28" rx="2" fill="url(#windowGlow)" opacity="0.4"/>
+          <rect x="144" y="397" width="22" height="28" rx="2" fill="url(#windowGlow)" opacity="0.5"/>
+          <rect x="176" y="397" width="22" height="28" rx="2" fill="url(#windowGlow)" opacity="0.35"/>
+          <rect x="208" y="397" width="22" height="28" rx="2" fill="url(#windowGlow)" opacity="0.45"/>
+          <rect x="112" y="440" width="22" height="28" rx="2" fill="url(#windowGlow)" opacity="0.5"/>
+          <rect x="176" y="440" width="22" height="28" rx="2" fill="url(#windowGlow)" opacity="0.4"/>
+
+          <!-- ─── RIGHT WING BUILDING ───────────────────── -->
+          <rect x="450" y="320" width="160" height="340" fill="url(#buildingGrad)" opacity="0.9"/>
+          <rect x="446" y="312" width="168" height="12" fill="#4A7060" opacity="0.72"/>
+          <!-- Small tower on right wing -->
+          <rect x="570" y="285" width="36" height="40" fill="#4A7060" opacity="0.8"/>
+          <polygon points="566,285 588,262 610,285" fill="#4A7060" opacity="0.75"/>
+          <!-- Right wing windows -->
+          <rect x="462" y="340" width="22" height="28" rx="2" fill="url(#windowGlow)" opacity="0.5"/>
+          <rect x="494" y="340" width="22" height="28" rx="2" fill="url(#windowGlow)" opacity="0.4"/>
+          <rect x="526" y="340" width="22" height="28" rx="2" fill="url(#windowGlow)" opacity="0.5"/>
+          <rect x="558" y="340" width="22" height="28" rx="2" fill="url(#windowGlow)" opacity="0.4"/>
+          <rect x="462" y="382" width="22" height="28" rx="2" fill="url(#windowGlow)" opacity="0.45"/>
+          <rect x="494" y="382" width="22" height="28" rx="2" fill="url(#windowGlow)" opacity="0.55"/>
+          <rect x="558" y="382" width="22" height="28" rx="2" fill="url(#windowGlow)" opacity="0.4"/>
+          <rect x="462" y="424" width="22" height="28" rx="2" fill="url(#windowGlow)" opacity="0.5"/>
+          <rect x="526" y="424" width="22" height="28" rx="2" fill="url(#windowGlow)" opacity="0.4"/>
+
+          <!-- ─── STREET LEVEL ───────────────────────────── -->
+          <rect x="0" y="640" width="700" height="180" fill="url(#groundGrad)"/>
+
+          <!-- Sidewalk -->
+          <rect x="0" y="636" width="700" height="20" fill="rgba(100,140,120,0.35)"/>
+          <!-- Street -->
+          <rect x="0" y="656" width="700" height="164" fill="rgba(30,50,40,0.55)"/>
+
+          <!-- Street line dashes -->
+          <rect x="100" y="700" width="50" height="4" fill="rgba(168,130,60,0.2)" rx="2"/>
+          <rect x="200" y="700" width="50" height="4" fill="rgba(168,130,60,0.2)" rx="2"/>
+          <rect x="350" y="700" width="50" height="4" fill="rgba(168,130,60,0.2)" rx="2"/>
+          <rect x="500" y="700" width="50" height="4" fill="rgba(168,130,60,0.2)" rx="2"/>
+
+          <!-- Lamppost left -->
+          <rect x="152" y="580" width="4" height="80" fill="#3D6050"/>
+          <rect x="140" y="578" width="28" height="5" rx="1" fill="#4A7060"/>
+          <ellipse cx="154" cy="578" rx="6" ry="4" fill="rgba(200,162,92,0.7)"/>
+
+          <!-- Lamppost right -->
+          <rect x="548" y="580" width="4" height="80" fill="#3D6050"/>
+          <rect x="536" y="578" width="28" height="5" rx="1" fill="#4A7060"/>
+          <ellipse cx="550" cy="578" rx="6" ry="4" fill="rgba(200,162,92,0.7)"/>
+
+          <!-- Trees on street -->
+          <rect x="188" y="590" width="5" height="55" fill="#2E5040"/>
+          <ellipse cx="190" cy="582" rx="20" ry="24" fill="#3D6A52" opacity="0.75"/>
+
+          <rect x="508" y="590" width="5" height="55" fill="#2E5040"/>
+          <ellipse cx="510" cy="582" rx="20" ry="24" fill="#3D6A52" opacity="0.75"/>
+
+          <!-- Subtle steps on courthouse -->
+          <rect x="215" y="625" width="270" height="12" fill="rgba(80,110,90,0.5)"/>
+          <rect x="225" y="614" width="250" height="12" fill="rgba(80,110,90,0.4)"/>
+          <rect x="235" y="603" width="230" height="12" fill="rgba(80,110,90,0.35)"/>
+
+          <!-- Light leak at horizon -->
+          <rect x="0" y="390" width="700" height="30" fill="rgba(212,184,122,0.06)"/>
+        </svg>
+      </div>
+
+      <!-- Duotone treatment overlays -->
+      <div class="photo-duotone"></div>
+      <div class="photo-vignette"></div>
+      <div class="photo-grain"></div>
+
+      <!-- Caption at bottom of photo -->
+      <div class="photo-caption">
+        <span class="photo-caption-text">Downtown Rome, Georgia</span>
+        <span class="photo-caption-text">Est. 2008</span>
+      </div>
+    </div>
+
+    <!-- EST. 2008 ENGRAVED SEAL (SVG text-on-path) -->
+    <div class="seal-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 116 116" width="116" height="116">
+        <defs>
+          <path id="top-arc"    d="M 18,58 a 40,40 0 0,1 80,0"/>
+          <path id="bottom-arc" d="M 96,62 a 40,40 0 0,1 -80,0"/>
+        </defs>
+
+        <!-- Outer ring fill -->
+        <circle cx="58" cy="58" r="55" fill="var(--green)" stroke="var(--brass)" stroke-width="1.5"/>
+
+        <!-- Inner ring rule -->
+        <circle cx="58" cy="58" r="48" fill="none" stroke="var(--brass)" stroke-width="0.75" opacity="0.6"/>
+        <circle cx="58" cy="58" r="44" fill="none" stroke="var(--brass)" stroke-width="0.5" opacity="0.4"/>
+
+        <!-- Center content -->
+        <!-- "EST." label -->
+        <text x="58" y="51" text-anchor="middle"
+              font-family="'Libre Franklin', sans-serif"
+              font-size="7" font-weight="700"
+              letter-spacing="3" fill="var(--brass)" opacity="0.85"
+              text-transform="uppercase">EST.</text>
+
+        <!-- Year -->
+        <text x="58" y="66" text-anchor="middle"
+              font-family="'Libre Caslon Display', Georgia, serif"
+              font-size="18" fill="var(--brass-light)"
+              letter-spacing="1">2008</text>
+
+        <!-- Divider rules inside seal -->
+        <line x1="34" y1="54" x2="44" y2="54" stroke="var(--brass)" stroke-width="0.8" opacity="0.5"/>
+        <line x1="72" y1="54" x2="82" y2="54" stroke="var(--brass)" stroke-width="0.8" opacity="0.5"/>
+        <line x1="36" y1="68" x2="48" y2="68" stroke="var(--brass)" stroke-width="0.8" opacity="0.4"/>
+        <line x1="68" y1="68" x2="80" y2="68" stroke="var(--brass)" stroke-width="0.8" opacity="0.4"/>
+
+        <!-- Decorative diamond center mark -->
+        <polygon points="58,73 62,77 58,81 54,77" fill="var(--brass)" opacity="0.55" transform="scale(0.7) translate(24.8,31)"/>
+
+        <!-- Dots at cardinal positions on ring -->
+        <circle cx="58" cy="3"  r="2" fill="var(--brass)" opacity="0.7"/>
+        <circle cx="58" cy="113" r="2" fill="var(--brass)" opacity="0.7"/>
+        <circle cx="3"  cy="58" r="2" fill="var(--brass)" opacity="0.7"/>
+        <circle cx="113" cy="58" r="2" fill="var(--brass)" opacity="0.7"/>
+
+        <!-- Text arcs -->
+        <text font-family="'Libre Franklin', sans-serif" font-size="8.5" font-weight="600"
+              letter-spacing="3.5" fill="var(--brass)" opacity="0.9">
+          <textPath href="#top-arc" startOffset="10%">WAYNE JONES, CPA</textPath>
+        </text>
+
+        <text font-family="'Libre Franklin', sans-serif" font-size="7.5" font-weight="500"
+              letter-spacing="2.8" fill="var(--brass)" opacity="0.7">
+          <textPath href="#bottom-arc" startOffset="14%">ROME · GEORGIA · U.S.A.</textPath>
+        </text>
+      </svg>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER BAND -->
+<div class="footer-band">
+  <span class="footer-text">© 2024 HW Jones LLC &nbsp;·&nbsp; Wayne Jones, CPA &nbsp;·&nbsp; Rome, Georgia 30161</span>
+  <span class="footer-accent">Trusted since 2008 — serving families and small businesses across Georgia and Alabama.</span>
+  <span class="footer-text">GA CPA License #026715</span>
+</div>
+
+<!-- TINY INLINE SCRIPT: focus-visible polyfill + reveal guard -->
+<script>
+(function(){
+  // Ensure reveal animations fire even if fonts are slow
+  document.querySelectorAll('[style*="animation"]').forEach(function(el){
+    el.addEventListener('animationend', function(){ el.style.opacity = '1'; });
+  });
+  // Keyboard focus indicator enhancement
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Tab') document.body.classList.add('keyboard-nav');
+  });
+  document.addEventListener('mousedown', function(){
+    document.body.classList.remove('keyboard-nav');
+  });
+})();
+</script>
+
+</body>
+</html>

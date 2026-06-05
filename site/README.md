@@ -1,6 +1,6 @@
 # Wayne Jones, CPA — Static Website
 
-Single-page static pitch site for Wayne Jones Accounting Services (Rome, GA CPA). Built with hand-crafted HTML5, modern CSS (custom properties, grid, `clamp()`, IntersectionObserver), and vanilla JS. No framework, no build step. The "Trusted Ledger" design theme uses navy, cream, and gold — an accountant's ledger reimagined as a premium brand. The contact form uses Formspree with a JS demo-success fallback.
+Single-page static pitch site for Wayne Jones Accounting Services (Rome, GA CPA). Built with hand-crafted HTML5, modern CSS (custom properties, grid, `clamp()`, IntersectionObserver), and vanilla JS. No framework, no build step. The **"Engraved"** design theme renders the firm as an ultra-premium engraved certificate: ivory paper, ink-navy feature bands, oxblood accents, and gold filigree — guilloché security-engraving, hairline ledger rules, a WJ wax-seal monogram, certificate framing, and Roman-numeral indices, set in Fraunces (display) + Spectral (body). Services read as an engraved "Schedule of Services" ledger; About and Why are dark ink-navy bands. The contact form uses Formspree with a JS demo-success fallback.
 
 ---
 
