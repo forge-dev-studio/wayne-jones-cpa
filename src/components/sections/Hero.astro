@@ -1,5 +1,6 @@
 ---
 // Hero section — ported verbatim from site/index.html
+import { href } from '../../lib/seo';
 ---
 <section id="hero" class="hero" aria-label="Introduction">
   <div class="hero__wrap">
@@ -14,12 +15,13 @@
       <div class="hero__left">
         <p class="hero__eyebrow reveal" data-reveal style="--d:0">Certified Public Accountant — Rome, Georgia</p>
         <h1 class="hero__h1 reveal-clip" data-reveal-lines>
-          <span class="line"><span class="line__inner">Rome's most</span></span>
-          <span class="line"><span class="line__inner">trusted <em>name</em></span></span>
-          <span class="line"><span class="line__inner">in tax &amp;</span></span>
-          <span class="line"><span class="line__inner">accounting.</span></span>
+          <span class="line"><span class="line__inner">Rome, GA CPA</span></span>
+          <span class="line"><span class="line__inner">&mdash; Tax,</span></span>
+          <span class="line"><span class="line__inner"><em>Bookkeeping</em></span></span>
+          <span class="line"><span class="line__inner">&amp; Payroll</span></span>
         </h1>
         <div class="hero__pull reveal" data-reveal style="--d:4">
+          <p class="hero__deck">Rome's most trusted name in tax &amp; accounting.</p>
           <p class="hero__sub">Personal, year-round CPA service for small businesses and individuals across Georgia and Alabama — with the same hand on every return since 2008.</p>
         </div>
         <div class="hero__ctas reveal" data-reveal style="--d:5">
@@ -30,6 +32,22 @@
 
       <!-- Right — engraved ledger / certificate -->
       <aside class="hero__right reveal" data-reveal style="--d:5" aria-label="Credentials at a glance">
+        <!-- PLACEHOLDER: branded placeholder portrait until Wayne's real photo is supplied -->
+        <figure class="ledger__portrait">
+          <span class="ledger__portrait-corner ledger__portrait-corner--tl" aria-hidden="true"></span>
+          <span class="ledger__portrait-corner ledger__portrait-corner--tr" aria-hidden="true"></span>
+          <span class="ledger__portrait-corner ledger__portrait-corner--bl" aria-hidden="true"></span>
+          <span class="ledger__portrait-corner ledger__portrait-corner--br" aria-hidden="true"></span>
+          <img
+            class="ledger__portrait-img"
+            src={href('/images/wayne-headshot-placeholder.png')}
+            alt="Wayne Jones, CPA"
+            width="600"
+            height="750"
+            loading="eager"
+            decoding="async"
+          />
+        </figure>
         <div class="ledger__seal-wrap">
           <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Wayne Jones, CPA — seal">
             <use href="#wj-seal"></use>

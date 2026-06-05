@@ -1,8 +1,9 @@
 ---
 // AboutBand section — ported verbatim from site/index.html
+import { href } from '../../lib/seo';
 ---
 <section id="about" class="about band-dark" aria-label="About Wayne Jones">
-  <!-- PLACEHOLDER: replace .portrait with Wayne's headshot -->
+  <!-- PLACEHOLDER: headshot is a branded placeholder portrait until Wayne's real photo is supplied -->
   <!-- PLACEHOLDER: confirm legal name (Harold Wayne Jones?) -->
   <!-- PLACEHOLDER: confirm AICPA / Georgia Society of CPAs membership -->
   <svg class="band-watermark" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation">
@@ -11,13 +12,20 @@
 
   <div class="section-wrap about__grid">
     <div class="about__figure reveal" data-reveal>
-      <!-- PLACEHOLDER: when a real headshot <img alt="Wayne Jones, CPA"> is added, remove role="img" + aria-label from .portrait -->
-      <figure class="portrait" role="img" aria-label="Wayne Jones, CPA">
+      <figure class="portrait portrait--photo">
         <span class="portrait__corner portrait__corner--tl" aria-hidden="true"></span>
         <span class="portrait__corner portrait__corner--tr" aria-hidden="true"></span>
         <span class="portrait__corner portrait__corner--bl" aria-hidden="true"></span>
         <span class="portrait__corner portrait__corner--br" aria-hidden="true"></span>
-        <span class="portrait__mono">WJ</span>
+        <img
+          class="portrait__img"
+          src={href('/images/wayne-headshot-placeholder.png')}
+          alt="Wayne Jones, CPA"
+          width="600"
+          height="750"
+          loading="lazy"
+          decoding="async"
+        />
         <figcaption class="portrait__cap">Wayne Jones, CPA</figcaption>
       </figure>
       <svg class="about__seal" width="104" height="104" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
