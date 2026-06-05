@@ -1,7 +1,7 @@
 ---
 city: "Kennesaw"
 state: "GA"
-metaTitle: "CPA in Kennesaw, GA — Tax, Bookkeeping and Payroll | Wayne Jones"
+metaTitle: "CPA in Kennesaw, GA — Tax & Accounting | Wayne Jones"
 metaDescription: "Wayne Jones, CPA serves Kennesaw and Cobb County with tax prep, bookkeeping, payroll, and business consulting. Licensed GA and AL CPA, 35+ years."
 keywords: ["cpa kennesaw ga","accountant kennesaw georgia","tax preparation cobb county"]
 order: 18

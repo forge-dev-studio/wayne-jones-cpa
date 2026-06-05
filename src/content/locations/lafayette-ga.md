@@ -1,7 +1,7 @@
 ---
 city: "LaFayette"
 state: "GA"
-metaTitle: "CPA in LaFayette, GA — Tax, Bookkeeping and Payroll | Wayne Jones"
+metaTitle: "CPA in LaFayette, GA — Tax & Accounting | Wayne Jones"
 metaDescription: "Wayne Jones CPA serves LaFayette, GA and Walker County with tax preparation, bookkeeping, payroll, and individual tax returns. Call (706) 232-8565."
 keywords: ["cpa lafayette ga","accountant lafayette georgia","tax preparation walker county"]
 order: 9

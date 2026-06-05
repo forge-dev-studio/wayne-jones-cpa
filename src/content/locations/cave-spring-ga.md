@@ -1,7 +1,7 @@
 ---
 city: "Cave Spring"
 state: "GA"
-metaTitle: "CPA in Cave Spring, GA — Tax, Bookkeeping and Payroll | Wayne Jones"
+metaTitle: "CPA in Cave Spring, GA — Tax & Accounting | Wayne Jones"
 metaDescription: "Wayne Jones, CPA serves Cave Spring and Floyd County with tax preparation, bookkeeping, and payroll. Licensed GA and AL. Call (706) 232-8565."
 keywords: ["cpa cave spring ga","accountant cave spring georgia","tax preparation floyd county"]
 order: 14

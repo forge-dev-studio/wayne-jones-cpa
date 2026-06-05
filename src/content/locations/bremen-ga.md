@@ -1,7 +1,7 @@
 ---
 city: "Bremen"
 state: "GA"
-metaTitle: "CPA in Bremen, GA — Tax, Bookkeeping and Payroll | Wayne Jones"
+metaTitle: "CPA in Bremen, GA — Tax & Accounting | Wayne Jones"
 metaDescription: "Wayne Jones CPA serves Bremen, GA and Haralson County with tax prep, bookkeeping, payroll, and business consulting. Call (706) 232-8565."
 keywords: ["cpa bremen ga","accountant bremen georgia","tax preparation haralson county"]
 order: 15

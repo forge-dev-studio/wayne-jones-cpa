@@ -1,7 +1,7 @@
 ---
 city: "Carrollton"
 state: "GA"
-metaTitle: "CPA in Carrollton, GA — Tax, Bookkeeping and Payroll | Wayne Jones"
+metaTitle: "CPA in Carrollton, GA — Tax & Accounting | Wayne Jones"
 metaDescription: "Wayne Jones CPA serves Carrollton, GA and Carroll County with tax preparation, bookkeeping, payroll, and business consulting. Call (706) 232-8565."
 keywords: ["cpa carrollton ga","accountant carrollton georgia","tax preparation carroll county"]
 order: 7

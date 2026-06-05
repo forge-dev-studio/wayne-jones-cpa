@@ -1,7 +1,7 @@
 ---
 city: "Fort Payne"
 state: "AL"
-metaTitle: "CPA Serving Fort Payne, AL — GA and AL Licensed | Wayne Jones"
+metaTitle: "CPA Serving Fort Payne, AL — GA & AL Licensed | Wayne Jones"
 metaDescription: "Wayne Jones, CPA is licensed in Georgia and Alabama, serving Fort Payne and DeKalb County. Tax prep, bookkeeping, payroll for businesses and individuals."
 keywords: ["cpa fort payne al","accountant fort payne alabama","tax preparation dekalb county alabama"]
 order: 20

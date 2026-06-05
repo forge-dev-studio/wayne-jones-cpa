@@ -1,6 +1,6 @@
 ---
 import SchemaOrg from './SchemaOrg.astro';
-import { absoluteUrl } from '../lib/seo';
+import { href, absoluteUrl } from '../lib/seo';
 
 export interface Props {
   items: { label: string; href: string }[];
@@ -24,7 +24,7 @@ const breadcrumbSchema = {
     {items.map((item, i) => (
       <li class="breadcrumbs__item">
         {i < items.length - 1 ? (
-          <a href={item.href} class="breadcrumbs__link">{item.label}</a>
+          <a href={href(item.href)} class="breadcrumbs__link">{item.label}</a>
         ) : (
           <span aria-current="page" class="breadcrumbs__current">{item.label}</span>
         )}

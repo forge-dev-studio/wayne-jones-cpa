@@ -1,7 +1,7 @@
 ---
 city: "Villa Rica"
 state: "GA"
-metaTitle: "CPA in Villa Rica, GA — Tax, Bookkeeping and Payroll | Wayne Jones"
+metaTitle: "CPA in Villa Rica, GA — Tax & Accounting | Wayne Jones"
 metaDescription: "Wayne Jones, CPA serves Villa Rica in Carroll and Douglas Counties with tax prep, bookkeeping, payroll, and business consulting. Licensed GA and AL CPA."
 keywords: ["cpa villa rica ga","accountant villa rica georgia","tax preparation carroll county"]
 order: 16

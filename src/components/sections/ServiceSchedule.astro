@@ -1,5 +1,6 @@
 ---
 // ServiceSchedule section — ported verbatim from site/index.html (6 rows hardcoded; Phase 2 refactors to content collection)
+import { href } from '../../lib/seo';
 ---
 <section id="services" class="services" aria-label="Schedule of services">
   <div class="section-wrap">
@@ -13,7 +14,7 @@
     <ol class="schedule" role="list">
 
       <li class="schedule__row reveal" data-reveal>
-        <a class="schedule__link" href="#contact">
+        <a class="schedule__link" href={href('/services/tax-preparation/')}>
           <span class="schedule__num" aria-hidden="true">I</span>
           <span class="schedule__body">
             <span class="schedule__title">Tax Preparation &amp; Planning</span>
@@ -25,7 +26,7 @@
       </li>
 
       <li class="schedule__row reveal" data-reveal style="--d:1">
-        <a class="schedule__link" href="#contact">
+        <a class="schedule__link" href={href('/services/bookkeeping/')}>
           <span class="schedule__num" aria-hidden="true">II</span>
           <span class="schedule__body">
             <span class="schedule__title">Bookkeeping &amp; Monthly Write-Up</span>
@@ -37,7 +38,7 @@
       </li>
 
       <li class="schedule__row reveal" data-reveal style="--d:2">
-        <a class="schedule__link" href="#contact">
+        <a class="schedule__link" href={href('/services/payroll/')}>
           <span class="schedule__num" aria-hidden="true">III</span>
           <span class="schedule__body">
             <span class="schedule__title">Payroll &amp; HR</span>
@@ -49,7 +50,7 @@
       </li>
 
       <li class="schedule__row reveal" data-reveal style="--d:3">
-        <a class="schedule__link" href="#contact">
+        <a class="schedule__link" href={href('/services/irs-tax-resolution/')}>
           <span class="schedule__num" aria-hidden="true">IV</span>
           <span class="schedule__body">
             <span class="schedule__title">IRS &amp; Tax-Problem Resolution</span>
@@ -61,7 +62,7 @@
       </li>
 
       <li class="schedule__row reveal" data-reveal style="--d:4">
-        <a class="schedule__link" href="#contact">
+        <a class="schedule__link" href={href('/services/business-consulting/')}>
           <span class="schedule__num" aria-hidden="true">V</span>
           <span class="schedule__body">
             <span class="schedule__title">Business Consulting</span>
@@ -73,7 +74,7 @@
       </li>
 
       <li class="schedule__row reveal" data-reveal style="--d:5">
-        <a class="schedule__link" href="#contact">
+        <a class="schedule__link" href={href('/services/individual-tax-returns/')}>
           <span class="schedule__num" aria-hidden="true">VI</span>
           <span class="schedule__body">
             <span class="schedule__title">Individual Tax Returns</span>

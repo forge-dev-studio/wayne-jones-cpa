@@ -1,7 +1,7 @@
 ---
 city: "Dalton"
 state: "GA"
-metaTitle: "CPA in Dalton, GA — Tax, Bookkeeping and Payroll | Wayne Jones"
+metaTitle: "CPA in Dalton, GA — Tax & Accounting | Wayne Jones"
 metaDescription: "Wayne Jones CPA serves Dalton, GA and Whitfield County with tax preparation, bookkeeping, payroll, and business consulting. Call (706) 232-8565."
 keywords: ["cpa dalton ga","accountant dalton georgia","tax preparation whitfield county"]
 order: 6

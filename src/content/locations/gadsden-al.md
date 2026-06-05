@@ -1,7 +1,7 @@
 ---
 city: "Gadsden"
 state: "AL"
-metaTitle: "CPA Serving Gadsden, AL — GA and AL Licensed | Wayne Jones"
+metaTitle: "CPA Serving Gadsden, AL — GA & AL Licensed | Wayne Jones"
 metaDescription: "Wayne Jones CPA serves Gadsden, AL and Etowah County. Licensed in both Georgia and Alabama. Tax prep, bookkeeping, payroll. Call (706) 232-8565."
 keywords: ["cpa gadsden al","accountant gadsden alabama","tax preparation etowah county"]
 order: 19

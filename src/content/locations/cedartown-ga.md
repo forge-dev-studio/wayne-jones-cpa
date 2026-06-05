@@ -1,7 +1,7 @@
 ---
 city: "Cedartown"
 state: "GA"
-metaTitle: "CPA in Cedartown, GA — Tax, Bookkeeping & Payroll | Wayne Jones"
+metaTitle: "CPA in Cedartown, GA — Tax & Accounting | Wayne Jones"
 metaDescription: "Wayne Jones, CPA serves Cedartown and Polk County with tax preparation, bookkeeping, and payroll. Licensed GA & AL. Call (706) 232-8565."
 keywords: ["cpa cedartown ga","accountant cedartown georgia","tax preparation polk county","bookkeeping polk county ga","payroll cedartown georgia"]
 order: 4
