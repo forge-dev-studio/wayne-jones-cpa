@@ -1,0 +1,152 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CTASection from '../components/CTASection.astro';
+import SchemaOrg from '../components/SchemaOrg.astro';
+import { absoluteUrl } from '../lib/seo';
+
+const seo = {
+  title: 'About Wayne Jones, CPA — Rome, GA',
+  description:
+    'Meet Wayne Jones — Certified Public Accountant serving Rome, GA and Northwest Georgia for 35+ years. Licensed in Georgia and Alabama. Personal service since 2008.',
+  canonical: '/about/',
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about/' },
+];
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Wayne Jones',
+  jobTitle: 'Certified Public Accountant',
+  worksFor: { '@id': absoluteUrl('/') + '#business' },
+  hasCredential: {
+    '@type': 'EducationalOccupationalCredential',
+    credentialCategory: 'Professional License',
+    name: 'Certified Public Accountant',
+    recognizedBy: [
+      { '@type': 'Organization', name: 'Georgia State Board of Accountancy' },
+      { '@type': 'Organization', name: 'Alabama State Board of Public Accountancy' },
+    ],
+  },
+  areaServed: ['Georgia', 'Alabama'],
+};
+---
+
+<BaseLayout seo={seo}>
+  <Breadcrumbs items={breadcrumbs} />
+  <SchemaOrg schema={personSchema} />
+
+  <!-- AboutBand — certificate portrait + oxblood pull-quote + creds -->
+  <section id="about" class="about band-dark" aria-label="About Wayne Jones">
+    <!-- PLACEHOLDER: replace .portrait with Wayne's headshot -->
+    <!-- PLACEHOLDER: confirm legal name (Harold Wayne Jones?) -->
+    <!-- PLACEHOLDER: confirm AICPA / Georgia Society of CPAs membership -->
+    <svg class="band-watermark" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation">
+      <use href="#guilloche"></use>
+    </svg>
+
+    <div class="section-wrap about__grid">
+      <div class="about__figure reveal" data-reveal>
+        <!-- PLACEHOLDER: when a real headshot <img alt="Wayne Jones, CPA"> is added, remove role="img" + aria-label from .portrait -->
+        <figure class="portrait" role="img" aria-label="Wayne Jones, CPA">
+          <span class="portrait__corner portrait__corner--tl" aria-hidden="true"></span>
+          <span class="portrait__corner portrait__corner--tr" aria-hidden="true"></span>
+          <span class="portrait__corner portrait__corner--bl" aria-hidden="true"></span>
+          <span class="portrait__corner portrait__corner--br" aria-hidden="true"></span>
+          <span class="portrait__mono">WJ</span>
+          <figcaption class="portrait__cap">Wayne Jones, CPA</figcaption>
+        </figure>
+        <svg class="about__seal" width="104" height="104" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <use href="#wj-seal"></use>
+        </svg>
+      </div>
+
+      <div class="about__copy reveal" data-reveal style="--d:1">
+        <p class="eyebrow eyebrow--gold-ink">Meet your accountant</p>
+        <h1 class="section-title section-title--light">A CPA who actually <em>answers the phone.</em></h1>
+        <div class="about__columns">
+          <p>For more than three decades, Wayne Jones has helped Northwest Georgia businesses and families make sense of their numbers. A Certified Public Accountant licensed in both Georgia and Alabama, Wayne opened Wayne Jones Accounting Services in downtown Rome in 2008 with a simple promise: every client works directly with him — not a rotating cast of associates.</p>
+          <p>The result is accounting that's accurate, approachable, and genuinely personal.</p>
+        </div>
+
+        <blockquote class="about__quote">
+          <span class="about__quote-mark" aria-hidden="true">&ldquo;</span>
+          Every client works directly with me.
+        </blockquote>
+
+        <dl class="creds-ledger">
+          <div class="creds-ledger__row">
+            <dt class="creds-ledger__label">Credential</dt>
+            <dd class="creds-ledger__value">Certified Public Accountant — GA license #026715</dd>
+          </div>
+          <div class="creds-ledger__row">
+            <dt class="creds-ledger__label">Licensure</dt>
+            <dd class="creds-ledger__value">Georgia &amp; Alabama</dd>
+          </div>
+          <div class="creds-ledger__row">
+            <dt class="creds-ledger__label">Experience</dt>
+            <dd class="creds-ledger__value">35+ years of accounting practice</dd>
+          </div>
+          <div class="creds-ledger__row">
+            <dt class="creds-ledger__label">Established</dt>
+            <dd class="creds-ledger__value">Serving downtown Rome since 2008</dd>
+          </div>
+          <!-- PLACEHOLDER: add AICPA / Georgia Society of CPAs membership row here once confirmed -->
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fuller bio -->
+  <section class="bio-section" aria-label="Biography">
+    <div class="section-wrap bio-section__inner">
+      <header class="section-head">
+        <p class="eyebrow reveal" data-reveal>Background</p>
+        <h2 class="section-title reveal" data-reveal style="--d:1">Three decades of <em>local expertise</em></h2>
+      </header>
+
+      <div class="bio-section__body reveal" data-reveal style="--d:2">
+        <p>Wayne Jones began his accounting career well before founding his own firm, building the breadth of experience that small businesses and individuals in the Rome area continue to rely on today. Over more than 35 years in practice, he has worked across individual income taxes, small-business accounting, payroll compliance, and IRS representation — giving clients a single trusted adviser for the full range of their financial needs.</p>
+
+        <p>In 2008, Wayne established Wayne Jones Accounting Services at 101 East 2nd Avenue in downtown Rome, Georgia. Choosing to remain an intentionally personal practice — rather than growing into a large firm — means every engagement stays under his direct supervision. Clients speak with Wayne, not a staff accountant they've never met.</p>
+
+        <p>Wayne holds an active Certified Public Accountant license in Georgia (license <span class="nowrap">CPA026715</span>) and is also licensed to practice in Alabama, which allows him to serve clients across both states without interruption. His service area spans Rome and Floyd County, the surrounding Northwest Georgia counties, and Northeast Alabama.</p>
+
+        <p><!-- PLACEHOLDER: confirm legal name -->Whether you're a sole proprietor trying to stay current with quarterly estimates, a small business owner looking for reliable bookkeeping, or an individual who has fallen behind on filings, Wayne's approach is the same: straightforward answers, no unnecessary jargon, and a commitment to getting things right the first time.</p>
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+</BaseLayout>
+
+<style>
+  .bio-section {
+    padding: clamp(48px, 6vw, 96px) 0;
+  }
+
+  .bio-section__body {
+    max-width: 72ch;
+    margin: 0 auto;
+  }
+
+  .bio-section__body p {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--ink-muted);
+    margin-bottom: 1.4em;
+  }
+
+  .bio-section__body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .nowrap {
+    white-space: nowrap;
+  }
+</style>
