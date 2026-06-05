@@ -1,5 +1,5 @@
 /* ============================================================
-   Wayne H. Jones, CPA — "Engraved" site interactions
+   Wayne Jones, CPA — "Engraved" site interactions
    Vanilla JS, no dependencies. All listeners null-guarded.
    Respects prefers-reduced-motion (shows final states).
    ============================================================ */
