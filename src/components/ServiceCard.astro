@@ -1,0 +1,22 @@
+---
+export interface Props {
+  href: string;
+  num: string;
+  title: string;
+  summary: string;
+}
+
+const { href, num, title, summary } = Astro.props;
+---
+
+<li class="schedule__row reveal" data-reveal>
+  <a class="schedule__link" href={href}>
+    <span class="schedule__num" aria-hidden="true">{num}</span>
+    <span class="schedule__body">
+      <span class="schedule__title">{title}</span>
+      <span class="schedule__note">{summary}</span>
+    </span>
+    <span class="schedule__rule" aria-hidden="true"></span>
+    <span class="schedule__folio" aria-hidden="true">&rarr;</span>
+  </a>
+</li>

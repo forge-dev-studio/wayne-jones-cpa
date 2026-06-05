@@ -1,0 +1,98 @@
+---
+import SchemaOrg from './SchemaOrg.astro';
+
+export interface Props {
+  items: { q: string; a: string }[];
+  /** When true the FAQPage JSON-LD block is suppressed (e.g. already emitted by parent). */
+  suppressSchema?: boolean;
+}
+
+const { items, suppressSchema = false } = Astro.props;
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: items.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.a,
+    },
+  })),
+};
+---
+
+{items.length > 0 && (
+  <div class="faq-list">
+    <dl class="faq-list__items">
+      {items.map((item, i) => (
+        <div class="faq-list__row reveal" data-reveal style={`--d:${i % 4}`}>
+          <dt class="faq-list__q">{item.q}</dt>
+          <dd class="faq-list__a">{item.a}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+)}
+
+{!suppressSchema && items.length > 0 && <SchemaOrg schema={faqSchema} />}
+
+<style>
+  .faq-list {
+    margin: clamp(32px, 4vw, 56px) 0;
+  }
+
+  .faq-list__items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .faq-list__row {
+    border-top: 1px solid rgba(182, 146, 74, 0.28);
+    padding: clamp(20px, 2.5vw, 32px) clamp(8px, 1.5vw, 20px);
+    position: relative;
+  }
+
+  .faq-list__row:last-child {
+    border-bottom: 1px solid rgba(182, 146, 74, 0.28);
+  }
+
+  .faq-list__row::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--gold);
+    transform: scaleY(0);
+    transform-origin: center top;
+    transition: transform 0.35s var(--ease);
+  }
+
+  .faq-list__row:hover::before {
+    transform: scaleY(1);
+  }
+
+  .faq-list__q {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  .faq-list__a {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--ink-muted);
+    max-width: 72ch;
+    margin: 0;
+  }
+</style>
