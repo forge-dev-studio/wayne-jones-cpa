@@ -163,10 +163,22 @@ for (const absFile of htmlFiles.sort()) {
   // Only check <a href="..."> tags (not <link>, <script>, etc.)
   const anchorHrefs = extractAll(html, /<a\s[^>]*href="([^"]+)"/gi);
   for (const rawHref of anchorHrefs) {
-    if (!rawHref.startsWith(BASE)) continue; // skip external, mailto, tel, anchors
-    if (!resolveInternalHref(rawHref)) {
-      fail(`${rel}: broken internal link → "${rawHref}"`);
+    // Root-relative internal links MUST carry the base prefix on GitHub Pages.
+    // Flag any href starting with "/" that is not protocol-relative ("//") and
+    // does not start with the base — this is the base-less-link bug class that
+    // previously slipped through (only base-prefixed links were checked).
+    if (rawHref.startsWith('/') && !rawHref.startsWith('//')) {
+      const baseLess = rawHref !== BASE && !rawHref.startsWith(BASE + '/');
+      if (baseLess) {
+        fail(`${rel}: base-less internal link (missing "${BASE}" prefix) → "${rawHref}"`);
+        continue;
+      }
+      // Base-prefixed: verify it resolves to an emitted file.
+      if (!resolveInternalHref(rawHref)) {
+        fail(`${rel}: broken internal link → "${rawHref}"`);
+      }
     }
+    // else: external (http/https), protocol-relative, mailto:, tel:, #fragment — skip
   }
 }
 
