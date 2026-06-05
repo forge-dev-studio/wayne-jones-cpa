@@ -1,0 +1,68 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CTASection from '../../components/CTASection.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { href } from '../../lib/seo';
+
+// Roman numerals I–X (sufficient for up to 10 services)
+const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
+
+const services = (await getCollection('services')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const seo = {
+  title: 'Accounting & Tax Services in Rome, GA | Wayne Jones, CPA',
+  description:
+    'Full-service CPA firm in Rome, GA: tax preparation, bookkeeping, payroll, IRS resolution, and more. Serving Floyd County and Northwest Georgia since 2008.',
+  canonical: '/services/',
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Services', href: '/services/' },
+];
+---
+
+<BaseLayout seo={seo}>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="services services--hub" aria-label="All services">
+    <div class="section-wrap">
+      <header class="section-head">
+        <p class="eyebrow reveal" data-reveal>What we do</p>
+        <h1 class="section-title reveal" data-reveal style="--d:1">
+          Our <em>Services</em>
+        </h1>
+        <p class="section-deck reveal" data-reveal style="--d:2">
+          Full-service accounting under one roof — set down plainly, the way a
+          ledger should read. Select a service to learn more.
+        </p>
+      </header>
+
+      {services.length > 0 ? (
+        <div class="schedule-panel">
+          <ol class="schedule" role="list">
+            {services.map((service, i) => (
+              <ServiceCard
+                href={href(`/services/${service.slug}/`)}
+                num={ROMAN[i] ?? String(i + 1)}
+                title={service.data.title}
+                summary={service.data.summary}
+              />
+            ))}
+          </ol>
+        </div>
+      ) : (
+        <p class="services-hub__empty reveal" data-reveal>
+          Service pages are coming soon. In the meantime,{' '}
+          <a href={href('/contact/')}>contact us</a> to discuss your needs.
+        </p>
+      )}
+    </div>
+  </section>
+
+  <CTASection />
+</BaseLayout>
