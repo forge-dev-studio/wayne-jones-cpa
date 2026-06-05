@@ -1,0 +1,90 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CTASection from '../../components/CTASection.astro';
+import PostCard from '../../components/PostCard.astro';
+import { href } from '../../lib/seo';
+
+const allPosts = await getCollection('posts');
+const posts = allPosts.sort(
+  (a, b) =>
+    new Date(b.data.datePublished).getTime() -
+    new Date(a.data.datePublished).getTime(),
+);
+
+const seo = {
+  title: 'CPA Insights & Tax Tips — Rome, GA | Wayne Jones',
+  description:
+    'Tax tips, bookkeeping advice, and small-business guidance from Wayne Jones, CPA — serving Rome, GA and Northwest Georgia since 2008.',
+  canonical: '/blog/',
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Blog', href: '/blog/' },
+];
+---
+
+<BaseLayout seo={seo}>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="blog blog--hub" aria-label="Blog posts">
+    <div class="section-wrap">
+      <header class="section-head">
+        <p class="eyebrow reveal" data-reveal>CPA Insights</p>
+        <h1 class="section-title reveal" data-reveal style="--d:1">
+          Tax Tips &amp; <em>Accounting Insights</em>
+        </h1>
+        <p class="section-deck reveal" data-reveal style="--d:2">
+          Practical guidance on taxes, bookkeeping, and small-business finances
+          for individuals and businesses in Rome&nbsp;&amp; Northwest Georgia.
+        </p>
+      </header>
+
+      {posts.length > 0 ? (
+        <div class="schedule-panel">
+          <ol class="schedule" role="list">
+            {posts.map((post) => (
+              <PostCard
+                slug={post.slug}
+                title={post.data.title}
+                category={post.data.category}
+                datePublished={post.data.datePublished}
+                excerpt={post.data.excerpt}
+              />
+            ))}
+          </ol>
+        </div>
+      ) : (
+        <p class="blog-hub__empty reveal" data-reveal>
+          Articles are on their way. In the meantime,{' '}
+          <a href={href('/contact/')}>contact us</a> with any questions.
+        </p>
+      )}
+    </div>
+  </section>
+
+  <CTASection />
+</BaseLayout>
+
+<style>
+  .blog--hub {
+    padding-top: clamp(48px, 6vw, 80px);
+    padding-bottom: clamp(48px, 6vw, 80px);
+  }
+
+  .blog-hub__empty {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--ink-muted);
+    max-width: 60ch;
+  }
+
+  .blog-hub__empty a {
+    color: var(--oxblood);
+    text-underline-offset: 3px;
+  }
+</style>

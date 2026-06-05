@@ -1,0 +1,220 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CTASection from '../../components/CTASection.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import { absoluteUrl } from '../../lib/seo';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+const d = post.data;
+
+const canonicalPath = `/blog/${post.slug}/`;
+
+const seo = {
+  title: d.metaTitle,
+  description: d.metaDescription,
+  canonical: canonicalPath,
+  ogImage: '/og/og-default.png',
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Blog', href: '/blog/' },
+  { label: d.title, href: canonicalPath },
+];
+
+const formattedDate = new Date(d.datePublished).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'America/New_York',
+});
+
+// JSON-LD: BlogPosting
+const blogPostingSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: d.title,
+  description: d.metaDescription,
+  datePublished: d.datePublished,
+  author: {
+    '@type': 'Person',
+    name: 'Wayne Jones',
+  },
+  publisher: {
+    '@type': 'AccountingService',
+    '@id': absoluteUrl('/') + '#business',
+  },
+  mainEntityOfPage: absoluteUrl(canonicalPath),
+};
+
+// JSON-LD: BreadcrumbList (in addition to Breadcrumbs component which also emits one)
+// The Breadcrumbs component handles its own BreadcrumbList; we add BlogPosting only.
+---
+
+<BaseLayout seo={seo}>
+  <SchemaOrg schema={blogPostingSchema} />
+  <Breadcrumbs items={breadcrumbs} />
+
+  <article class="post-detail section-wrap" aria-label={d.title}>
+
+    <header class="post-detail__header">
+      <p class="eyebrow reveal" data-reveal>{d.category}</p>
+      <h1 class="section-title reveal" data-reveal style="--d:1">{d.title}</h1>
+      <p class="post-detail__meta reveal" data-reveal style="--d:2">
+        <time datetime={d.datePublished}>{formattedDate}</time>
+        <span class="post-detail__meta-sep" aria-hidden="true">·</span>
+        <span>By Wayne Jones, CPA</span>
+      </p>
+    </header>
+
+    <div class="post-detail__body prose reveal" data-reveal style="--d:3">
+      <Content />
+    </div>
+
+  </article>
+
+  <CTASection />
+</BaseLayout>
+
+<style>
+  .post-detail {
+    padding-top: clamp(48px, 6vw, 80px);
+    padding-bottom: clamp(48px, 6vw, 80px);
+  }
+
+  .post-detail__header {
+    margin-bottom: clamp(40px, 5vw, 64px);
+    max-width: 72ch;
+  }
+
+  .post-detail__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    color: var(--gold-text);
+    margin-top: 18px;
+  }
+
+  .post-detail__meta-sep {
+    color: var(--gold);
+    opacity: 0.6;
+  }
+
+  .post-detail__body {
+    max-width: 72ch;
+  }
+
+  /* ── Prose typography for article body ── */
+  .prose :global(p) {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: clamp(0.97rem, 1.05vw, 1.06rem);
+    line-height: 1.75;
+    color: var(--ink-muted);
+    margin: 0 0 1.4em;
+  }
+
+  .prose :global(h2) {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.3rem, 2.1vw, 1.8rem);
+    color: var(--ink);
+    letter-spacing: -0.015em;
+    margin: 2em 0 0.55em;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(182, 146, 74, 0.38);
+  }
+
+  .prose :global(h3) {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.08rem, 1.6vw, 1.4rem);
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin: 1.6em 0 0.4em;
+  }
+
+  .prose :global(h4) {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold-text);
+    margin: 1.4em 0 0.35em;
+  }
+
+  .prose :global(ul),
+  .prose :global(ol) {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: clamp(0.97rem, 1.05vw, 1.06rem);
+    line-height: 1.7;
+    color: var(--ink-muted);
+    padding-left: 1.6em;
+    margin: 0 0 1.4em;
+  }
+
+  .prose :global(li) {
+    margin-bottom: 0.4em;
+  }
+
+  .prose :global(blockquote) {
+    border-left: 3px solid var(--gold);
+    margin: 1.8em 0;
+    padding: 12px 0 12px 24px;
+  }
+
+  .prose :global(blockquote p) {
+    font-style: italic;
+    color: var(--oxblood);
+    font-size: clamp(1rem, 1.15vw, 1.12rem);
+    margin: 0;
+  }
+
+  .prose :global(a) {
+    color: var(--oxblood);
+    text-underline-offset: 3px;
+    text-decoration: underline;
+    text-decoration-color: rgba(119, 29, 29, 0.35);
+    transition: text-decoration-color 0.2s var(--ease);
+  }
+
+  .prose :global(a:hover) {
+    text-decoration-color: var(--oxblood);
+  }
+
+  .prose :global(strong) {
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .prose :global(code) {
+    font-family: var(--font-body);
+    font-size: 0.88em;
+    background: rgba(182, 146, 74, 0.1);
+    padding: 2px 6px;
+    border-radius: 2px;
+  }
+
+  .prose :global(hr) {
+    border: none;
+    border-top: 1px solid rgba(182, 146, 74, 0.3);
+    margin: 2.4em 0;
+  }
+</style>
