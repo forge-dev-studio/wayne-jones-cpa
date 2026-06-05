@@ -11,7 +11,7 @@
   --ink:           #122036;
   --ink-mid:       #2A3E56;
   --ink-muted:     #4A5D72;
-  --ink-faint:     #8899AA;
+  --ink-faint:     #8899AA;  /* decorative / disabled-state only — fails AA as text on ivory */
   --oxblood:       #6E2B2B;
   --oxblood-deep:  #4F1F1F;
   --oxblood-ink:   #C97A5A;  /* AA-safe oxblood for text on ink (4.99:1) */
@@ -154,7 +154,7 @@ a { color: inherit; }
   background: linear-gradient(90deg, transparent 0%, var(--gold) 20%, var(--gold) 80%, transparent 100%);
   opacity: 0.32;
 }
-.hairline--draw {
+.js .hairline--draw {
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 1.1s var(--ease);
@@ -1154,7 +1154,7 @@ a { color: inherit; }
 /* ============================================================
    MOTION — reveal system
    ============================================================ */
-.reveal {
+.js .reveal {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
@@ -1164,7 +1164,7 @@ a { color: inherit; }
 
 /* Headline clip/mask reveal (hero) */
 .reveal-clip .line { display: block; overflow: hidden; }
-.reveal-clip .line__inner {
+.js .reveal-clip .line__inner {
   display: block;
   transform: translateY(110%);
   transition: transform 1s var(--ease);

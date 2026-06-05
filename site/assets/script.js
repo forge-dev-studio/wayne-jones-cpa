@@ -166,6 +166,7 @@
     var status = form.querySelector('[data-form-status]');
 
     form.addEventListener('submit', function (e) {
+      if (status) { status.textContent = ''; status.className = 'form-status'; }
       // If a real Formspree ID is wired in, let the POST proceed normally.
       var action = form.getAttribute('action') || '';
       if (action.indexOf('FORMSPREE_ID') === -1) return;
