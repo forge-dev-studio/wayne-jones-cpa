@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import SchemaOrg from '../components/SchemaOrg.astro';
+import { absoluteUrl } from '../lib/seo';
+import { SITE } from '../config';
+
+const seo = {
+  title: 'Contact Wayne Jones, CPA — Rome, GA | (706) 232-8565',
+  description:
+    'Request a free consultation with Wayne Jones, CPA in Rome, GA. Call (706) 232-8565 or use the online form. Serving Georgia and Alabama.',
+  canonical: '/contact/',
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Contact', href: '/contact/' },
+];
+
+const contactPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  url: absoluteUrl('/contact/'),
+  name: 'Contact Wayne Jones, CPA',
+  description: 'Request a consultation with Wayne Jones, Certified Public Accountant, Rome GA.',
+  mainEntity: { '@id': absoluteUrl('/') + '#business' },
+};
+---
+
+<BaseLayout seo={seo}>
+  <Breadcrumbs items={breadcrumbs} />
+  <SchemaOrg schema={contactPageSchema} />
+
+  <section id="contact" class="contact" aria-label="Request a consultation">
+    <!-- PLACEHOLDER: replace FORMSPREE_ID with real Formspree form id -->
+    <div class="section-wrap">
+      <header class="section-head">
+        <p class="eyebrow reveal" data-reveal>Get started</p>
+        <h1 class="section-title reveal" data-reveal style="--d:1">Request a <em>Consultation</em></h1>
+        <p class="section-deck reveal" data-reveal style="--d:2">A free, no-obligation conversation. Tell us a little about what you need and Wayne will be in touch.</p>
+      </header>
+
+      <div class="contact__grid">
+
+        <!-- Certificate-framed form -->
+        <form class="cert-form reveal" data-reveal action="https://formspree.io/f/FORMSPREE_ID" method="POST" data-lead-form>
+          <span class="cert-form__corner cert-form__corner--tl" aria-hidden="true"></span>
+          <span class="cert-form__corner cert-form__corner--tr" aria-hidden="true"></span>
+          <span class="cert-form__corner cert-form__corner--bl" aria-hidden="true"></span>
+          <span class="cert-form__corner cert-form__corner--br" aria-hidden="true"></span>
+
+          <p class="cert-form__heading">Consultation Request</p>
+
+          <div class="field">
+            <label for="name">Full name</label>
+            <input id="name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="interest">I'm interested in</label>
+            <select id="interest" name="interest">
+              <option value="" disabled selected>Select a service…</option>
+              <option>Tax preparation</option>
+              <option>Bookkeeping</option>
+              <option>Payroll</option>
+              <option>IRS / tax problem</option>
+              <option>Business consulting</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="msg">How can we help?</label>
+            <textarea id="msg" name="message" rows="4"></textarea>
+          </div>
+
+          <button class="btn-primary btn-primary--block" type="submit">Request My Consultation</button>
+          <p class="form-status" role="status" aria-live="polite" data-form-status></p>
+        </form>
+
+        <!-- Engraved office register -->
+        <aside class="office-register reveal" data-reveal style="--d:1" aria-label="Office details">
+          <p class="office-register__heading">The Office</p>
+          <dl class="office-register__lines">
+            <div class="office-register__row">
+              <dt class="office-register__label">Office</dt>
+              <dd class="office-register__value">{SITE.street}<br>{SITE.city}, {SITE.state} {SITE.zip}</dd>
+            </div>
+            <div class="office-register__row">
+              <dt class="office-register__label">Telephone</dt>
+              <dd class="office-register__value"><a href={SITE.phoneHref}>{SITE.phone}</a></dd>
+            </div>
+            <div class="office-register__row">
+              <dt class="office-register__label">Hours</dt>
+              <dd class="office-register__value">Mon–Fri 9:00 AM – 4:00 PM<br>Sat–Sun closed</dd>
+            </div>
+            <div class="office-register__row">
+              <dt class="office-register__label">Service area</dt>
+              <dd class="office-register__value">Georgia &amp; Alabama</dd>
+            </div>
+          </dl>
+          <!-- NOTE: legacy maps embed, no API key needed; swap to Maps Embed API if a key becomes available -->
+          <iframe
+            class="office-register__map"
+            title="Map to Wayne Jones Accounting Services, 101 E 2nd Ave Suite 330, Rome GA"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://maps.google.com/maps?q=101%20E%202nd%20Ave%20Suite%20330%20Rome%20GA%2030161&output=embed"
+          ></iframe>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+</BaseLayout>

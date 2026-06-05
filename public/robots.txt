@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# CUTOVER: update Sitemap URL when switching to waynejonescpa.com domain
+Sitemap: https://forge-dev-studio.github.io/wayne-jones-cpa/sitemap-index.xml

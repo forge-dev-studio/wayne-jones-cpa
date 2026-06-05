@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CTASection from '../components/CTASection.astro';
+import FaqList from '../components/FaqList.astro';
+
+const seo = {
+  title: 'Frequently Asked Questions | Wayne Jones, CPA, Rome GA',
+  description:
+    'Common questions about working with a CPA in Rome, GA — services offered, how to get started, what to bring, and business vs. personal accounting.',
+  canonical: '/faq/',
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'FAQ', href: '/faq/' },
+];
+
+const faqs = [
+  {
+    q: 'Do I really need a CPA, or can I just use tax software?',
+    a: 'Tax software works well for straightforward situations — a single W-2, standard deduction, no self-employment income. If you own a business, have rental property, are self-employed, have had a major life event (marriage, divorce, inheritance, sale of a home), or have received IRS notices, a CPA can catch issues the software won\'t flag and ensure you\'re not leaving deductions on the table. The cost of professional preparation often pays for itself.',
+  },
+  {
+    q: 'What services does Wayne Jones, CPA offer?',
+    a: 'Wayne Jones Accounting Services provides tax preparation for individuals and businesses, small-business bookkeeping, payroll processing, IRS and tax-problem resolution, and business consulting. If you\'re unsure whether your situation falls within these areas, a free consultation is the fastest way to find out.',
+  },
+  {
+    q: 'What areas does the firm serve?',
+    a: 'The office is located in downtown Rome, Georgia, and primarily serves individuals and businesses in Rome, Floyd County, and the surrounding Northwest Georgia communities — including Cartersville, Calhoun, Cedartown, and the broader region. Wayne is also licensed in Alabama and regularly serves clients in Northeast Alabama.',
+  },
+  {
+    q: 'Is Wayne Jones licensed in Alabama?',
+    a: 'Yes. Wayne holds an active Certified Public Accountant license in Georgia (CPA026715) and is also licensed to practice in the state of Alabama. Clients with business activity or residency on both sides of the state line can be served without needing a second accountant.',
+  },
+  {
+    q: 'How do I get started or schedule a first appointment?',
+    a: 'The easiest way is to fill out the consultation request form on the Contact page, or call the office directly at (706) 232-8565. Office hours are Monday through Friday, 9:00 AM to 4:00 PM. Wayne will review your situation and respond promptly to schedule a time that works.',
+  },
+  {
+    q: 'What should I bring to my first appointment?',
+    a: 'For individual tax preparation, bring prior-year returns if available, all income documents (W-2s, 1099s, K-1s), records of deductible expenses, Social Security numbers for you and your dependents, and any IRS notices you\'ve received. Business clients should also bring bank statements, expense summaries, and any existing bookkeeping records. Don\'t worry if you\'re not perfectly organized — Wayne can help sort it out.',
+  },
+  {
+    q: 'How does pricing work? What do your services cost?',
+    a: 'Fees vary depending on the complexity of your situation — a simple individual return is priced differently from a multi-entity business engagement. Wayne does not publish a standard fee schedule because every client\'s needs are different. Request a free consultation and you\'ll receive a clear quote before any work begins. There are no surprise bills.',
+  },
+  {
+    q: 'Do you work with businesses as well as individuals?',
+    a: 'Yes. Wayne Jones Accounting Services works with both small businesses and individuals. Business services include tax preparation for sole proprietors, partnerships, S-corps, and C-corps, along with bookkeeping, payroll, and business advisory. Many clients are served on both the business and personal side.',
+  },
+  {
+    q: 'What bookkeeping software do you work with?',
+    a: 'The firm works with commonly used small-business accounting platforms. If you currently use bookkeeping software or would like guidance on what to use, that can be discussed during your consultation. If you\'re keeping records in spreadsheets or paper ledgers, that\'s fine too — Wayne can help you establish a system that works.',
+  },
+  {
+    q: 'Do you only work during tax season, or is this a year-round practice?',
+    a: 'Wayne Jones Accounting Services operates year-round, Monday through Friday. While tax season (January–April) is naturally a busy period, the firm handles bookkeeping, payroll, quarterly estimates, business filings, and planning conversations throughout the year. Clients are not left waiting until next April to address issues that come up in June.',
+  },
+  {
+    q: 'Can you help if I\'m starting a new business?',
+    a: 'Yes. New business owners benefit from early CPA involvement — choosing the right entity structure, understanding estimated tax obligations, setting up payroll correctly from day one, and establishing bookkeeping habits that hold up at year-end. Starting right is far easier than untangling problems after the fact.',
+  },
+  {
+    q: 'What if I\'m behind on my taxes or have unfiled returns?',
+    a: 'This is more common than most people realize, and it is fixable. Wayne has experience helping clients who are behind on filings, who owe back taxes, or who have received IRS or state notices. The first step is understanding exactly what is owed and what options are available — including payment arrangements and penalty relief programs where applicable. Contact the office to discuss your situation confidentially.',
+  },
+  {
+    q: 'Can I work with you remotely, or do I need to come into the office?',
+    a: 'Many clients prefer to drop off documents in person at the downtown Rome office, but Wayne can also work with clients who submit documents electronically. If your situation doesn\'t require an in-person visit, remote arrangements can be discussed when you schedule your consultation.',
+  },
+];
+---
+
+<BaseLayout seo={seo}>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="faq-page" aria-label="Frequently asked questions">
+    <div class="section-wrap">
+      <header class="section-head">
+        <p class="eyebrow reveal" data-reveal>Questions &amp; answers</p>
+        <h1 class="section-title reveal" data-reveal style="--d:1">Frequently Asked <em>Questions</em></h1>
+        <p class="section-deck reveal" data-reveal style="--d:2">
+          Common questions about working with a CPA in Rome, GA — answered plainly.
+        </p>
+      </header>
+
+      <FaqList items={faqs} />
+    </div>
+  </section>
+
+  <CTASection />
+</BaseLayout>

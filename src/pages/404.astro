@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { href } from '../lib/seo';
+
+const seo = {
+  title: 'Page Not Found | Wayne Jones, CPA',
+  description: 'The page you requested could not be found. Return to Wayne Jones, CPA — Rome GA tax and accounting services.',
+  canonical: '/404/',
+  noindex: true,
+};
+---
+<BaseLayout seo={seo}>
+  <section class="not-found" aria-label="Page not found">
+    <div class="section-wrap not-found__wrap">
+      <div class="not-found__emblem" aria-hidden="true">
+        <svg width="72" height="72" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <use href="#wj-seal" />
+        </svg>
+      </div>
+      <p class="eyebrow">404</p>
+      <h1 class="section-title">Page <em>Not Found</em></h1>
+      <p class="not-found__message">
+        The page you're looking for doesn't exist or may have been moved.<br />
+        Let us help you find what you need.
+      </p>
+      <nav class="not-found__links" aria-label="Helpful links">
+        <a class="btn btn--primary" href={href('/')}>Home</a>
+        <a class="btn btn--outline" href={href('/services/')}>Services</a>
+        <a class="btn btn--outline" href={href('/locations/')}>Locations</a>
+        <a class="btn btn--outline" href={href('/contact/')}>Contact</a>
+      </nav>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    padding: var(--space-2xl) 0;
+  }
+
+  .not-found__wrap {
+    text-align: center;
+    max-width: 42rem;
+    margin-inline: auto;
+  }
+
+  .not-found__emblem {
+    margin-bottom: var(--space-lg);
+    opacity: 0.4;
+  }
+
+  .not-found__message {
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    color: var(--ink-2);
+    line-height: 1.7;
+    margin: var(--space-md) 0 var(--space-xl);
+  }
+
+  .not-found__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    justify-content: center;
+  }
+</style>

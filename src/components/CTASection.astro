@@ -1,0 +1,17 @@
+---
+import { SITE } from '../config';
+import { href } from '../lib/seo';
+---
+<section class="cta-band band-dark" aria-label="Call to action">
+  <!-- Guilloché watermark -->
+  <svg class="guilloche-bg" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation">
+    <use href="#guilloche"></use>
+  </svg>
+  <div class="section-wrap cta-band__inner">
+    <h2 class="cta-band__heading">Ready to talk to a CPA who answers the phone?</h2>
+    <div class="cta-band__actions">
+      <a href={href('/contact/')} class="btn-primary">Request a Consultation</a>
+      <a href={SITE.phoneHref} class="cta-band__tel">{SITE.phone}</a>
+    </div>
+  </div>
+</section>

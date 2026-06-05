@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import SectionDivider from '../components/sections/SectionDivider.astro';
+import LedgerBar from '../components/sections/LedgerBar.astro';
+import ServiceSchedule from '../components/sections/ServiceSchedule.astro';
+import ClientRegister from '../components/sections/ClientRegister.astro';
+import AboutBand from '../components/sections/AboutBand.astro';
+import WhyBand from '../components/sections/WhyBand.astro';
+import ContactForm from '../components/sections/ContactForm.astro';
+
+const seo = {
+  title: 'Wayne Jones, CPA — Tax & Accounting in Rome, GA',
+  description: 'Rome, GA CPA firm offering tax prep, bookkeeping, payroll, and business consulting for small businesses and individuals since 2008. Licensed in GA and AL.',
+  canonical: '/',
+};
+---
+<BaseLayout seo={seo}>
+  <Hero />
+  <SectionDivider />
+  <LedgerBar />
+  <SectionDivider />
+  <ServiceSchedule />
+  <SectionDivider />
+  <ClientRegister />
+  <AboutBand />
+  <WhyBand />
+  <SectionDivider />
+  <ContactForm />
+</BaseLayout>

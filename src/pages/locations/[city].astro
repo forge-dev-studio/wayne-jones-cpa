@@ -1,0 +1,237 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CTASection from '../../components/CTASection.astro';
+import FaqList from '../../components/FaqList.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import { href, absoluteUrl } from '../../lib/seo';
+
+export async function getStaticPaths() {
+  const locations = await getCollection('locations');
+  return locations.map((loc) => ({
+    params: { city: loc.slug },
+    props: { loc },
+  }));
+}
+
+const { loc } = Astro.props;
+const { Content } = await loc.render();
+const d = loc.data;
+
+const seo = {
+  title: d.metaTitle,
+  description: d.metaDescription,
+  canonical: `/locations/${loc.slug}/`,
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Locations', href: '/locations/' },
+  { label: `${d.city}, ${d.state}`, href: `/locations/${loc.slug}/` },
+];
+
+// Fetch all services to cross-link offered slugs
+const allServices = await getCollection('services');
+const offeredEntries = allServices.filter((s) =>
+  d.servicesOffered.includes(s.slug),
+);
+
+// LocalBusiness JSON-LD with areaServed for this city
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': absoluteUrl('/') + '#business',
+  name: 'Wayne Jones, CPA',
+  url: absoluteUrl(`/locations/${loc.slug}/`),
+  areaServed: {
+    '@type': 'City',
+    name: `${d.city}, ${d.state}`,
+  },
+};
+---
+
+<BaseLayout seo={seo}>
+  <SchemaOrg schema={localBusinessSchema} />
+  <Breadcrumbs items={breadcrumbs} />
+
+  <article class="location-detail section-wrap" aria-label={`${d.city}, ${d.state}`}>
+
+    <!-- Hero heading -->
+    <header class="location-detail__header">
+      <p class="eyebrow reveal" data-reveal>{d.state} — CPA Services</p>
+      <h1 class="section-title reveal" data-reveal style="--d:1">
+        {d.city}, <em>{d.state}</em>
+      </h1>
+      <p class="section-deck reveal" data-reveal style="--d:2">{d.intro}</p>
+    </header>
+
+    <!-- Prose body -->
+    <div class="location-detail__body prose reveal" data-reveal style="--d:3">
+      <Content />
+    </div>
+
+    <!-- Services offered in this location -->
+    {offeredEntries.length > 0 && (
+      <div class="location-detail__services reveal" data-reveal>
+        <h2 class="location-detail__subhead">
+          Services we offer in {d.city}
+        </h2>
+        <ul class="location-detail__service-list">
+          {offeredEntries.map((s) => (
+            <li>
+              <a
+                href={href(`/services/${s.slug}/`)}
+                class="location-detail__service-link"
+              >
+                {s.data.title} &rarr;
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    <!-- Nearby areas -->
+    {d.nearbyAreas.length > 0 && (
+      <div class="location-detail__nearby reveal" data-reveal>
+        <h2 class="location-detail__subhead">Nearby areas we serve</h2>
+        <ul class="location-detail__nearby-list">
+          {d.nearbyAreas.map((area) => (
+            <li class="location-detail__nearby-item">{area}</li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    <!-- FAQ -->
+    {d.faq.length > 0 && (
+      <div class="location-detail__faq">
+        <h2 class="location-detail__subhead reveal" data-reveal>
+          Frequently Asked Questions
+        </h2>
+        <FaqList items={d.faq} />
+      </div>
+    )}
+
+  </article>
+
+  <CTASection />
+</BaseLayout>
+
+<style>
+  .location-detail {
+    padding-top: clamp(48px, 6vw, 80px);
+    padding-bottom: clamp(48px, 6vw, 80px);
+  }
+
+  .location-detail__header {
+    margin-bottom: clamp(40px, 5vw, 64px);
+  }
+
+  .location-detail__body {
+    margin-bottom: clamp(40px, 5vw, 56px);
+  }
+
+  .location-detail__subhead {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.3rem, 2.1vw, 1.8rem);
+    color: var(--ink);
+    letter-spacing: -0.015em;
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(182, 146, 74, 0.38);
+  }
+
+  .location-detail__services,
+  .location-detail__nearby,
+  .location-detail__faq {
+    margin-bottom: clamp(40px, 5vw, 56px);
+  }
+
+  /* Services cross-link list */
+  .location-detail__service-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .location-detail__service-link {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--oxblood);
+    text-decoration: none;
+    border: 1px solid rgba(182, 146, 74, 0.38);
+    padding: 8px 18px;
+    transition: background 0.25s var(--ease), color 0.25s var(--ease);
+  }
+
+  .location-detail__service-link:hover {
+    background: var(--oxblood);
+    color: var(--ivory);
+  }
+
+  /* Nearby areas list */
+  .location-detail__nearby-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+  }
+
+  .location-detail__nearby-item {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--ink-muted);
+    position: relative;
+    padding-left: 14px;
+  }
+
+  .location-detail__nearby-item::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    line-height: 1.6;
+  }
+
+  /* Prose */
+  .prose :global(p) {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--ink-muted);
+    max-width: 72ch;
+    margin: 0 0 1.2em;
+  }
+
+  .prose :global(h2),
+  .prose :global(h3) {
+    font-family: var(--font-display);
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: -0.015em;
+    margin: 1.5em 0 0.5em;
+  }
+
+  .prose :global(ul),
+  .prose :global(ol) {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--ink-muted);
+    padding-left: 1.5em;
+    margin: 0 0 1.2em;
+  }
+</style>

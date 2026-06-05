@@ -1,0 +1,72 @@
+---
+import { href } from '../lib/seo';
+
+export interface Props {
+  slug: string;
+  title: string;
+  category: string;
+  datePublished: string;
+  excerpt: string;
+}
+
+const { slug, title, category, datePublished, excerpt } = Astro.props;
+
+const formattedDate = new Date(datePublished).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'America/New_York',
+});
+---
+
+<li class="schedule__row reveal" data-reveal>
+  <a class="schedule__link post-card__link" href={href(`/blog/${slug}/`)}>
+    <span class="schedule__num post-card__eyebrow" aria-hidden="true">{category}</span>
+    <span class="schedule__body">
+      <span class="schedule__title">{title}</span>
+      <span class="schedule__note post-card__meta">{formattedDate}</span>
+      <span class="schedule__note post-card__excerpt">{excerpt}</span>
+    </span>
+    <span class="schedule__rule" aria-hidden="true"></span>
+    <span class="schedule__folio" aria-hidden="true">&rarr;</span>
+  </a>
+</li>
+
+<style>
+  /* category eyebrow overrides the roman-numeral style */
+  .post-card__eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-text);
+    font-weight: 400;
+    min-width: 9ch;
+    flex-shrink: 0;
+  }
+
+  .post-card__meta {
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: var(--gold-text);
+    opacity: 0.8;
+    margin-bottom: 4px;
+  }
+
+  .post-card__excerpt {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: var(--ink-muted);
+    margin-top: 6px;
+  }
+
+  /* Link wraps the whole row; remove underline */
+  .post-card__link {
+    text-decoration: none;
+    align-items: flex-start;
+  }
+</style>

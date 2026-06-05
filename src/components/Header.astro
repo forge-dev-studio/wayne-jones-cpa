@@ -1,0 +1,34 @@
+---
+import { NAV } from '../config';
+import { href } from '../lib/seo';
+const pathname = Astro.url.pathname;
+---
+<header class="topbar" data-header>
+  <div class="topbar__inner">
+    <a href={href('/')} class="topbar__wordmark" aria-label="Wayne Jones, CPA — home">
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="15" cy="15" r="14" stroke="#B6924A" stroke-width="0.75"/>
+        <circle cx="15" cy="15" r="11.5" stroke="#B6924A" stroke-width="0.5"/>
+        <circle cx="15" cy="15" r="9" stroke="#B6924A" stroke-width="0.35"/>
+        <text x="15" y="19.5" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="500" font-size="8.5" fill="#122036" letter-spacing="0.5">WJ</text>
+      </svg>
+      <span class="topbar__wordmark-name">Wayne Jones</span>
+      <span class="topbar__wordmark-divider" aria-hidden="true"></span>
+      <span class="topbar__wordmark-sub">CPA</span>
+    </a>
+
+    <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation menu" data-nav-toggle>
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav id="primary-nav" class="topbar__nav" aria-label="Primary navigation" data-nav>
+      {NAV.map(({ label, href: navHref }) => (
+        <a
+          href={href(navHref)}
+          aria-current={pathname === href(navHref) ? 'page' : undefined}
+        >{label}</a>
+      ))}
+      <a href={href('/contact/')} class="btn-ghost-pill nav-cta">Request a Consultation</a>
+    </nav>
+  </div>
+</header>

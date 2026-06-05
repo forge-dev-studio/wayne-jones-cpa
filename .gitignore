@@ -1,6 +1,6 @@
 node_modules/
 previews/*.png
 mockups/renders/
-package-lock.json
-package.json
 /tmp/
+dist/
+.astro/
