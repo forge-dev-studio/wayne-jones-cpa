@@ -1,0 +1,5 @@
+node_modules/
+previews/*.png
+package-lock.json
+package.json
+/tmp/
