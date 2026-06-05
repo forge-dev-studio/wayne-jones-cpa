@@ -4,7 +4,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import CTASection from '../../components/CTASection.astro';
 import SchemaOrg from '../../components/SchemaOrg.astro';
-import { absoluteUrl } from '../../lib/seo';
+import { href, absoluteUrl } from '../../lib/seo';
+import { SITE } from '../../config';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
@@ -25,6 +26,7 @@ const seo = {
   description: d.metaDescription,
   canonical: canonicalPath,
   ogImage: '/og/og-default.png',
+  type: 'article',
 };
 
 const breadcrumbs = [
@@ -40,20 +42,37 @@ const formattedDate = new Date(d.datePublished).toLocaleDateString('en-US', {
   timeZone: 'America/New_York',
 });
 
-// JSON-LD: BlogPosting
+// JSON-LD: BlogPosting (article rich-result requirements)
+const ogImageUrl = absoluteUrl('/og/og-default.png');
 const blogPostingSchema = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
   headline: d.title,
   description: d.metaDescription,
+  image: {
+    '@type': 'ImageObject',
+    url: ogImageUrl,
+    width: 1200,
+    height: 630,
+  },
   datePublished: d.datePublished,
+  dateModified: d.updatedDate ?? d.datePublished,
   author: {
     '@type': 'Person',
     name: 'Wayne Jones',
+    honorificSuffix: 'CPA',
+    url: absoluteUrl('/about/'),
+    sameAs: [SITE.facebook],
   },
   publisher: {
-    '@type': 'AccountingService',
-    '@id': absoluteUrl('/') + '#business',
+    '@type': 'Organization',
+    name: 'Wayne Jones, CPA',
+    logo: {
+      '@type': 'ImageObject',
+      url: ogImageUrl,
+      width: 1200,
+      height: 630,
+    },
   },
   mainEntityOfPage: absoluteUrl(canonicalPath),
 };
@@ -81,6 +100,37 @@ const blogPostingSchema = {
     <div class="post-detail__body prose reveal" data-reveal style="--d:3">
       <Content />
     </div>
+
+    <!-- YMYL disclaimer (general-information notice on every post) -->
+    <aside class="post-disclaimer reveal" data-reveal role="note" aria-label="Disclaimer">
+      <p>
+        This article is for general information only and is not tax, legal, or
+        accounting advice for your specific situation. Tax laws change frequently —
+        please confirm current rules with a licensed CPA. Wayne Jones, CPA is
+        licensed in Georgia and Alabama.
+      </p>
+    </aside>
+
+    <!-- Author bio card (E-E-A-T) -->
+    <aside class="author-card reveal" data-reveal aria-label="About the author">
+      <img
+        class="author-card__img"
+        src={href('/images/wayne-headshot-placeholder.png')}
+        alt="Wayne Jones, CPA"
+        width="600"
+        height="750"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="author-card__body">
+        <p class="author-card__name">Wayne Jones, CPA</p>
+        <p class="author-card__bio">
+          GA license #CPA026715, licensed in Georgia &amp; Alabama. 35+ years
+          serving Rome and Northwest Georgia.
+        </p>
+        <a class="author-card__link" href={href('/about/')}>About Wayne &rarr;</a>
+      </div>
+    </aside>
 
   </article>
 
@@ -111,7 +161,7 @@ const blogPostingSchema = {
   }
 
   .post-detail__meta-sep {
-    color: var(--gold);
+    color: var(--gold-text);
     opacity: 0.6;
   }
 
@@ -216,5 +266,87 @@ const blogPostingSchema = {
     border: none;
     border-top: 1px solid rgba(182, 146, 74, 0.3);
     margin: 2.4em 0;
+  }
+
+  /* ── YMYL disclaimer ── */
+  .post-disclaimer {
+    max-width: 72ch;
+    margin: clamp(40px, 5vw, 56px) 0 0;
+    padding: 18px 22px;
+    border-left: 2px solid var(--gold);
+    background: rgba(182, 146, 74, 0.06);
+  }
+
+  .post-disclaimer p {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.84rem;
+    line-height: 1.65;
+    color: var(--ink-muted);
+    margin: 0;
+  }
+
+  /* ── Author bio card (E-E-A-T) ── */
+  .author-card {
+    max-width: 72ch;
+    margin: clamp(28px, 4vw, 40px) 0 0;
+    padding: 24px;
+    display: flex;
+    gap: 22px;
+    align-items: center;
+    border: 1px solid rgba(182, 146, 74, 0.38);
+    background: var(--ivory-surface);
+    box-shadow: var(--shadow-panel), inset 0 0 0 1px rgba(182, 146, 74, 0.1);
+  }
+
+  .author-card__img {
+    flex: 0 0 auto;
+    width: 88px;
+    height: 110px;
+    object-fit: cover;
+    border: 1px solid rgba(182, 146, 74, 0.45);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.16);
+  }
+
+  .author-card__body {
+    min-width: 0;
+  }
+
+  .author-card__name {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.05rem;
+    color: var(--ink);
+    margin: 0 0 6px;
+  }
+
+  .author-card__bio {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--ink-muted);
+    margin: 0 0 10px;
+  }
+
+  .author-card__link {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--oxblood);
+    text-decoration: none;
+  }
+
+  .author-card__link:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  @media (max-width: 520px) {
+    .author-card {
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
   }
 </style>

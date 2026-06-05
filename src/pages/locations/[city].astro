@@ -37,17 +37,29 @@ const offeredEntries = allServices.filter((s) =>
   d.servicesOffered.includes(s.slug),
 );
 
-// LocalBusiness JSON-LD with areaServed for this city
+// Build areaServed from frontmatter: the page's city + state, plus the county
+// (when a "… County" entry is present in nearbyAreas) so each page's areaServed
+// is unique rather than identical across all 21 locations.
+const stateName = d.state === 'AL' ? 'Alabama' : 'Georgia';
+const county = d.nearbyAreas.find((a) => /\bCounty\b/i.test(a));
+const areaServed = [
+  { '@type': 'City', name: `${d.city}, ${d.state}` },
+  ...(county ? [{ '@type': 'AdministrativeArea', name: `${county}, ${d.state}` }] : []),
+  { '@type': 'State', name: stateName },
+];
+
+// LocalBusiness JSON-LD scoped to this location page. It gets its OWN @id
+// (…/locations/<slug>/#location) so Google does not merge/overwrite the rich
+// sitewide #business node with this thinner per-page node, and references the
+// sitewide business as its parentOrganization.
 const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
-  '@id': absoluteUrl('/') + '#business',
+  '@id': absoluteUrl(`/locations/${loc.slug}/`) + '#location',
   name: 'Wayne Jones, CPA',
   url: absoluteUrl(`/locations/${loc.slug}/`),
-  areaServed: {
-    '@type': 'City',
-    name: `${d.city}, ${d.state}`,
-  },
+  parentOrganization: { '@id': absoluteUrl('/') + '#business' },
+  areaServed,
 };
 ---
 
@@ -200,7 +212,7 @@ const localBusinessSchema = {
     content: '›';
     position: absolute;
     left: 0;
-    color: var(--gold);
+    color: var(--gold-text);
     line-height: 1.6;
   }
 

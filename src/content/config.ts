@@ -44,6 +44,7 @@ const posts = defineCollection({
     metaDescription: z.string(),
     excerpt: z.string(),
     datePublished: z.string(),
+    updatedDate: z.string().optional(),
     author: z.string().default('Wayne Jones'),
     category: z.string(),
     keywords: z.array(z.string()),
