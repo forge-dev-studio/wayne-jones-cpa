@@ -1,7 +1,7 @@
 ---
 title: "When Should a Small Business Hire a CPA?"
 metaTitle: "When Should a Small Business Hire a CPA? | Wayne Jones, CPA"
-metaDescription: "Wondering when to hire a CPA for your small business? Learn the key trigger moments—payroll, growth, IRS notices, entity decisions—and how a CPA helps year-round."
+metaDescription: "When should a small business hire a CPA? Learn key trigger moments—payroll, growth, IRS notices, entity decisions—and how a CPA helps year-round."
 excerpt: "Tax software can only take you so far. Here are the signs it's time to bring a CPA into your corner—and what a good one does for your business beyond April 15."
 datePublished: "2026-01-15"
 author: "Wayne Jones"

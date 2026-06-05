@@ -2,7 +2,7 @@
 title: "Bookkeeping & Monthly Write-Up"
 h1: "Bookkeeping Services in Rome, GA"
 metaTitle: "Bookkeeping Services in Rome, GA | Wayne Jones, CPA"
-metaDescription: "Professional bookkeeping services in Rome, GA for small businesses and individuals. Monthly reconciliations, financial statements, and tax-ready books from Wayne Jones, CPA."
+metaDescription: "Bookkeeping services in Rome, GA for small businesses. Monthly reconciliations, financial statements, and tax-ready books from Wayne Jones, CPA."
 keywords:
   - "bookkeeping services rome ga"
   - "monthly write-up rome ga"

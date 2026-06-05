@@ -2,7 +2,7 @@
 title: "Individual Tax Returns"
 h1: "Individual Tax Return Preparation in Rome, GA"
 metaTitle: "Individual Tax Returns in Rome, GA | Wayne Jones, CPA"
-metaDescription: "Professional individual tax return preparation in Rome, GA by Wayne Jones, CPA. Serving families, retirees & investors in Floyd County & NW Georgia since 2008."
+metaDescription: "Individual tax return preparation in Rome, GA by Wayne Jones, CPA. Serving families, retirees and investors in Floyd County and NW Georgia since 2008."
 keywords:
   - "individual tax return preparation rome ga"
   - "personal tax preparation rome ga"
