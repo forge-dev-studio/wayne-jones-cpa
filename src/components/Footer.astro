@@ -1,0 +1,47 @@
+---
+import { SITE, NAV } from '../config';
+import { href } from '../lib/seo';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer band-dark" aria-label="Site footer">
+  <!-- PLACEHOLDER: confirm "Website by" credit -->
+  <div class="section-wrap">
+    <div class="hairline hairline--static" role="separator"></div>
+    <div class="site-footer__grid">
+
+      <div class="site-footer__brand">
+        <svg width="84" height="84" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Wayne Jones, CPA — seal">
+          <use href="#wj-seal"></use>
+        </svg>
+        <p class="site-footer__wordmark">Wayne Jones<span>Certified Public Accountant · Rome, GA</span></p>
+      </div>
+
+      <div class="site-footer__col">
+        <p class="site-footer__col-head">Office</p>
+        <address class="site-footer__address">
+          {SITE.street}<br />
+          {SITE.city}, {SITE.state} {SITE.zip}<br />
+          <a href={SITE.phoneHref}>{SITE.phone}</a>
+        </address>
+        <p class="site-footer__meta">GA CPA #{SITE.cpaLicense} · Licensed in Georgia &amp; Alabama</p>
+      </div>
+
+      <div class="site-footer__col">
+        <p class="site-footer__col-head">Hours</p>
+        <p class="site-footer__hours">Monday – Friday<br />{SITE.hours.replace('Mon–Fri ', '')}<br /><span>Saturday &amp; Sunday — closed</span></p>
+        <nav class="site-footer__nav" aria-label="Footer navigation">
+          {NAV.map(({ label, href: navHref }) => (
+            <a href={href(navHref)}>{label}</a>
+          ))}
+          <a href={SITE.facebook} rel="noopener noreferrer" aria-label="Facebook page for Wayne Jones Accounting Services">Facebook &#8599;</a>
+        </nav>
+      </div>
+
+    </div>
+    <div class="hairline hairline--static" role="separator"></div>
+    <div class="site-footer__base">
+      <span>&copy; {year} {SITE.legalName}. All rights reserved.</span>
+      <span>Website by Synergy</span>
+    </div>
+  </div>
+</footer>
