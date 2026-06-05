@@ -1,0 +1,90 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CTASection from '../../components/CTASection.astro';
+import LocationCard from '../../components/LocationCard.astro';
+import { href } from '../../lib/seo';
+
+const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
+
+const locations = (await getCollection('locations')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const seo = {
+  title: 'Serving Northwest Georgia & Northeast Alabama | Wayne Jones, CPA',
+  description:
+    'Wayne Jones, CPA serves clients across Northwest Georgia and Northeast Alabama — from Rome and Floyd County to Calhoun, Cedartown, and beyond.',
+  canonical: '/locations/',
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Locations', href: '/locations/' },
+];
+---
+
+<BaseLayout seo={seo}>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="locations locations--hub" aria-label="All locations">
+    <div class="section-wrap">
+      <header class="section-head">
+        <p class="eyebrow reveal" data-reveal>Where we serve</p>
+        <h1 class="section-title reveal" data-reveal style="--d:1">
+          Northwest Georgia &amp; <em>Northeast Alabama</em>
+        </h1>
+        <p class="section-deck reveal" data-reveal style="--d:2">
+          Based in Rome, GA, Wayne Jones, CPA has served individuals and small
+          businesses across the region since 2008. Select a location to learn
+          about the accounting and tax services available near you.
+        </p>
+      </header>
+
+      {locations.length > 0 ? (
+        <div class="schedule-panel">
+          <ol class="schedule" role="list">
+            {locations.map((loc, i) => (
+              <LocationCard
+                href={href(`/locations/${loc.slug}/`)}
+                num={ROMAN[i] ?? String(i + 1)}
+                city={loc.data.city}
+                state={loc.data.state}
+                note={loc.data.intro}
+              />
+            ))}
+          </ol>
+        </div>
+      ) : (
+        <p class="locations-hub__empty reveal" data-reveal>
+          Location pages are coming soon. In the meantime,{' '}
+          <a href={href('/contact/')}>contact us</a> to discuss your needs.
+        </p>
+      )}
+    </div>
+  </section>
+
+  <CTASection />
+</BaseLayout>
+
+<style>
+  .locations--hub {
+    padding-top: clamp(48px, 6vw, 80px);
+    padding-bottom: clamp(48px, 6vw, 80px);
+  }
+
+  .locations-hub__empty {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--ink-muted);
+    max-width: 60ch;
+  }
+
+  .locations-hub__empty a {
+    color: var(--oxblood);
+    text-underline-offset: 3px;
+  }
+</style>
