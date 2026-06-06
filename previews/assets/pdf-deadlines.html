@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>2026 Federal Tax Deadline Calendar — Wayne Jones, CPA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  @page { size: letter; margin: 0.6in; }
+
+  :root {
+    --navy: #122036;
+    --gold: #B6924A;
+    --gold-text: #7a5c1e;
+    --ivory: #F7F4EC;
+    --ivory-surface: #EFEBe0;
+    --ink: #1a1714;
+    --ink-muted: #5a5248;
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'Spectral', Georgia, serif;
+  }
+
+  html, body {
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 10.5pt;
+    line-height: 1.55;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── Header ── */
+  .doc-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 22pt;
+    padding-bottom: 10pt;
+    border-bottom: 2px solid var(--navy);
+  }
+  .doc-header__firm {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 9pt;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--gold-text);
+  }
+  .doc-header__title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 19pt;
+    color: var(--navy);
+    letter-spacing: -.01em;
+    line-height: 1.1;
+    margin-top: 4pt;
+  }
+  .doc-header__sub {
+    font-family: var(--font-body);
+    font-size: 9pt;
+    color: var(--ink-muted);
+    margin-top: 3pt;
+  }
+  .doc-header__seal {
+    width: 64pt;
+    height: 64pt;
+    flex-shrink: 0;
+    margin-left: 18pt;
+  }
+
+  /* ── Gold rule ── */
+  .gold-rule {
+    border: none;
+    border-top: 1.5px solid var(--gold);
+    margin: 16pt 0;
+  }
+  .gold-rule--thin {
+    border-top-width: 0.75px;
+    opacity: 0.55;
+    margin: 10pt 0;
+  }
+
+  /* ── Sections ── */
+  .section {
+    margin-bottom: 20pt;
+    page-break-inside: avoid;
+  }
+  .section__heading {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 11pt;
+    color: var(--navy);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    margin-bottom: 8pt;
+    padding-bottom: 4pt;
+    border-bottom: 1px solid var(--gold);
+  }
+
+  /* ── Deadline table ── */
+  .deadline-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .deadline-table th {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 8pt;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ivory);
+    background: var(--navy);
+    padding: 5pt 8pt;
+    text-align: left;
+  }
+  .deadline-table td {
+    font-family: var(--font-body);
+    font-size: 9.5pt;
+    padding: 6pt 8pt;
+    vertical-align: top;
+    border-bottom: 0.5px solid rgba(182,146,74,0.25);
+  }
+  .deadline-table tr:nth-child(even) td {
+    background: var(--ivory-surface);
+  }
+  .deadline-table td.date {
+    font-weight: 500;
+    color: var(--navy);
+    white-space: nowrap;
+    width: 110pt;
+  }
+  .deadline-table td.who {
+    color: var(--ink-muted);
+    font-size: 8.5pt;
+    width: 120pt;
+  }
+  .deadline-table td.desc {
+    color: var(--ink);
+  }
+  .highlight-row td {
+    background: rgba(182,146,74,0.08) !important;
+    font-weight: 500;
+  }
+
+  /* ── Notes band ── */
+  .notes-band {
+    background: var(--navy);
+    color: var(--ivory);
+    border-radius: 3pt;
+    padding: 10pt 14pt;
+    margin-top: 18pt;
+    font-size: 8.5pt;
+    line-height: 1.5;
+    page-break-inside: avoid;
+  }
+  .notes-band strong {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    font-size: 7.5pt;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 5pt;
+  }
+  .notes-band ul {
+    padding-left: 14pt;
+  }
+  .notes-band li { margin-bottom: 3pt; }
+
+  /* ── Footer ── */
+  .doc-footer {
+    position: fixed;
+    bottom: 0.35in;
+    left: 0.6in;
+    right: 0.6in;
+    font-family: var(--font-body);
+    font-size: 7pt;
+    color: var(--ink-muted);
+    border-top: 0.5px solid var(--gold);
+    padding-top: 4pt;
+    display: flex;
+    justify-content: space-between;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+</style>
+</head>
+<body>
+
+<header class="doc-header">
+  <div>
+    <div class="doc-header__firm">Wayne Jones, CPA · Rome, Georgia</div>
+    <div class="doc-header__title">2026 Federal Tax<br/>Deadline Calendar</div>
+    <div class="doc-header__sub">Key dates for Tax Year 2025 returns &amp; 2026 payments</div>
+  </div>
+  <svg class="doc-header__seal" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Wayne Jones CPA seal">
+    <circle cx="50" cy="50" r="47" fill="none" stroke="#B6924A" stroke-width="1.2"/>
+    <circle cx="50" cy="50" r="43" fill="none" stroke="#B6924A" stroke-width="0.5"/>
+    <circle cx="50" cy="50" r="35" fill="#F7F4EC"/>
+    <circle cx="50" cy="50" r="33" fill="none" stroke="#B6924A" stroke-width="0.3" stroke-dasharray="1.8 1.8"/>
+    <text x="50" y="55" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="600" font-size="20" fill="#122036" letter-spacing="2">WJ</text>
+    <text x="50" y="65" text-anchor="middle" font-family="Spectral, Georgia, serif" font-weight="300" font-size="5.5" fill="#B6924A" letter-spacing="3">CPA</text>
+  </svg>
+</header>
+
+<hr class="gold-rule" />
+
+<!-- ── INDIVIDUAL / PERSONAL ── -->
+<div class="section">
+  <h2 class="section__heading">Individual &amp; Personal Returns</h2>
+  <table class="deadline-table">
+    <thead>
+      <tr>
+        <th>Deadline</th>
+        <th>Who</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="highlight-row">
+        <td class="date">April 15, 2026</td>
+        <td class="who">All individuals</td>
+        <td class="desc">Form 1040 due — file or request automatic 6-month extension (Form 4868)</td>
+      </tr>
+      <tr>
+        <td class="date">October 15, 2026</td>
+        <td class="who">Extended filers</td>
+        <td class="desc">Extended Form 1040 final deadline — no further extension available</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ── QUARTERLY ESTIMATES ── -->
+<div class="section">
+  <h2 class="section__heading">2026 Quarterly Estimated Tax Payments (Form 1040-ES)</h2>
+  <table class="deadline-table">
+    <thead>
+      <tr>
+        <th>Payment</th>
+        <th>Period Covered</th>
+        <th>Due Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="date">Q1 — 1st Payment</td>
+        <td class="who">Jan 1 – Mar 31, 2026</td>
+        <td class="desc"><strong>April 15, 2026</strong></td>
+      </tr>
+      <tr>
+        <td class="date">Q2 — 2nd Payment</td>
+        <td class="who">Apr 1 – May 31, 2026</td>
+        <td class="desc"><strong>June 15, 2026</strong></td>
+      </tr>
+      <tr>
+        <td class="date">Q3 — 3rd Payment</td>
+        <td class="who">Jun 1 – Aug 31, 2026</td>
+        <td class="desc"><strong>September 15, 2026</strong></td>
+      </tr>
+      <tr class="highlight-row">
+        <td class="date">Q4 — 4th Payment</td>
+        <td class="who">Sep 1 – Dec 31, 2026</td>
+        <td class="desc"><strong>January 15, 2027</strong></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ── BUSINESS ENTITIES ── -->
+<div class="section">
+  <h2 class="section__heading">Business Entity Returns</h2>
+  <table class="deadline-table">
+    <thead>
+      <tr>
+        <th>Deadline</th>
+        <th>Entity</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="highlight-row">
+        <td class="date">March 16, 2026</td>
+        <td class="who">S-Corps &amp; Partnerships</td>
+        <td class="desc">Forms 1120-S &amp; 1065 due — or file Form 7004 for 6-month extension (Sept 15, 2026)</td>
+      </tr>
+      <tr>
+        <td class="date">April 15, 2026</td>
+        <td class="who">C-Corporations</td>
+        <td class="desc">Form 1120 due — or file Form 7004 for extension (Oct 15, 2026)</td>
+      </tr>
+      <tr>
+        <td class="date">April 15, 2026</td>
+        <td class="who">Sole Props / LLCs</td>
+        <td class="desc">Schedule C (on Form 1040) — same deadline as personal return</td>
+      </tr>
+      <tr>
+        <td class="date">September 15, 2026</td>
+        <td class="who">Extended S-Corps &amp; Ptrs</td>
+        <td class="desc">Extended Forms 1120-S &amp; 1065 final deadline</td>
+      </tr>
+      <tr>
+        <td class="date">October 15, 2026</td>
+        <td class="who">Extended C-Corps</td>
+        <td class="desc">Extended Form 1120 final deadline</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ── EMPLOYER / PAYROLL ── -->
+<div class="section">
+  <h2 class="section__heading">Employer &amp; Payroll Deadlines (Selected)</h2>
+  <table class="deadline-table">
+    <thead>
+      <tr>
+        <th>Deadline</th>
+        <th>Form</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="date">January 31, 2026</td>
+        <td class="who">W-2 / 1099-NEC</td>
+        <td class="desc">Furnish to employees/recipients and file with SSA/IRS</td>
+      </tr>
+      <tr>
+        <td class="date">January 31, 2026</td>
+        <td class="who">Form 940</td>
+        <td class="desc">Annual FUTA tax return (or Feb 10 if all tax deposited timely)</td>
+      </tr>
+      <tr>
+        <td class="date">Monthly / Semi-weekly</td>
+        <td class="who">Form 941 deposits</td>
+        <td class="desc">Payroll tax deposits based on lookback period — consult your deposit schedule</td>
+      </tr>
+      <tr>
+        <td class="date">April 30 / July 31 / Oct 31 / Jan 31</td>
+        <td class="who">Form 941</td>
+        <td class="desc">Quarterly payroll tax return (940 quarterly reporting)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="notes-band">
+  <strong>Important Notes</strong>
+  <ul>
+    <li>If a deadline falls on a weekend or federal holiday, it moves to the next business day.</li>
+    <li>Extensions grant extra time to <em>file</em> — not extra time to <em>pay</em>. Taxes owed are still due by the original deadline.</li>
+    <li>Georgia state deadlines generally match federal individual deadlines. Alabama may differ — ask us.</li>
+    <li>Dates above reflect standard federal rules. Always confirm with your CPA for your specific situation.</li>
+  </ul>
+</div>
+
+<footer class="doc-footer">
+  <span>Wayne Jones, CPA · (706) 232-8565 · Rome, GA</span>
+  <span>Estimates/general info, not tax advice. Consult your CPA for guidance specific to your situation.</span>
+</footer>
+
+</body>
+</html>

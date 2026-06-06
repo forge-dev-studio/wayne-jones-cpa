@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Small-Business Tax-Prep Checklist — Wayne Jones, CPA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  @page { size: letter; margin: 0.6in; }
+
+  :root {
+    --navy: #122036;
+    --gold: #B6924A;
+    --gold-text: #7a5c1e;
+    --ivory: #F7F4EC;
+    --ivory-surface: #EFEBe0;
+    --ink: #1a1714;
+    --ink-muted: #5a5248;
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'Spectral', Georgia, serif;
+  }
+
+  html, body {
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 10pt;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── Header ── */
+  .doc-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 18pt;
+    padding-bottom: 10pt;
+    border-bottom: 2px solid var(--navy);
+  }
+  .doc-header__firm {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 9pt;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--gold-text);
+  }
+  .doc-header__title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 18pt;
+    color: var(--navy);
+    letter-spacing: -.01em;
+    line-height: 1.1;
+    margin-top: 4pt;
+  }
+  .doc-header__sub {
+    font-family: var(--font-body);
+    font-size: 9pt;
+    color: var(--ink-muted);
+    margin-top: 3pt;
+  }
+  .doc-header__seal {
+    width: 60pt;
+    height: 60pt;
+    flex-shrink: 0;
+    margin-left: 18pt;
+  }
+
+  .gold-rule {
+    border: none;
+    border-top: 1.5px solid var(--gold);
+    margin: 14pt 0;
+  }
+
+  /* ── Two-column layout ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18pt;
+    margin-bottom: 4pt;
+  }
+
+  /* ── Section block ── */
+  .section {
+    margin-bottom: 16pt;
+    page-break-inside: avoid;
+  }
+  .section__heading {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 10.5pt;
+    color: var(--ivory);
+    background: var(--navy);
+    padding: 4pt 8pt;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    margin-bottom: 6pt;
+  }
+  .section__sub-heading {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 9pt;
+    color: var(--gold-text);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    margin-top: 8pt;
+    margin-bottom: 4pt;
+    padding-bottom: 2pt;
+    border-bottom: 0.75px solid rgba(182,146,74,0.4);
+  }
+
+  /* ── Checklist items ── */
+  .checklist {
+    list-style: none;
+    padding: 0;
+  }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 6pt;
+    font-size: 9pt;
+    line-height: 1.4;
+    padding: 3pt 0;
+    border-bottom: 0.4px solid rgba(182,146,74,0.18);
+    color: var(--ink);
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist .box {
+    display: inline-block;
+    width: 9pt;
+    height: 9pt;
+    border: 1px solid var(--gold);
+    flex-shrink: 0;
+    margin-top: 1pt;
+    border-radius: 1pt;
+    background: white;
+  }
+  .checklist .note {
+    font-style: italic;
+    color: var(--ink-muted);
+    font-size: 8pt;
+  }
+
+  /* ── Entity-specific panels ── */
+  .entity-panel {
+    border: 1px solid rgba(182,146,74,0.35);
+    border-radius: 3pt;
+    padding: 8pt 10pt;
+    margin-bottom: 10pt;
+    page-break-inside: avoid;
+    background: var(--ivory-surface);
+  }
+  .entity-panel__title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 9.5pt;
+    color: var(--navy);
+    margin-bottom: 5pt;
+  }
+  .entity-panel__title span {
+    font-size: 7.5pt;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--gold-text);
+    margin-left: 5pt;
+  }
+
+  /* ── Notes band ── */
+  .notes-band {
+    background: var(--navy);
+    color: var(--ivory);
+    border-radius: 3pt;
+    padding: 9pt 12pt;
+    margin-top: 16pt;
+    font-size: 8pt;
+    line-height: 1.5;
+    page-break-inside: avoid;
+  }
+  .notes-band strong {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    font-size: 7.5pt;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 4pt;
+  }
+
+  /* ── Footer ── */
+  .doc-footer {
+    position: fixed;
+    bottom: 0.35in;
+    left: 0.6in;
+    right: 0.6in;
+    font-family: var(--font-body);
+    font-size: 7pt;
+    color: var(--ink-muted);
+    border-top: 0.5px solid var(--gold);
+    padding-top: 4pt;
+    display: flex;
+    justify-content: space-between;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+</style>
+</head>
+<body>
+
+<header class="doc-header">
+  <div>
+    <div class="doc-header__firm">Wayne Jones, CPA · Rome, Georgia</div>
+    <div class="doc-header__title">Small-Business<br/>Tax-Prep Checklist</div>
+    <div class="doc-header__sub">What to gather before meeting with your CPA — Tax Year 2025</div>
+  </div>
+  <svg class="doc-header__seal" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Wayne Jones CPA seal">
+    <circle cx="50" cy="50" r="47" fill="none" stroke="#B6924A" stroke-width="1.2"/>
+    <circle cx="50" cy="50" r="43" fill="none" stroke="#B6924A" stroke-width="0.5"/>
+    <circle cx="50" cy="50" r="35" fill="#F7F4EC"/>
+    <circle cx="50" cy="50" r="33" fill="none" stroke="#B6924A" stroke-width="0.3" stroke-dasharray="1.8 1.8"/>
+    <text x="50" y="55" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="600" font-size="20" fill="#122036" letter-spacing="2">WJ</text>
+    <text x="50" y="65" text-anchor="middle" font-family="Spectral, Georgia, serif" font-weight="300" font-size="5.5" fill="#B6924A" letter-spacing="3">CPA</text>
+  </svg>
+</header>
+
+<hr class="gold-rule" />
+
+<!-- ── UNIVERSAL SECTION (bring for every entity) ── -->
+<div class="section">
+  <h2 class="section__heading">What Everyone Should Bring</h2>
+  <div class="two-col">
+    <div>
+      <p class="section__sub-heading">Income Documents</p>
+      <ul class="checklist">
+        <li><span class="box"></span><span>All W-2s (wages from every employer)</span></li>
+        <li><span class="box"></span><span>1099-NEC / 1099-MISC (freelance / contract income)</span></li>
+        <li><span class="box"></span><span>1099-INT (bank interest)</span></li>
+        <li><span class="box"></span><span>1099-DIV (dividends)</span></li>
+        <li><span class="box"></span><span>1099-B / brokerage year-end statement (investments)</span></li>
+        <li><span class="box"></span><span>1099-SSA (Social Security benefits, if applicable)</span></li>
+        <li><span class="box"></span><span>K-1 forms (from partnerships, S-corps, trusts)</span></li>
+        <li><span class="box"></span><span>Prior-year tax return (federal + state)</span></li>
+      </ul>
+    </div>
+    <div>
+      <p class="section__sub-heading">Deductions &amp; Credits</p>
+      <ul class="checklist">
+        <li><span class="box"></span><span>Mortgage interest statement (Form 1098)</span></li>
+        <li><span class="box"></span><span>Property tax bills paid in 2025</span></li>
+        <li><span class="box"></span><span>State &amp; local tax paid (if itemizing)</span></li>
+        <li><span class="box"></span><span>Charitable contribution receipts / letters</span></li>
+        <li><span class="box"></span><span>Healthcare / HSA / FSA info (Form 1095-A/B/C)</span></li>
+        <li><span class="box"></span><span>Childcare provider name, address, EIN &amp; amount paid</span></li>
+        <li><span class="box"></span><span>Education expenses / 1098-T (tuition statement)</span></li>
+        <li><span class="box"></span><span>Estimated tax payments made in 2025 (dates + amounts)</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr class="gold-rule" />
+
+<!-- ── ENTITY-SPECIFIC ── -->
+<div class="section">
+  <h2 class="section__heading">Entity-Specific Documents</h2>
+
+  <!-- Sole Prop / Single-Member LLC -->
+  <div class="entity-panel">
+    <div class="entity-panel__title">Sole Proprietor / Single-Member LLC <span>(Schedule C)</span></div>
+    <div class="two-col">
+      <ul class="checklist">
+        <li><span class="box"></span><span>Gross revenue / sales records</span></li>
+        <li><span class="box"></span><span>Bank &amp; credit card statements (business accounts)</span></li>
+        <li><span class="box"></span><span>All business expense receipts by category</span></li>
+        <li><span class="box"></span><span>Home-office measurements (sq ft office / home total) <span class="note">if claiming home-office deduction</span></span></li>
+        <li><span class="box"></span><span>Mileage log — business miles driven in 2025 <span class="note">date, destination, purpose</span></span></li>
+      </ul>
+      <ul class="checklist">
+        <li><span class="box"></span><span>Inventory records (beginning + ending count + cost)</span></li>
+        <li><span class="box"></span><span>Equipment/asset purchases (date, description, cost)</span></li>
+        <li><span class="box"></span><span>Any assets sold or disposed of</span></li>
+        <li><span class="box"></span><span>Self-employed health insurance premiums paid</span></li>
+        <li><span class="box"></span><span>SEP-IRA / SIMPLE / Solo 401(k) contributions</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- S-Corp -->
+  <div class="entity-panel">
+    <div class="entity-panel__title">S-Corporation <span>(Form 1120-S + personal 1040)</span></div>
+    <div class="two-col">
+      <ul class="checklist">
+        <li><span class="box"></span><span>Profit &amp; loss statement (full year)</span></li>
+        <li><span class="box"></span><span>Balance sheet (beginning &amp; end of year)</span></li>
+        <li><span class="box"></span><span>Payroll records — officer W-2 wages paid</span></li>
+        <li><span class="box"></span><span>Shareholder loan balances (beginning + ending)</span></li>
+        <li><span class="box"></span><span>Distributions paid to shareholders</span></li>
+      </ul>
+      <ul class="checklist">
+        <li><span class="box"></span><span>Copies of all 941s filed (quarterly payroll returns)</span></li>
+        <li><span class="box"></span><span>Health insurance premiums paid for &gt;2% shareholders</span></li>
+        <li><span class="box"></span><span>Prior-year basis schedule (if available)</span></li>
+        <li><span class="box"></span><span>Any new assets or equipment purchased</span></li>
+        <li><span class="box"></span><span>State filing confirmation / certificate of good standing</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Partnership / Multi-Member LLC -->
+  <div class="entity-panel">
+    <div class="entity-panel__title">Partnership / Multi-Member LLC <span>(Form 1065)</span></div>
+    <div class="two-col">
+      <ul class="checklist">
+        <li><span class="box"></span><span>Profit &amp; loss statement &amp; balance sheet</span></li>
+        <li><span class="box"></span><span>Capital account balances for each partner</span></li>
+        <li><span class="box"></span><span>Partner distributions paid in 2025</span></li>
+        <li><span class="box"></span><span>Guaranteed payments to partners</span></li>
+      </ul>
+      <ul class="checklist">
+        <li><span class="box"></span><span>Partnership agreement (if changed in 2025)</span></li>
+        <li><span class="box"></span><span>New asset purchases and disposals</span></li>
+        <li><span class="box"></span><span>Any debt changes (new loans, payoffs)</span></li>
+        <li><span class="box"></span><span>Prior-year 1065 + all K-1s issued</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ── PAYROLL ── -->
+<div class="section">
+  <h2 class="section__heading">Payroll (If You Have Employees)</h2>
+  <ul class="checklist">
+    <li><span class="box"></span><span>Total wages paid to all employees (by employee)</span></li>
+    <li><span class="box"></span><span>Copies of all W-2s issued for 2025</span></li>
+    <li><span class="box"></span><span>Copies of 941s (quarterly) &amp; 940 (annual FUTA) filed</span></li>
+    <li><span class="box"></span><span>1099-NEC issued to independent contractors (name, address, SSN/EIN, amount)</span></li>
+    <li><span class="box"></span><span>Health insurance / benefits premiums paid on behalf of employees</span></li>
+    <li><span class="box"></span><span>Retirement plan contributions (employer match, SIMPLE, SEP contributions)</span></li>
+  </ul>
+</div>
+
+<div class="notes-band">
+  <strong>Before Your Appointment</strong>
+  The more organized your documents, the faster and more accurate your return — and the less it costs. Scan or photograph receipts as you go throughout the year. If you're missing a document, request a duplicate from the issuer before your appointment. Not sure if something applies to you? Bring it anyway and ask us.
+</div>
+
+<footer class="doc-footer">
+  <span>Wayne Jones, CPA · (706) 232-8565 · Rome, GA</span>
+  <span>Estimates/general info, not tax advice. Consult your CPA for guidance specific to your situation.</span>
+</footer>
+
+</body>
+</html>

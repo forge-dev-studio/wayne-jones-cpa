@@ -1,0 +1,174 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import CTASection from '../../components/CTASection.astro';
+import { href, absoluteUrl } from '../../lib/seo';
+
+const seo = {
+  title: 'Free Tax Resources & Checklists | Wayne Jones, CPA — Rome, GA',
+  description: 'Download free tax resources from Wayne Jones, CPA — a 2026 federal tax deadline calendar and a small-business tax-prep checklist for Rome, GA small businesses.',
+  canonical: '/resources/',
+};
+
+const resources = [
+  {
+    file: '2026-tax-deadline-calendar.pdf',
+    title: '2026 Federal Tax Deadline Calendar',
+    description: 'Never miss a due date. Covers individual filing (Apr 15), all four quarterly estimates, S-corp/partnership (Mar 16), C-corp (Apr 15), and extension deadlines through Oct 15, 2026.',
+    icon: 'calendar',
+  },
+  {
+    file: 'small-business-tax-prep-checklist.pdf',
+    title: 'Small-Business Tax-Prep Checklist',
+    description: 'Know exactly what to bring before meeting with your CPA. Organized by entity (sole prop/LLC, S-corp, partnership) with sections for income docs, expenses, mileage, payroll, and 1099s.',
+    icon: 'checklist',
+  },
+];
+
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Free Tax Resources — Wayne Jones, CPA',
+  url: absoluteUrl('/resources/'),
+  numberOfItems: resources.length,
+  itemListElement: resources.map((r, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: r.title,
+    url: absoluteUrl('/resources/' + r.file),
+  })),
+};
+---
+<BaseLayout seo={seo}>
+  <SchemaOrg schema={itemListSchema} />
+
+  <section class="section-wrap section-wrap--prose resources-hero" aria-label="Resources">
+    <Breadcrumbs items={[
+      { label: 'Home', href: '/' },
+      { label: 'Resources', href: '/resources/' },
+    ]} />
+
+    <div class="resources-header reveal" data-reveal style="--d:0">
+      <h1 class="resources-header__h1">Free Tax Resources</h1>
+      <p class="resources-header__lead">
+        Practical tools to help Rome, GA small businesses and individuals stay organized and on time — from Wayne Jones, CPA.
+      </p>
+    </div>
+
+    <hr class="hairline hairline--static" role="separator" />
+
+    <ul class="resources-grid" role="list">
+      {resources.map((r, i) => (
+        <li class="resource-card reveal" data-reveal style={`--d:${i + 1}`}>
+          <div class="resource-card__icon" aria-hidden="true">
+            {r.icon === 'calendar' ? (
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            ) : (
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+            )}
+          </div>
+          <div class="resource-card__body">
+            <h2 class="resource-card__title">{r.title}</h2>
+            <p class="resource-card__desc">{r.description}</p>
+            <a
+              href={href('/resources/' + r.file)}
+              download
+              class="resource-card__cta btn-primary"
+            >
+              Download PDF →
+            </a>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <CTASection />
+</BaseLayout>
+
+<style>
+  .resources-hero {
+    padding-top: clamp(40px, 6vw, 72px);
+    padding-bottom: clamp(32px, 4vw, 56px);
+  }
+
+  .resources-header {
+    margin: 28px 0 32px;
+  }
+  .resources-header__h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--ink);
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+  .resources-header__lead {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    color: var(--ink-muted);
+    max-width: 56ch;
+    line-height: 1.65;
+  }
+
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: clamp(20px, 3vw, 36px);
+    margin-top: 36px;
+    padding: 0;
+  }
+
+  .resource-card {
+    background: var(--ivory-surface);
+    border: 1px solid rgba(182,146,74,0.25);
+    border-radius: 4px;
+    padding: clamp(20px, 3vw, 32px);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: box-shadow 0.2s var(--ease), transform 0.2s var(--ease);
+  }
+  .resource-card:hover {
+    box-shadow: var(--shadow-panel);
+    transform: translateY(-2px);
+  }
+
+  .resource-card__icon {
+    color: var(--gold-text);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .resource-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+  }
+
+  .resource-card__title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--navy);
+    line-height: 1.25;
+  }
+
+  .resource-card__desc {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .resource-card__cta {
+    align-self: flex-start;
+    margin-top: 8px;
+    font-size: 0.88rem;
+    padding: 10px 20px;
+  }
+</style>

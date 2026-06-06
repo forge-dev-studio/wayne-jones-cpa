@@ -50,12 +50,18 @@ const emittedSet = new Set();
 for (const abs of htmlFiles) {
   emittedSet.add('/' + relPath(abs));
 }
-// Also index non-html emitted assets at top level for reference
-for (const entry of fs.readdirSync(DIST, { withFileTypes: true })) {
-  if (!entry.isDirectory()) {
-    emittedSet.add('/' + entry.name);
+// Also index non-html emitted assets (all subdirs, not just top-level)
+function walkNonHtml(dir, base) {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const rel = base + '/' + entry.name;
+    if (entry.isDirectory()) {
+      walkNonHtml(path.join(dir, entry.name), rel);
+    } else if (!entry.name.endsWith('.html')) {
+      emittedSet.add(rel);
+    }
   }
 }
+walkNonHtml(DIST, '');
 
 /**
  * Resolve an internal href (which starts with BASE, e.g. /wayne-jones-cpa/services/)
