@@ -1506,7 +1506,7 @@ a { color: inherit; }
 .tax-disclaimer a { color: var(--oxblood); }
 
 /* ===== Trust bar ===== */
-.trustbar { background: var(--navy); color: var(--ivory); }
+.trustbar { background: var(--ink); color: var(--ivory); }
 .trustbar__inner { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(14px, 3vw, 40px); padding: 16px 20px; max-width: var(--max-w); margin: 0 auto; }
 .trustbar__item { display: flex; align-items: center; gap: 9px; font-family: var(--font-body); font-weight: 400; font-size: 0.82rem; letter-spacing: .03em; color: rgba(247,244,236,.92); }
 .trustbar__item svg { flex: 0 0 auto; color: var(--gold); }
@@ -1519,11 +1519,11 @@ a { color: inherit; }
   .callbar {
     display: grid; grid-template-columns: 1fr 1fr; gap: 0;
     position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
-    background: var(--navy); border-top: 1px solid var(--gold);
+    background: var(--ink); border-top: 1px solid var(--gold);
     padding-bottom: env(safe-area-inset-bottom, 0);
   }
   .callbar a { font-family: var(--font-display); font-weight: 500; font-size: 0.95rem; text-align: center; padding: 14px 8px; text-decoration: none; }
   .callbar__call { color: var(--ivory); }
-  .callbar__book { color: var(--navy); background: var(--gold); }
+  .callbar__book { color: var(--ink); background: var(--gold); }
   body { padding-bottom: 56px; }
 }
