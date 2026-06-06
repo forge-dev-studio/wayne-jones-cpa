@@ -408,6 +408,14 @@ a { color: inherit; }
 .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
+/* ── Fixed-header offset ─────────────────────────────────────
+   .topbar is position:fixed. The home hero supplies its own top
+   padding (var(--header-h)); every OTHER page renders content
+   directly beneath the header, so offset <main> on those pages.
+   Scoped via :has() so the home page is left untouched (and the
+   rule degrades to a no-op rather than double-padding). */
+main:not(:has(.hero)) { padding-top: var(--header-h); }
+
 /* ============================================================
    HERO  — ivory background (alternating light-section tone 1)
    ============================================================ */
@@ -1428,8 +1436,10 @@ a { color: inherit; }
   /* Mobile nav drawer */
   .nav-toggle { display: flex; }
   .topbar__nav {
-    position: fixed;
-    inset: var(--header-h) 0 auto 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
     flex-direction: column;
     align-items: stretch;
     gap: 0;
@@ -1553,3 +1563,86 @@ a { color: inherit; }
   .callbar__book { color: var(--ink); background: var(--gold); }
   body { padding-bottom: 56px; }
 }
+
+/* ============================================================
+   BREADCRUMBS  (Breadcrumbs.astro — styles were missing,
+   rendered as a bare <ol> on every inner page)
+   ============================================================ */
+.breadcrumbs {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: clamp(20px, 3vw, 30px) var(--gutter) clamp(12px, 1.6vw, 18px);
+}
+.breadcrumbs__list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.breadcrumbs__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.breadcrumbs__link {
+  color: var(--gold-text);
+  text-decoration: none;
+  transition: color 0.2s var(--ease);
+}
+.breadcrumbs__link:hover { color: var(--oxblood); }
+.breadcrumbs__current {
+  color: var(--ink-muted);
+  max-width: 60vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.breadcrumbs__sep { color: var(--gold); opacity: 0.7; }
+
+/* ============================================================
+   CTA BAND  (CTASection.astro — styles were missing; the section
+   rendered as an unstyled dark band with a default <h2>).
+   Inherits .band-dark (ink bg, gold top-edge, clipped overflow).
+   ============================================================ */
+.cta-band__inner {
+  padding-top: clamp(56px, 8vw, 100px);
+  padding-bottom: clamp(56px, 8vw, 100px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: clamp(22px, 3vw, 34px);
+}
+.cta-band__heading {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: clamp(1.7rem, 3.6vw, 2.7rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ivory);
+  max-width: 22ch;
+}
+.cta-band__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px 28px;
+}
+.cta-band__tel {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+  color: var(--gold-light);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s var(--ease);
+}
+.cta-band__tel:hover { color: var(--ivory); }

@@ -24,10 +24,10 @@ const seo = {
         Let us help you find what you need.
       </p>
       <nav class="not-found__links" aria-label="Helpful links">
-        <a class="btn btn--primary" href={href('/')}>Home</a>
-        <a class="btn btn--outline" href={href('/services/')}>Services</a>
-        <a class="btn btn--outline" href={href('/locations/')}>Locations</a>
-        <a class="btn btn--outline" href={href('/contact/')}>Contact</a>
+        <a class="btn-primary" href={href('/')}>Home</a>
+        <a class="btn-ghost" href={href('/services/')}>Services</a>
+        <a class="btn-ghost" href={href('/locations/')}>Locations</a>
+        <a class="btn-ghost" href={href('/contact/')}>Contact</a>
       </nav>
     </div>
   </section>
@@ -38,7 +38,7 @@ const seo = {
     min-height: 60vh;
     display: flex;
     align-items: center;
-    padding: var(--space-2xl) 0;
+    padding: clamp(64px, 9vw, 120px) 0;
   }
 
   .not-found__wrap {
@@ -48,22 +48,23 @@ const seo = {
   }
 
   .not-found__emblem {
-    margin-bottom: var(--space-lg);
+    margin-bottom: clamp(20px, 3vw, 28px);
     opacity: 0.4;
   }
+  .not-found__emblem svg { margin: 0 auto; }
 
   .not-found__message {
     font-family: var(--font-body);
     font-size: 1.125rem;
-    color: var(--ink-2);
+    color: var(--ink-muted);
     line-height: 1.7;
-    margin: var(--space-md) 0 var(--space-xl);
+    margin: 16px 0 clamp(28px, 4vw, 40px);
   }
 
   .not-found__links {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-sm);
+    gap: 12px;
     justify-content: center;
   }
 </style>

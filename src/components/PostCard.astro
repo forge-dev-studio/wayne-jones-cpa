@@ -69,4 +69,19 @@ const formattedDate = new Date(datePublished).toLocaleDateString('en-US', {
     text-decoration: none;
     align-items: flex-start;
   }
+
+  /* On phones the schedule grid's first track is only ~40–60px wide, too
+     narrow for the category label (min-width:9ch) — it would overflow into
+     the title. Drop it onto its own row above the title instead. */
+  @media (max-width: 860px) {
+    .post-card__link {
+      grid-template-columns: minmax(0, 1fr) auto;
+      column-gap: clamp(16px, 4vw, 24px);
+    }
+    .post-card__eyebrow {
+      grid-column: 1 / -1;
+      min-width: 0;
+      margin-bottom: 2px;
+    }
+  }
 </style>
