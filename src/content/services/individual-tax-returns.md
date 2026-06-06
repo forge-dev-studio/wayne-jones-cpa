@@ -40,7 +40,7 @@ Whether you're a salaried employee with a straightforward W-2, a retiree managin
 
 ## What's Included
 
-Individual tax preparation at Wayne Jones CPA covers your complete federal return and your Georgia state return — filed together, reviewed carefully, and e-filed for the fastest possible refund via direct deposit.
+Individual tax preparation at Wayne Jones CPA covers your complete federal return and your Georgia state return — filed together, reviewed carefully, and e-filed with direct deposit, the IRS's fastest standard refund method.
 
 For clients with investment income, that means capital gains, dividends, and brokerage account activity handled properly. For retirees, it means accurate treatment of IRA and 401(k) withdrawals, required minimum distributions, and Social Security income. If you own rental property, rental income and allowable expenses are reported on Schedule E as part of the same engagement.
 

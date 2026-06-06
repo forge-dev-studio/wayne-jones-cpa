@@ -1,7 +1,7 @@
 export const SITE = {
   name: 'Wayne Jones, CPA',
   legalName: 'Wayne Jones Accounting Services',
-  tagline: "Rome's trusted name in tax & accounting since 2008.",
+  tagline: "Licensed tax & accounting for Rome, GA — since 2008.",
   phone: '(706) 232-8565',
   phoneHref: 'tel:+17062328565',
   email: '', // PLACEHOLDER: branded email not yet set; contact via form

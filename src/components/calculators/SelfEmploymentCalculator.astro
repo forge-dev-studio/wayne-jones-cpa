@@ -26,6 +26,7 @@ import { href } from '../../lib/seo';
   <div class="calc__results" aria-live="polite" aria-atomic="true">
     <p class="calc__nojs">Enable JavaScript to calculate — or <a href={href('/contact/')}>call us</a> for a free estimate.</p>
     <p class="calc__headline" id="se-headline" hidden></p>
+    <p class="calc__headline-note">Rough planning estimate — your actual figure will differ.</p>
     <dl class="calc__result-rows" id="se-detail" hidden>
       <div class="calc__result-row">
         <dt class="calc__result-label">Quarterly payment (approx.)</dt>
@@ -48,7 +49,7 @@ import { href } from '../../lib/seo';
   import { computeSeTax } from '../../lib/tax/seTax';
   import { computeIncomeTax } from '../../lib/tax/brackets';
   import { STANDARD_DEDUCTION_2025 } from '../../lib/tax/constants2025';
-  import { formatUSD } from '../../lib/tax/format';
+  import { formatUSD, roundDisplay } from '../../lib/tax/format';
 
   const form = document.getElementById('se-calc');
   if (form) {
@@ -67,7 +68,7 @@ import { href } from '../../lib/seo';
       const total = se.total + incomeTax;
 
       const headlineEl = document.getElementById('se-headline') as HTMLElement;
-      headlineEl.textContent = `${formatUSD(total)} total est. tax`;
+      headlineEl.textContent = `${roundDisplay(total)} total est. tax`;
       headlineEl.hidden = false;
 
       (document.getElementById('se-quarter') as HTMLElement).textContent = formatUSD(total / 4);

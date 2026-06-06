@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CTASection from '../components/CTASection.astro';
+
+const seo = {
+  title: 'Terms of Use & Disclaimer | Wayne Jones, CPA — Rome, GA',
+  description:
+    'Terms of use and legal disclaimer for the Wayne Jones, CPA website.',
+  canonical: '/disclaimer/',
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Disclaimer', href: '/disclaimer/' },
+];
+---
+
+<BaseLayout seo={seo}>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="legal-page" aria-label="Terms of use and disclaimer">
+    <div class="section-wrap section-wrap--prose">
+      <header class="section-head">
+        <p class="eyebrow reveal" data-reveal>Legal</p>
+        <h1 class="section-title reveal" data-reveal style="--d:1">Terms of Use &amp; <em>Disclaimer</em></h1>
+        <p class="section-deck reveal" data-reveal style="--d:2">Last updated: June 6, 2026</p>
+      </header>
+
+      <div class="legal-prose reveal" data-reveal style="--d:3">
+        <h2>General information only</h2>
+        <p>The content on this website — including articles, FAQs, service descriptions, and tax calculators — is provided for general informational purposes only. It is not tax, accounting, legal, or other professional advice, and it does not account for your specific circumstances. Tax laws change frequently and vary by situation.</p>
+
+        <h2>No CPA-client relationship</h2>
+        <p>Using this website, reading its content, using its calculators, or submitting the contact form does not create a CPA-client or other professional relationship. A professional relationship begins only when we agree in writing to provide services to you. The specific scope, fees, and deliverables of any engagement are set out in a written engagement agreement before work begins.</p>
+
+        <h2>Calculators and estimates</h2>
+        <p>Any figures produced by the tools on this site are simplified estimates for planning purposes only and may not reflect your actual tax liability. Do not rely on them in place of advice from a licensed CPA.</p>
+
+        <h2>No warranties</h2>
+        <p>This website and its content are provided 'as is,' without warranties of any kind as to accuracy, completeness, or timeliness. We are not liable for any action taken in reliance on information found here.</p>
+
+        <h2>Third-party links</h2>
+        <p>This site links to and embeds third-party services (for example, Facebook and Google Maps) that we do not control and are not responsible for.</p>
+
+        <h2>Professional licensing</h2>
+        <p>Wayne Jones is a Certified Public Accountant licensed in Georgia (license #CPA026715) and Alabama.</p>
+
+        <h2>Contact</h2>
+        <p>Questions about these terms: (706) 232-8565.</p>
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+</BaseLayout>
+
+<style>
+  .legal-page { padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(40px, 5vw, 64px); }
+  .legal-prose { margin-top: 32px; }
+  .legal-prose h2 { font-family: var(--font-display); font-weight: 500; font-size: 1.2rem; color: var(--ink); margin: 28px 0 8px; }
+  .legal-prose h2:first-child { margin-top: 0; }
+  .legal-prose p { font-family: var(--font-body); font-weight: 300; font-size: 0.97rem; line-height: 1.7; color: var(--ink-muted); max-width: 72ch; margin: 0 0 1em; }
+</style>

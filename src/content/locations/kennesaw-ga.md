@@ -51,7 +51,7 @@ The accounting field has no shortage of options — but there's a real differenc
 
 The practice has been in operation since 2008 and is deliberately sized to keep the service personal. There's no handoff to a junior preparer or an offshore processing queue. You work with Wayne directly — someone who has been doing this for more than 35 years and has seen the full range of individual and small business tax situations.
 
-For Kennesaw and Cobb County clients, remote service means you get that level of expertise without it being tied to your zip code. Most clients never need to visit the Rome office; for those who do, the drive via I-75 is straightforward.
+For Kennesaw and Cobb County clients, remote service means you get that depth of experience without it being tied to your zip code. Most clients never need to visit the Rome office; for those who do, the drive via I-75 is straightforward.
 
 ## Ready to Work with a Kennesaw-Area CPA?
 

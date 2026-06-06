@@ -28,20 +28,16 @@ The IRS doesn't treat all businesses the same. Whether you file as a sole propri
 
 If your business income flows through your personal return (Form 1040), you're generally on the same cycle as individual filers.
 
-- **Individual return (Form 1040) — generally April 15** <!-- PLACEHOLDER: verify exact 2026 date -->
-- A six-month extension is available, but it extends the *filing* deadline, not the *payment* deadline. If you owe tax, it's still due in April.
+- **Individual return (Form 1040) — generally April 15**- A six-month extension is available, but it extends the *filing* deadline, not the *payment* deadline. If you owe tax, it's still due in April.
 
-> Always confirm the exact 2026 date with your CPA or at IRS.gov — the deadline shifts when April 15 falls on a weekend or recognized holiday. <!-- PLACEHOLDER: verify exact 2026 date -->
-
+> Always confirm the exact 2026 date with your CPA or at IRS.gov — the deadline shifts when April 15 falls on a weekend or recognized holiday.
 ---
 
 ### S-Corporations (Form 1120-S) and Partnerships (Form 1065)
 
 Pass-through entities file earlier than individual returns. The general rule:
 
-- **S-corp and partnership returns — generally March 15** <!-- PLACEHOLDER: verify exact 2026 date -->
-- A six-month extension moves the deadline to **generally September 15** <!-- PLACEHOLDER: verify exact 2026 date -->
-
+- **S-corp and partnership returns — generally March 15**- A six-month extension moves the deadline to **generally September 15**
 Filing on time matters even if the business shows a loss, because partners and shareholders need their Schedule K-1s to complete their own returns. Late K-1s create a domino effect.
 
 ---
@@ -50,14 +46,12 @@ Filing on time matters even if the business shows a loss, because partners and s
 
 C-corps generally follow the individual April 15 deadline, with extensions available.
 
-- **C-corp return (Form 1120) — generally April 15** <!-- PLACEHOLDER: verify exact 2026 date -->
-- Extension moves the deadline to **generally October 15** <!-- PLACEHOLDER: verify exact 2026 date -->
-
+- **C-corp return (Form 1120) — generally April 15**- Extension moves the deadline to **generally October 15**
 ---
 
 ### Multi-Member LLCs
 
-By default, a multi-member LLC is treated as a partnership for federal tax purposes, so the **March 15 partnership deadline generally applies**. <!-- PLACEHOLDER: verify exact 2026 date --> If your LLC has elected S-corp or C-corp status, follow those rules instead.
+By default, a multi-member LLC is treated as a partnership for federal tax purposes, so the **March 15 partnership deadline generally applies**.  If your LLC has elected S-corp or C-corp status, follow those rules instead.
 
 ---
 
@@ -69,10 +63,10 @@ The four payment periods and their general due dates:
 
 | Payment Period | General Due Date |
 |---|---|
-| January 1 – March 31 | Around April 15 <!-- PLACEHOLDER: verify exact 2026 date --> |
-| April 1 – May 31 | Around June 15 <!-- PLACEHOLDER: verify exact 2026 date --> |
-| June 1 – August 31 | Around September 15 <!-- PLACEHOLDER: verify exact 2026 date --> |
-| September 1 – December 31 | Around January 15 of the following year <!-- PLACEHOLDER: verify exact 2026 date --> |
+| January 1 – March 31 | Around April 15  |
+| April 1 – May 31 | Around June 15  |
+| June 1 – August 31 | Around September 15  |
+| September 1 – December 31 | Around January 15 of the following year  |
 
 Exact dates shift for weekends and federal holidays — verify each one before you schedule your payments.
 
@@ -82,9 +76,7 @@ Exact dates shift for weekends and federal holidays — verify each one before y
 
 If you have employees or paid contractors, the information-return deadlines hit before most tax filings.
 
-- **W-2s to employees and to the SSA — generally January 31** <!-- PLACEHOLDER: verify exact 2026 date -->
-- **1099-NEC to contractors and to the IRS — generally January 31** <!-- PLACEHOLDER: verify exact 2026 date -->
-
+- **W-2s to employees and to the SSA — generally January 31**- **1099-NEC to contractors and to the IRS — generally January 31**
 Penalties for late W-2s and 1099s start at $60 per form and climb quickly. If your books aren't clean heading into January, you can find yourself scrambling.
 
 ---
