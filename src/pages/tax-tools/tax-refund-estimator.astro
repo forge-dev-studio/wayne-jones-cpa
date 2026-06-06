@@ -1,0 +1,138 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import CTASection from '../../components/CTASection.astro';
+import TaxDisclaimer from '../../components/TaxDisclaimer.astro';
+import RefundEstimator from '../../components/calculators/RefundEstimator.astro';
+import { href, absoluteUrl } from '../../lib/seo';
+
+const seo = {
+  title: 'Free Federal Tax Refund Estimator 2025 | Wayne Jones, CPA',
+  description:
+    'Free 2025 federal tax refund estimator from a Rome, GA CPA. Enter your income, withholding, and credits to estimate your refund or balance due.',
+  canonical: '/tax-tools/tax-refund-estimator/',
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Tax Tools', href: '/tax-tools/' },
+  { label: 'Refund Estimator', href: '/tax-tools/tax-refund-estimator/' },
+];
+
+const appSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: '2025 Federal Tax Refund Estimator',
+  url: absoluteUrl('/tax-tools/tax-refund-estimator/'),
+  applicationCategory: 'FinanceApplication',
+  operatingSystem: 'Any',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+  provider: {
+    '@type': 'AccountingService',
+    '@id': absoluteUrl('/') + '#business',
+    name: 'Wayne Jones, CPA',
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How is a federal tax refund calculated?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Your refund equals the federal income tax withheld from your paychecks (plus estimated payments) minus your actual tax liability. Tax liability is calculated by applying 2025 tax brackets to your taxable income (AGI minus deductions), then subtracting any tax credits.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the 2025 standard deduction?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'For 2025, the standard deduction is $15,000 for single filers, $30,000 for married filing jointly, and $22,500 for head of household. This calculator uses those figures automatically if you leave itemized deductions at 0.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is this refund estimate accurate?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'This tool provides a planning estimate using 2025 federal rates and a simplified model. It does not account for all credits, state taxes, or complex situations. For an accurate figure, consult Wayne Jones, CPA.',
+      },
+    },
+  ],
+};
+---
+
+<BaseLayout seo={seo}>
+  <SchemaOrg schema={appSchema} />
+  <SchemaOrg schema={faqSchema} />
+  <Breadcrumbs items={breadcrumbs} />
+
+  <article class="section-wrap section-wrap--prose calc-page">
+    <header class="calc-page__header">
+      <p class="eyebrow reveal" data-reveal>Free Tool — 2025 Tax Year</p>
+      <h1 class="section-title reveal" data-reveal style="--d:1">Federal Tax Refund Estimator</h1>
+      <p class="section-deck reveal" data-reveal style="--d:2">
+        Enter your income, withholding, and credits below to instantly estimate your 2025 federal refund or balance due. Built with official IRS tax tables by a licensed CPA.
+      </p>
+    </header>
+
+    <div class="reveal" data-reveal style="--d:3">
+      <RefundEstimator />
+    </div>
+
+    <TaxDisclaimer />
+
+    <section class="calc-page__faq" aria-label="Frequently asked questions">
+      <h2>Frequently Asked Questions</h2>
+
+      <details>
+        <summary>How is a federal tax refund calculated?</summary>
+        <p>Your refund equals the federal income tax withheld from your paychecks (plus estimated payments) minus your actual tax liability. Tax liability is calculated by applying 2025 tax brackets to your taxable income — your AGI minus deductions — then subtracting any tax credits.</p>
+      </details>
+
+      <details>
+        <summary>What is the 2025 standard deduction?</summary>
+        <p>For 2025, the standard deduction is $15,000 for single filers, $30,000 for married filing jointly, and $22,500 for head of household. This calculator uses those figures automatically if you leave itemized deductions at 0.</p>
+      </details>
+
+      <details>
+        <summary>Is this refund estimate accurate?</summary>
+        <p>This tool provides a planning estimate using 2025 federal rates and a simplified model. It does not account for all credits, AMT, state taxes, or complex situations. For an accurate figure, <a href={href('/contact/')}>consult Wayne Jones, CPA</a>.</p>
+      </details>
+    </section>
+
+    <section class="calc-page__related" aria-label="Related resources">
+      <h2>Related Services &amp; Tools</h2>
+      <ul>
+        <li><a href={href('/services/tax-preparation/')}>Tax Preparation Services</a> — let Wayne file your return and maximize every deduction.</li>
+        <li><a href={href('/tax-tools/self-employment-tax-calculator/')}>Self-Employment Tax Calculator</a> — estimate SE tax and quarterly payments for 1099 income.</li>
+      </ul>
+    </section>
+  </article>
+
+  <CTASection />
+</BaseLayout>
+
+<style>
+  .calc-page { padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(40px, 5vw, 64px); }
+  .calc-page__header { margin-bottom: 40px; }
+  .calc-page__faq { margin-top: 56px; }
+  .calc-page__faq h2 { font-family: var(--font-display); font-weight: 500; font-size: 1.3rem; color: var(--ink); margin-bottom: 20px; }
+  .calc-page__faq details { border-bottom: 1px solid rgba(182,146,74,.25); padding: 14px 0; }
+  .calc-page__faq summary { font-family: var(--font-display); font-weight: 500; font-size: 1rem; color: var(--ink); cursor: pointer; }
+  .calc-page__faq p { margin: 10px 0 0; font-family: var(--font-body); font-weight: 300; font-size: 0.94rem; color: var(--ink-muted); }
+  .calc-page__related { margin-top: 48px; }
+  .calc-page__related h2 { font-family: var(--font-display); font-weight: 500; font-size: 1.3rem; color: var(--ink); margin-bottom: 16px; }
+  .calc-page__related ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .calc-page__related li { font-family: var(--font-body); font-weight: 300; font-size: 0.94rem; color: var(--ink-muted); }
+  .calc-page__related a { color: var(--gold-text); }
+</style>
