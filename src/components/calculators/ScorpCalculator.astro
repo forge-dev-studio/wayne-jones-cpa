@@ -1,0 +1,83 @@
+---
+import { href } from '../../lib/seo';
+---
+<form class="calc" id="scorp-calc" aria-label="S-corp vs. LLC tax savings calculator" novalidate>
+  <div class="calc__fields">
+    <div class="calc__field">
+      <label for="sc-profit">Net business profit</label>
+      <input id="sc-profit" type="number" inputmode="numeric" min="0" step="1000" value="120000" />
+      <span class="calc__hint">Total business profit before owner's pay.</span>
+    </div>
+    <div class="calc__field">
+      <label for="sc-salary">Reasonable W-2 salary</label>
+      <input id="sc-salary" type="number" inputmode="numeric" min="0" step="1000" value="60000" />
+      <span class="calc__hint">A reasonable W-2 salary you'd pay yourself.</span>
+    </div>
+    <div class="calc__field">
+      <label for="sc-cost">Annual S-corp overhead cost</label>
+      <input id="sc-cost" type="number" inputmode="numeric" min="0" step="100" value="2000" />
+      <span class="calc__hint">Annual payroll + S-corp tax-prep cost.</span>
+    </div>
+  </div>
+
+  <div class="calc__results" aria-live="polite" aria-atomic="true">
+    <p class="calc__nojs">Enable JavaScript to calculate — or <a href={href('/contact/')}>call us</a> for a free estimate.</p>
+    <p class="calc__headline" id="sc-headline" hidden></p>
+    <dl class="calc__result-rows" id="sc-detail" hidden>
+      <div class="calc__result-row">
+        <dt class="calc__result-label">LLC sole-prop SE tax</dt>
+        <dd class="calc__result-value" id="sc-llc"></dd>
+      </div>
+      <div class="calc__result-row">
+        <dt class="calc__result-label">S-corp payroll tax</dt>
+        <dd class="calc__result-value" id="sc-scorp"></dd>
+      </div>
+      <div class="calc__result-row">
+        <dt class="calc__result-label">Tax-free distribution</dt>
+        <dd class="calc__result-value" id="sc-dist"></dd>
+      </div>
+    </dl>
+    <p class="calc__callout" id="sc-callout" hidden>
+      Reasonable salary is an IRS audit flashpoint — <a href={href('/contact/')}>book a consult</a> so Wayne sets a defensible number.
+    </p>
+    <a class="calc__cta btn-primary" href={href('/contact/')}>Lock in a defensible salary — free consult</a>
+  </div>
+</form>
+
+<script>
+  import { compareScorpVsLlc } from '../../lib/tax/scorp';
+  import { formatUSD } from '../../lib/tax/format';
+
+  const form = document.getElementById('scorp-calc');
+  if (form) {
+    const num = (id: string) => Math.max(0, parseFloat((document.getElementById(id) as HTMLInputElement).value) || 0);
+
+    const nojs = form.querySelector('.calc__nojs') as HTMLElement | null;
+
+    const render = () => {
+      const r = compareScorpVsLlc({
+        netProfit: num('sc-profit'),
+        reasonableSalary: num('sc-salary'),
+        addedCost: num('sc-cost'),
+      });
+
+      const headlineEl = document.getElementById('sc-headline') as HTMLElement;
+      const savings = r.netSavings;
+      headlineEl.textContent = savings >= 0
+        ? `Estimated net savings: ${formatUSD(savings)} with S-corp`
+        : `S-corp may not save money at these numbers`;
+      headlineEl.hidden = false;
+
+      (document.getElementById('sc-llc') as HTMLElement).textContent = formatUSD(r.llc.seTax);
+      (document.getElementById('sc-scorp') as HTMLElement).textContent = formatUSD(r.scorp.payrollTax);
+      (document.getElementById('sc-dist') as HTMLElement).textContent = formatUSD(r.scorp.distribution);
+      (document.getElementById('sc-detail') as HTMLElement).hidden = false;
+      (document.getElementById('sc-callout') as HTMLElement).hidden = false;
+
+      if (nojs) nojs.hidden = true;
+    };
+
+    form.addEventListener('input', render);
+    render();
+  }
+</script>

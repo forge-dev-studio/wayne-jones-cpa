@@ -1,0 +1,153 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import CTASection from '../../components/CTASection.astro';
+import TaxDisclaimer from '../../components/TaxDisclaimer.astro';
+import SelfEmploymentCalculator from '../../components/calculators/SelfEmploymentCalculator.astro';
+import { href, absoluteUrl } from '../../lib/seo';
+
+const seo = {
+  title: '2025 Self-Employment Tax Calculator | Wayne Jones, CPA',
+  description:
+    'Free 2025 self-employment & quarterly tax calculator from a Rome, GA CPA. Estimate SE tax and quarterly payments for 1099 and small-business income.',
+  canonical: '/tax-tools/self-employment-tax-calculator/',
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Tax Tools', href: '/tax-tools/' },
+  { label: 'Self-Employment Tax', href: '/tax-tools/self-employment-tax-calculator/' },
+];
+
+const appSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: '2025 Self-Employment Tax Calculator',
+  url: absoluteUrl('/tax-tools/self-employment-tax-calculator/'),
+  applicationCategory: 'FinanceApplication',
+  operatingSystem: 'Any',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+  provider: {
+    '@type': 'AccountingService',
+    '@id': absoluteUrl('/') + '#business',
+    name: 'Wayne Jones, CPA',
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How is self-employment tax calculated?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Self-employment tax is 15.3% applied to 92.35% of your net self-employment profit. It consists of two parts: 12.4% Social Security tax on earnings up to $176,100 (2025 wage base), and 2.9% Medicare tax with no earnings cap. An additional 0.9% Medicare surtax applies above $200,000 for single filers or $250,000 for married filing jointly.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'When are quarterly estimated taxes due in 2026?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'For 2025 income paid in 2026, the quarterly due dates are: April 15, 2026 (Q1), June 15, 2026 (Q2), September 15, 2026 (Q3), and January 15, 2027 (Q4).',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I lower my self-employment tax?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. One of the most effective strategies for reducing SE tax is electing S-corp status for your business. An S-corp allows you to split income between a W-2 salary (subject to payroll tax) and distributions (not subject to SE tax), potentially saving thousands annually. See our S-corp vs. LLC calculator to estimate your savings, then consult Wayne Jones, CPA for a personalized plan.',
+      },
+    },
+  ],
+};
+---
+
+<BaseLayout seo={seo}>
+  <SchemaOrg schema={appSchema} />
+  <SchemaOrg schema={faqSchema} />
+  <Breadcrumbs items={breadcrumbs} />
+
+  <article class="section-wrap section-wrap--prose calc-page">
+    <header class="calc-page__header">
+      <p class="eyebrow reveal" data-reveal>Free Tool — 2025 Tax Year</p>
+      <h1 class="section-title reveal" data-reveal style="--d:1">Self-Employment &amp; Quarterly Tax Calculator</h1>
+      <p class="section-deck reveal" data-reveal style="--d:2">
+        Estimate your total 2025 self-employment tax and quarterly payment amounts for 1099 income and small-business profits — built on official IRS rates by a licensed CPA.
+      </p>
+    </header>
+
+    <div class="reveal" data-reveal style="--d:3">
+      <SelfEmploymentCalculator />
+    </div>
+
+    <TaxDisclaimer />
+
+    <section class="calc-page__dates" aria-label="2026 quarterly due dates">
+      <h2>2026 Quarterly Estimated Tax Due Dates</h2>
+      <ol class="quarterly-dates">
+        <li><strong>April 15, 2026</strong> — Q1 (Jan 1 – Mar 31)</li>
+        <li><strong>June 15, 2026</strong> — Q2 (Apr 1 – May 31)</li>
+        <li><strong>September 15, 2026</strong> — Q3 (Jun 1 – Aug 31)</li>
+        <li><strong>January 15, 2027</strong> — Q4 (Sep 1 – Dec 31)</li>
+      </ol>
+    </section>
+
+    <section class="calc-page__faq" aria-label="Frequently asked questions">
+      <h2>Frequently Asked Questions</h2>
+
+      <details>
+        <summary>How is self-employment tax calculated?</summary>
+        <p>Self-employment tax is 15.3% applied to 92.35% of your net self-employment profit. It has two parts: 12.4% Social Security tax on earnings up to the $176,100 wage base, and 2.9% Medicare tax with no cap. An additional 0.9% Medicare surtax applies above $200,000 (single) or $250,000 (MFJ).</p>
+      </details>
+
+      <details>
+        <summary>When are quarterly estimated taxes due in 2026?</summary>
+        <p>For 2025 income, the quarterly due dates are April 15, 2026 (Q1), June 15, 2026 (Q2), September 15, 2026 (Q3), and January 15, 2027 (Q4). Missing these dates triggers underpayment penalties.</p>
+      </details>
+
+      <details>
+        <summary>Can I lower my self-employment tax?</summary>
+        <p>Yes. Electing S-corp status is one of the most effective strategies. By splitting income between a W-2 salary and distributions, you only pay payroll tax on the salary portion — potentially saving thousands per year. Use our <a href={href('/tax-tools/s-corp-vs-llc-calculator/')}>S-corp vs. LLC calculator</a> to see your estimated savings, then book a consult so Wayne can design a defensible plan.</p>
+      </details>
+    </section>
+
+    <section class="calc-page__related" aria-label="Related resources">
+      <h2>Related Services &amp; Tools</h2>
+      <ul>
+        <li><a href={href('/services/tax-preparation/')}>Tax Preparation Services</a> — accurate filing for self-employed and small-business owners.</li>
+        <li><a href={href('/tax-tools/s-corp-vs-llc-calculator/')}>S-Corp vs. LLC Tax Savings Calculator</a> — see if an S-corp election makes sense for your income level.</li>
+      </ul>
+    </section>
+  </article>
+
+  <CTASection />
+</BaseLayout>
+
+<style>
+  .calc-page { padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(40px, 5vw, 64px); }
+  .calc-page__header { margin-bottom: 40px; }
+  .calc-page__dates { margin-top: 48px; }
+  .calc-page__dates h2 { font-family: var(--font-display); font-weight: 500; font-size: 1.3rem; color: var(--ink); margin-bottom: 16px; }
+  .quarterly-dates { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .quarterly-dates li { font-family: var(--font-body); font-weight: 300; font-size: 0.94rem; color: var(--ink-muted); padding: 10px 16px; border-left: 3px solid var(--gold-text); }
+  .quarterly-dates strong { color: var(--ink); font-weight: 600; }
+  .calc-page__faq { margin-top: 56px; }
+  .calc-page__faq h2 { font-family: var(--font-display); font-weight: 500; font-size: 1.3rem; color: var(--ink); margin-bottom: 20px; }
+  .calc-page__faq details { border-bottom: 1px solid rgba(182,146,74,.25); padding: 14px 0; }
+  .calc-page__faq summary { font-family: var(--font-display); font-weight: 500; font-size: 1rem; color: var(--ink); cursor: pointer; }
+  .calc-page__faq p { margin: 10px 0 0; font-family: var(--font-body); font-weight: 300; font-size: 0.94rem; color: var(--ink-muted); }
+  .calc-page__related { margin-top: 48px; }
+  .calc-page__related h2 { font-family: var(--font-display); font-weight: 500; font-size: 1.3rem; color: var(--ink); margin-bottom: 16px; }
+  .calc-page__related ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .calc-page__related li { font-family: var(--font-body); font-weight: 300; font-size: 0.94rem; color: var(--ink-muted); }
+  .calc-page__related a { color: var(--gold-text); }
+</style>

@@ -1471,3 +1471,59 @@ a { color: inherit; }
   .site-footer__base { flex-direction: column; align-items: flex-start; }
   .about__quote { font-size: 1.7rem; }
 }
+
+/* ===== Tax calculators ===== */
+.calc { display: grid; grid-template-columns: 1fr; gap: clamp(20px, 3vw, 32px); }
+@media (min-width: 880px) { .calc { grid-template-columns: 1.05fr 0.95fr; align-items: start; } }
+.calc__fields { display: flex; flex-direction: column; gap: 18px; }
+.calc__field { display: flex; flex-direction: column; gap: 6px; }
+.calc__field label { font-family: var(--font-display); font-weight: 500; font-size: 0.9rem; color: var(--ink); }
+.calc__field input, .calc__field select {
+  font-family: var(--font-body); font-size: 1rem; color: var(--ink);
+  background: var(--ivory-surface); border: 1px solid rgba(182,146,74,.4);
+  padding: 11px 13px; border-radius: 2px;
+}
+.calc__field input:focus-visible, .calc__field select:focus-visible {
+  outline: 2px solid var(--oxblood); outline-offset: 1px;
+}
+.calc__hint { font-family: var(--font-body); font-weight: 300; font-size: 0.8rem; color: var(--ink-muted); }
+.calc__results {
+  background: var(--ivory-surface); border: 1px solid rgba(182,146,74,.4);
+  box-shadow: var(--shadow-panel); padding: clamp(22px, 3vw, 30px);
+}
+.calc__result-row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 12px 0; border-bottom: 1px solid rgba(182,146,74,.18); }
+.calc__result-row:last-child { border-bottom: 0; }
+.calc__result-label { font-family: var(--font-body); font-weight: 300; color: var(--ink-muted); font-size: 0.92rem; }
+.calc__result-value { font-family: var(--font-display); font-weight: 500; color: var(--ink); font-size: 1.05rem; font-variant-numeric: tabular-nums; }
+.calc__headline { font-family: var(--font-display); font-weight: 600; color: var(--oxblood); font-size: clamp(1.6rem, 3.4vw, 2.3rem); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+.calc__headline-label { font-family: var(--font-body); font-weight: 300; font-size: 0.85rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-text); }
+.calc__nojs { font-family: var(--font-body); font-weight: 300; color: var(--ink-muted); font-size: 0.9rem; }
+.calc__cta { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* ===== Tax disclaimer ===== */
+.tax-disclaimer { border-left: 3px solid var(--gold); background: var(--ivory-surface); padding: 14px 18px; margin: 28px 0; }
+.tax-disclaimer p { font-family: var(--font-body); font-weight: 300; font-size: 0.85rem; line-height: 1.6; color: var(--ink-muted); margin: 0; }
+.tax-disclaimer a { color: var(--oxblood); }
+
+/* ===== Trust bar ===== */
+.trustbar { background: var(--ink); color: var(--ivory); }
+.trustbar__inner { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(14px, 3vw, 40px); padding: 16px 20px; max-width: var(--max-w); margin: 0 auto; }
+.trustbar__item { display: flex; align-items: center; gap: 9px; font-family: var(--font-body); font-weight: 400; font-size: 0.82rem; letter-spacing: .03em; color: rgba(247,244,236,.92); }
+.trustbar__item svg { flex: 0 0 auto; color: var(--gold); }
+.trustbar__sep { color: rgba(182,146,74,.5); }
+@media (max-width: 640px) { .trustbar__sep { display: none; } .trustbar__inner { gap: 10px 18px; } }
+
+/* ===== Sticky mobile call bar ===== */
+.callbar { display: none; }
+@media (max-width: 640px) {
+  .callbar {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+    background: var(--ink); border-top: 1px solid var(--gold);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+  .callbar a { font-family: var(--font-display); font-weight: 500; font-size: 0.95rem; text-align: center; padding: 14px 8px; text-decoration: none; }
+  .callbar__call { color: var(--ivory); }
+  .callbar__book { color: var(--ink); background: var(--gold); }
+  body { padding-bottom: 56px; }
+}

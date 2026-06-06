@@ -15,10 +15,15 @@ export const SITE = {
   founded: '2008',
   facebook: 'https://www.facebook.com/p/Wayne-Jones-Accounting-Services-100063056748027/',
   areaServed: ['Rome GA', 'Floyd County GA', 'Cartersville GA', 'Calhoun GA', 'Cedartown GA', 'Northwest Georgia', 'Northeast Alabama'],
+  // Phase 1: scheduler not yet connected → CTA routes to the contact page.
+  // Phase 2: set to a Calendly/Cal.com/GHL URL to make every CTA real scheduling.
+  bookingUrl: '/contact/',
+  bookingIsExternal: false,
 };
 
 export const NAV = [
   { label: 'Services', href: '/services/' },
+  { label: 'Tax Tools', href: '/tax-tools/' },
   { label: 'Locations', href: '/locations/' },
   { label: 'About', href: '/about/' },
   { label: 'Blog', href: '/blog/' },

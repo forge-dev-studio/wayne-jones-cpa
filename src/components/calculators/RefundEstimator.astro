@@ -1,0 +1,94 @@
+---
+import { href } from '../../lib/seo';
+---
+<form class="calc" id="refund-calc" aria-label="Federal tax refund estimator" novalidate>
+  <div class="calc__fields">
+    <div class="calc__field">
+      <label for="rf-status">Filing status</label>
+      <select id="rf-status">
+        <option value="single">Single</option>
+        <option value="mfj">Married filing jointly</option>
+        <option value="hoh">Head of household</option>
+      </select>
+    </div>
+    <div class="calc__field">
+      <label for="rf-income">Total income (wages, etc.)</label>
+      <input id="rf-income" type="number" inputmode="numeric" min="0" step="500" value="65000" />
+    </div>
+    <div class="calc__field">
+      <label for="rf-withholding">Federal tax withheld</label>
+      <input id="rf-withholding" type="number" inputmode="numeric" min="0" step="100" value="6500" />
+      <span class="calc__hint">From your W-2 box 2 / paychecks.</span>
+    </div>
+    <div class="calc__field">
+      <label for="rf-itemized">Itemized deductions (optional)</label>
+      <input id="rf-itemized" type="number" inputmode="numeric" min="0" step="500" value="0" />
+      <span class="calc__hint">Leave 0 to use the 2025 standard deduction automatically.</span>
+    </div>
+    <div class="calc__field">
+      <label for="rf-credits">Tax credits (optional)</label>
+      <input id="rf-credits" type="number" inputmode="numeric" min="0" step="100" value="0" />
+    </div>
+  </div>
+
+  <div class="calc__results" aria-live="polite" aria-atomic="true">
+    <p class="calc__nojs">Enable JavaScript to calculate — or <a href={href('/contact/')}>call us</a> for a free estimate.</p>
+    <p class="calc__headline" id="rf-headline" hidden></p>
+    <dl class="calc__result-rows" id="rf-detail" hidden>
+      <div class="calc__result-row">
+        <dt class="calc__result-label">Federal income tax</dt>
+        <dd class="calc__result-value" id="rf-tax"></dd>
+      </div>
+      <div class="calc__result-row">
+        <dt class="calc__result-label">Effective rate</dt>
+        <dd class="calc__result-value" id="rf-effective"></dd>
+      </div>
+      <div class="calc__result-row">
+        <dt class="calc__result-label">Marginal bracket</dt>
+        <dd class="calc__result-value" id="rf-bracket"></dd>
+      </div>
+    </dl>
+    <a class="calc__cta btn-primary" href={href('/contact/')}>Get an exact number — book a free consult</a>
+  </div>
+</form>
+
+<script>
+  import { estimateRefund } from '../../lib/tax/refund';
+  import { formatUSD, formatPct } from '../../lib/tax/format';
+
+  const form = document.getElementById('refund-calc');
+  if (form) {
+    const val = (id: string) => (document.getElementById(id) as HTMLInputElement | HTMLSelectElement).value;
+    const num = (id: string) => Math.max(0, parseFloat(val(id)) || 0);
+
+    const nojs = form.querySelector('.calc__nojs') as HTMLElement | null;
+
+    const render = () => {
+      const status = val('rf-status') as 'single' | 'mfj' | 'hoh';
+      const r = estimateRefund({
+        status,
+        income: num('rf-income'),
+        withholding: num('rf-withholding'),
+        itemized: num('rf-itemized'),
+        credits: num('rf-credits'),
+      });
+
+      const isRefund = r.balance >= 0;
+      const headlineEl = document.getElementById('rf-headline') as HTMLElement;
+      headlineEl.textContent = isRefund
+        ? `Estimated refund: ${formatUSD(r.balance)}`
+        : `Estimated balance due: ${formatUSD(-r.balance)}`;
+      headlineEl.hidden = false;
+
+      (document.getElementById('rf-tax') as HTMLElement).textContent = formatUSD(r.tax);
+      (document.getElementById('rf-effective') as HTMLElement).textContent = formatPct(r.effectiveRate);
+      (document.getElementById('rf-bracket') as HTMLElement).textContent = formatPct(r.marginalRate);
+      (document.getElementById('rf-detail') as HTMLElement).hidden = false;
+
+      if (nojs) nojs.hidden = true;
+    };
+
+    form.addEventListener('input', render);
+    render();
+  }
+</script>

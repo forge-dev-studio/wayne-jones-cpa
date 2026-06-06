@@ -1,0 +1,9 @@
+---
+import { SITE } from '../config';
+import { href } from '../lib/seo';
+const bookUrl = SITE.bookingIsExternal ? SITE.bookingUrl : href(SITE.bookingUrl);
+---
+<nav class="callbar" aria-label="Quick contact">
+  <a class="callbar__call" href={SITE.phoneHref}>Call {SITE.phone}</a>
+  <a class="callbar__book" href={bookUrl} {...(SITE.bookingIsExternal ? { target: '_blank', rel: 'noopener' } : {})}>Book</a>
+</nav>

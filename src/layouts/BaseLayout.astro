@@ -3,6 +3,7 @@ import Seo from '../components/Seo.astro';
 import SchemaOrg from '../components/SchemaOrg.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import StickyCallBar from '../components/StickyCallBar.astro';
 import '../styles/global.css';
 import { SITE } from '../config';
 import { absoluteUrl } from '../lib/seo';
@@ -165,6 +166,7 @@ const orgSchema = {
       <slot />
     </main>
     <Footer />
+    <StickyCallBar />
     <script src="../scripts/engraved.js"></script>
   </body>
 </html>

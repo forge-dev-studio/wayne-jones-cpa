@@ -1,0 +1,84 @@
+---
+import { href } from '../../lib/seo';
+---
+<form class="calc" id="se-calc" aria-label="Self-employment and quarterly tax calculator" novalidate>
+  <div class="calc__fields">
+    <div class="calc__field">
+      <label for="se-status">Filing status</label>
+      <select id="se-status">
+        <option value="single">Single</option>
+        <option value="mfj">Married filing jointly</option>
+        <option value="hoh">Head of household</option>
+      </select>
+    </div>
+    <div class="calc__field">
+      <label for="se-profit">Net self-employment profit</label>
+      <input id="se-profit" type="number" inputmode="numeric" min="0" step="500" value="80000" />
+      <span class="calc__hint">Business revenue minus deductible expenses.</span>
+    </div>
+    <div class="calc__field">
+      <label for="se-other">Other household taxable income (optional)</label>
+      <input id="se-other" type="number" inputmode="numeric" min="0" step="500" value="0" />
+      <span class="calc__hint">W-2 wages or other income in the same household.</span>
+    </div>
+  </div>
+
+  <div class="calc__results" aria-live="polite" aria-atomic="true">
+    <p class="calc__nojs">Enable JavaScript to calculate — or <a href={href('/contact/')}>call us</a> for a free estimate.</p>
+    <p class="calc__headline" id="se-headline" hidden></p>
+    <dl class="calc__result-rows" id="se-detail" hidden>
+      <div class="calc__result-row">
+        <dt class="calc__result-label">Quarterly payment (approx.)</dt>
+        <dd class="calc__result-value" id="se-quarter"></dd>
+      </div>
+      <div class="calc__result-row">
+        <dt class="calc__result-label">Self-employment tax</dt>
+        <dd class="calc__result-value" id="se-setax"></dd>
+      </div>
+      <div class="calc__result-row">
+        <dt class="calc__result-label">Federal income tax</dt>
+        <dd class="calc__result-value" id="se-inctax"></dd>
+      </div>
+    </dl>
+    <a class="calc__cta btn-primary" href={href('/contact/')}>Set up a quarterly tax plan — free consult</a>
+  </div>
+</form>
+
+<script>
+  import { computeSeTax } from '../../lib/tax/seTax';
+  import { computeIncomeTax } from '../../lib/tax/brackets';
+  import { STANDARD_DEDUCTION_2025 } from '../../lib/tax/constants2025';
+  import { formatUSD } from '../../lib/tax/format';
+
+  const form = document.getElementById('se-calc');
+  if (form) {
+    const val = (id: string) => (document.getElementById(id) as HTMLInputElement | HTMLSelectElement).value;
+    const num = (id: string) => Math.max(0, parseFloat(val(id)) || 0);
+
+    const nojs = form.querySelector('.calc__nojs') as HTMLElement | null;
+
+    const render = () => {
+      const status = val('se-status') as 'single' | 'mfj' | 'hoh';
+      const profit = num('se-profit');
+      const other = num('se-other');
+      const se = computeSeTax(profit, status);
+      const taxable = Math.max(0, profit - se.halfDeduction + other - STANDARD_DEDUCTION_2025[status]);
+      const incomeTax = computeIncomeTax(taxable, status);
+      const total = se.total + incomeTax;
+
+      const headlineEl = document.getElementById('se-headline') as HTMLElement;
+      headlineEl.textContent = `${formatUSD(total)} total est. tax`;
+      headlineEl.hidden = false;
+
+      (document.getElementById('se-quarter') as HTMLElement).textContent = formatUSD(total / 4);
+      (document.getElementById('se-setax') as HTMLElement).textContent = formatUSD(se.total);
+      (document.getElementById('se-inctax') as HTMLElement).textContent = formatUSD(incomeTax);
+      (document.getElementById('se-detail') as HTMLElement).hidden = false;
+
+      if (nojs) nojs.hidden = true;
+    };
+
+    form.addEventListener('input', render);
+    render();
+  }
+</script>

@@ -1,0 +1,138 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import CTASection from '../../components/CTASection.astro';
+import TaxDisclaimer from '../../components/TaxDisclaimer.astro';
+import ScorpCalculator from '../../components/calculators/ScorpCalculator.astro';
+import { href, absoluteUrl } from '../../lib/seo';
+
+const seo = {
+  title: 'S-Corp vs. LLC Tax Savings Calculator | Wayne Jones, CPA',
+  description:
+    'Free S-corp vs. LLC tax calculator from a Rome, GA CPA. See how much an S-corp election could save in SE tax — and what a reasonable salary means.',
+  canonical: '/tax-tools/s-corp-vs-llc-calculator/',
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Tax Tools', href: '/tax-tools/' },
+  { label: 'S-Corp vs. LLC', href: '/tax-tools/s-corp-vs-llc-calculator/' },
+];
+
+const appSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'S-Corp vs. LLC Tax Savings Calculator',
+  url: absoluteUrl('/tax-tools/s-corp-vs-llc-calculator/'),
+  applicationCategory: 'FinanceApplication',
+  operatingSystem: 'Any',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+  provider: {
+    '@type': 'AccountingService',
+    '@id': absoluteUrl('/') + '#business',
+    name: 'Wayne Jones, CPA',
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How does an S-corp save taxes?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'An S-corp saves self-employment taxes by splitting your business income into two parts: a W-2 salary (subject to payroll tax) and distributions (not subject to self-employment tax). As a sole-prop or single-member LLC, the IRS treats all net profit as SE income at 15.3%. With an S-corp election, only the salary portion is subject to payroll tax — the distribution is SE-tax-free.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is a reasonable salary for an S-corp owner?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The IRS requires S-corp owner-employees to pay themselves a "reasonable" W-2 salary comparable to what you would pay a third party to do the same work. Setting the salary too low is a known IRS audit trigger. A CPA helps you document a defensible salary based on your industry, duties, and business revenue — protecting you from penalties and back taxes.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is an S-corp always worth it?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. S-corps add payroll processing costs, additional tax filings, and administrative overhead. For lower profit levels, these costs can outweigh the SE tax savings. A common rule of thumb is that S-corp elections become advantageous around $40,000–$60,000 or more in net profit, but the exact breakeven depends on your salary, costs, and state rules. Use this calculator as a starting point and book a consultation for a complete analysis.',
+      },
+    },
+  ],
+};
+---
+
+<BaseLayout seo={seo}>
+  <SchemaOrg schema={appSchema} />
+  <SchemaOrg schema={faqSchema} />
+  <Breadcrumbs items={breadcrumbs} />
+
+  <article class="section-wrap section-wrap--prose calc-page">
+    <header class="calc-page__header">
+      <p class="eyebrow reveal" data-reveal>Free Tool — 2025 Tax Year</p>
+      <h1 class="section-title reveal" data-reveal style="--d:1">S-Corp vs. LLC Tax Savings Calculator</h1>
+      <p class="section-deck reveal" data-reveal style="--d:2">
+        See how much an S-corp election could save you in self-employment tax versus staying a sole-prop or single-member LLC — built on official IRS rates by a licensed CPA.
+      </p>
+    </header>
+
+    <div class="reveal" data-reveal style="--d:3">
+      <ScorpCalculator />
+    </div>
+
+    <TaxDisclaimer />
+
+    <section class="calc-page__faq" aria-label="Frequently asked questions">
+      <h2>Frequently Asked Questions</h2>
+
+      <details>
+        <summary>How does an S-corp save taxes?</summary>
+        <p>An S-corp splits your business income into a W-2 salary and distributions. As a sole-prop or LLC, all profit is subject to SE tax at 15.3%. With an S-corp, only the salary portion faces payroll tax — the distribution is SE-tax-free, which can produce significant annual savings at higher income levels.</p>
+      </details>
+
+      <details>
+        <summary>What is a reasonable salary for an S-corp owner?</summary>
+        <p>The IRS requires you to pay yourself a salary comparable to what you'd pay a third party to do the same work. Setting it too low is a well-known audit trigger. Wayne Jones, CPA helps document a defensible salary based on your role, industry, and revenue — keeping you compliant while maximizing your legitimate savings.</p>
+      </details>
+
+      <details>
+        <summary>Is an S-corp always worth it?</summary>
+        <p>Not always. S-corps add payroll processing, extra filings, and administrative overhead. For lower profit levels the costs can outweigh the savings. A common breakeven is $40,000–$60,000+ in net profit, but your exact number depends on salary, costs, and state rules. <a href={href('/contact/')}>Book a consult</a> for a complete analysis tailored to your business.</p>
+      </details>
+    </section>
+
+    <section class="calc-page__related" aria-label="Related resources">
+      <h2>Related Services &amp; Tools</h2>
+      <ul>
+        <li><a href={href('/services/business-consulting/')}>Business Consulting Services</a> — entity selection, S-corp elections, and year-round tax strategy.</li>
+        <li><a href={href('/tax-tools/self-employment-tax-calculator/')}>Self-Employment Tax Calculator</a> — estimate SE tax and quarterly payments before considering an S-corp.</li>
+      </ul>
+    </section>
+  </article>
+
+  <CTASection />
+</BaseLayout>
+
+<style>
+  .calc-page { padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(40px, 5vw, 64px); }
+  .calc-page__header { margin-bottom: 40px; }
+  .calc-page__faq { margin-top: 56px; }
+  .calc-page__faq h2 { font-family: var(--font-display); font-weight: 500; font-size: 1.3rem; color: var(--ink); margin-bottom: 20px; }
+  .calc-page__faq details { border-bottom: 1px solid rgba(182,146,74,.25); padding: 14px 0; }
+  .calc-page__faq summary { font-family: var(--font-display); font-weight: 500; font-size: 1rem; color: var(--ink); cursor: pointer; }
+  .calc-page__faq p { margin: 10px 0 0; font-family: var(--font-body); font-weight: 300; font-size: 0.94rem; color: var(--ink-muted); }
+  .calc-page__related { margin-top: 48px; }
+  .calc-page__related h2 { font-family: var(--font-display); font-weight: 500; font-size: 1.3rem; color: var(--ink); margin-bottom: 16px; }
+  .calc-page__related ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .calc-page__related li { font-family: var(--font-body); font-weight: 300; font-size: 0.94rem; color: var(--ink-muted); }
+  .calc-page__related a { color: var(--gold-text); }
+</style>

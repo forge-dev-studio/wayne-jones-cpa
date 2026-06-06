@@ -1,0 +1,15 @@
+---
+import { SITE } from '../config';
+import { href } from '../lib/seo';
+interface Props { label?: string; variant?: 'primary' | 'ghost'; class?: string; }
+const { label = 'Book a Free Consultation', variant = 'primary', class: cls = '' } = Astro.props;
+const url = SITE.bookingIsExternal ? SITE.bookingUrl : href(SITE.bookingUrl);
+const ext = SITE.bookingIsExternal;
+const btnClass = variant === 'primary' ? 'btn-primary' : 'btn-ghost';
+---
+<a
+  href={url}
+  class={`${btnClass} ${cls}`}
+  {...(ext ? { target: '_blank', rel: 'noopener' } : {})}
+  data-book-consult
+>{label}</a>
