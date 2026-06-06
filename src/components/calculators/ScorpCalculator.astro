@@ -11,7 +11,7 @@ import { href } from '../../lib/seo';
     <div class="calc__field">
       <label for="sc-salary">Reasonable W-2 salary</label>
       <input id="sc-salary" type="number" inputmode="numeric" min="0" step="1000" value="60000" />
-      <span class="calc__hint">A reasonable W-2 salary you'd pay yourself.</span>
+      <span class="calc__hint">A salary you and your CPA can defend — not just the lowest number. The IRS requires reasonable compensation.</span>
     </div>
     <div class="calc__field">
       <label for="sc-cost">Annual S-corp overhead cost</label>
@@ -23,6 +23,8 @@ import { href } from '../../lib/seo';
   <div class="calc__results" aria-live="polite" aria-atomic="true">
     <p class="calc__nojs">Enable JavaScript to calculate — or <a href={href('/contact/')}>call us</a> for a free estimate.</p>
     <p class="calc__headline" id="sc-headline" hidden></p>
+    <p class="calc__headline-note">Rough planning estimate — your actual figure will differ.</p>
+    <p id="sc-warning" class="calc__warning" hidden></p>
     <dl class="calc__result-rows" id="sc-detail" hidden>
       <div class="calc__result-row">
         <dt class="calc__result-label">LLC sole-prop SE tax</dt>
@@ -46,7 +48,7 @@ import { href } from '../../lib/seo';
 
 <script>
   import { compareScorpVsLlc } from '../../lib/tax/scorp';
-  import { formatUSD } from '../../lib/tax/format';
+  import { formatUSD, roundDisplay } from '../../lib/tax/format';
 
   const form = document.getElementById('scorp-calc');
   if (form) {
@@ -55,17 +57,19 @@ import { href } from '../../lib/seo';
     const nojs = form.querySelector('.calc__nojs') as HTMLElement | null;
 
     const render = () => {
+      const profit = num('sc-profit');
+      const salary = num('sc-salary');
       const r = compareScorpVsLlc({
-        netProfit: num('sc-profit'),
-        reasonableSalary: num('sc-salary'),
+        netProfit: profit,
+        reasonableSalary: salary,
         addedCost: num('sc-cost'),
       });
 
       const headlineEl = document.getElementById('sc-headline') as HTMLElement;
       const savings = r.netSavings;
-      headlineEl.textContent = savings >= 0
-        ? `Estimated net savings: ${formatUSD(savings)} with S-corp`
-        : `S-corp may not save money at these numbers`;
+      headlineEl.textContent = savings > 0
+        ? `Potential SE-tax savings (before income tax): ~${roundDisplay(savings)}`
+        : `No net savings at these numbers`;
       headlineEl.hidden = false;
 
       (document.getElementById('sc-llc') as HTMLElement).textContent = formatUSD(r.llc.seTax);
@@ -73,6 +77,14 @@ import { href } from '../../lib/seo';
       (document.getElementById('sc-dist') as HTMLElement).textContent = formatUSD(r.scorp.distribution);
       (document.getElementById('sc-detail') as HTMLElement).hidden = false;
       (document.getElementById('sc-callout') as HTMLElement).hidden = false;
+
+      const warningEl = document.getElementById('sc-warning') as HTMLElement;
+      if (salary > 0 && profit > 0 && salary < 0.35 * profit) {
+        warningEl.textContent = "⚠ This salary may be below 'reasonable' and is a common IRS audit trigger. Don't set your payroll from this figure — ask Wayne.";
+        warningEl.hidden = false;
+      } else {
+        warningEl.hidden = true;
+      }
 
       if (nojs) nojs.hidden = true;
     };

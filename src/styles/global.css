@@ -1497,6 +1497,8 @@ a { color: inherit; }
 .calc__result-value { font-family: var(--font-display); font-weight: 500; color: var(--ink); font-size: 1.05rem; font-variant-numeric: tabular-nums; }
 .calc__headline { font-family: var(--font-display); font-weight: 600; color: var(--oxblood); font-size: clamp(1.6rem, 3.4vw, 2.3rem); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
 .calc__headline-label { font-family: var(--font-body); font-weight: 300; font-size: 0.85rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-text); }
+.calc__headline-note { font-family: var(--font-body); font-weight: 300; font-size: 0.78rem; color: var(--ink-muted); margin: 2px 0 0; }
+.calc__warning { font-family: var(--font-body); font-size: 0.82rem; color: var(--oxblood); margin-top: 10px; }
 .calc__nojs { font-family: var(--font-body); font-weight: 300; color: var(--ink-muted); font-size: 0.9rem; }
 .calc__cta { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 12px; }
 

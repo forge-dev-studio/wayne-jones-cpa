@@ -34,6 +34,7 @@ import { href } from '../../lib/seo';
   <div class="calc__results" aria-live="polite" aria-atomic="true">
     <p class="calc__nojs">Enable JavaScript to calculate — or <a href={href('/contact/')}>call us</a> for a free estimate.</p>
     <p class="calc__headline" id="rf-headline" hidden></p>
+    <p class="calc__headline-note">Rough planning estimate — your actual figure will differ.</p>
     <dl class="calc__result-rows" id="rf-detail" hidden>
       <div class="calc__result-row">
         <dt class="calc__result-label">Federal income tax</dt>
@@ -54,7 +55,7 @@ import { href } from '../../lib/seo';
 
 <script>
   import { estimateRefund } from '../../lib/tax/refund';
-  import { formatUSD, formatPct } from '../../lib/tax/format';
+  import { formatUSD, formatPct, roundDisplay } from '../../lib/tax/format';
 
   const form = document.getElementById('refund-calc');
   if (form) {
@@ -76,8 +77,8 @@ import { href } from '../../lib/seo';
       const isRefund = r.balance >= 0;
       const headlineEl = document.getElementById('rf-headline') as HTMLElement;
       headlineEl.textContent = isRefund
-        ? `Estimated refund: ${formatUSD(r.balance)}`
-        : `Estimated balance due: ${formatUSD(-r.balance)}`;
+        ? `Estimated refund: ${roundDisplay(r.balance)}`
+        : `Estimated balance due: ${roundDisplay(-r.balance)}`;
       headlineEl.hidden = false;
 
       (document.getElementById('rf-tax') as HTMLElement).textContent = formatUSD(r.tax);

@@ -7,3 +7,7 @@ export function formatUSD(n: number): string {
 export function formatPct(fraction: number): string {
   return `${(fraction * 100).toFixed(1)}%`;
 }
+
+export function roundDisplay(n: number): string {
+  return formatUSD(Math.round(n / 100) * 100);
+}
