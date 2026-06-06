@@ -10,13 +10,15 @@ Severity: 🔴 Critical · 🟠 High · 🟡 Medium · ⚪ Low.
 
 ## FIX NOW (conservative — only reduces risk; no unverified claims introduced)
 
-### 🔴 1. Wrong Q2 2026 estimated-tax deadline (factual error)
-June 15, 2026 is a **Sunday** → IRS deadline shifts to **Monday, June 16, 2026**. Contradicts the PDF's own weekend-rule note. Fix all 3 + regenerate the PDF:
-- `previews/assets/pdf-deadlines.html` — Q2 row `June 15, 2026` → `June 16, 2026`
-- `src/pages/tax-tools/self-employment-tax-calculator.astro` — dates `<li>` `June 15, 2026` → `June 16, 2026`
-- same file, FAQ answer `June 15, 2026 (Q2)` → `June 16, 2026 (Q2)`
-- Re-run `node previews/gen-pdfs.cjs` to rebuild the PDF.
-All other dates verified correct (individual Apr 15; Q1/Q3/Q4 Apr 15/Sep 15 2026/Jan 15 2027; 1120-S/1065 Mar 16; C-corp Apr 15; extensions Oct 15).
+### 🔴 1. Tax-date accuracy (CORRECTED after independent weekday verification)
+**Important correction:** the audit agent claimed "June 15, 2026 is a Sunday → June 16." That was WRONG — **June 15, 2026 is a MONDAY** (verified via Python `datetime` + manual day-count: Jan 1 2026 = Thursday → +165 days = Monday). LLMs are unreliable on day-of-week, so all dates were re-verified computationally. Result:
+- **Q2 estimated tax = June 15, 2026** (Monday, no shift) — the ORIGINAL site was correct. The interim "June 16" change was reverted in the SE calculator (3×: list, FAQ, JSON-LD schema) and the PDF.
+- **Genuine weekend shifts the audit missed:**
+  - 1120-S / 1065 (S-corp/partnership): statutory Mar 15, but **Mar 15 2026 = Sunday → March 16, 2026** (PDF already correct).
+  - W-2 / 1099-NEC and Form 940: statutory Jan 31, but **Jan 31 2026 = Saturday → February 2, 2026** (corrected in the PDF — was wrongly showing Jan 31).
+- All other dates verified correct: individual/C-corp/Q1 Apr 15 2026 (Wed); Q3 Sep 15 2026 (Tue); Q4 Jan 15 2027 (Fri); extensions Oct 15 2026 (Thu).
+- Blog post `georgia-small-business-tax-deadlines-2026.md` uses hedged "general rule / verify the exact 2026 date" framing (defensible, low-risk) — kept; stripped the now-resolved verify-placeholder comments.
+- Regenerate the PDF (`node previews/gen-pdfs.cjs`) after edits.
 
 ### 🔴 2. "Rome's most trusted name" superlative
 Unprovable comparative claim (AICPA false/misleading; GA/AL board). Replace:
