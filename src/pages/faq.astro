@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import CTASection from '../components/CTASection.astro';
 import FaqList from '../components/FaqList.astro';
+import { href } from '../lib/seo';
 
 const seo = {
   title: 'Frequently Asked Questions | Wayne Jones, CPA, Rome GA',
@@ -86,6 +87,8 @@ const faqs = [
       </header>
 
       <FaqList items={faqs} />
+
+      <p class="legal-note">The information here is general, not advice for your specific situation. Please <a href={href('/contact/')}>contact Wayne Jones, CPA</a> to discuss your circumstances; engagement scope and fees are confirmed in writing before any work begins.</p>
     </div>
   </section>
 

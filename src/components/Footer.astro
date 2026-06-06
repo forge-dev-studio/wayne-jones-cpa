@@ -34,12 +34,17 @@ const year = new Date().getFullYear();
             <a href={href(navHref)}>{label}</a>
           ))}
           <a href={href('/resources/')}>Resources</a>
+          <a href={href('/privacy/')}>Privacy</a>
+          <a href={href('/disclaimer/')}>Disclaimer</a>
           <a href={SITE.facebook} rel="noopener noreferrer" aria-label="Facebook page for Wayne Jones Accounting Services">Facebook &#8599;</a>
         </nav>
       </div>
 
     </div>
     <div class="hairline hairline--static" role="separator"></div>
+    <p class="site-footer__disclaimer">
+      The information on this website is provided for general informational purposes only and does not constitute tax, accounting, or legal advice. Viewing this site, using its calculators, or contacting Wayne Jones, CPA does not create a CPA-client relationship.
+    </p>
     <div class="site-footer__base">
       <span>&copy; {year} {SITE.legalName}. All rights reserved.</span>
       <span>Website by Synergy</span>

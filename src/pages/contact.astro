@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import SchemaOrg from '../components/SchemaOrg.astro';
-import { absoluteUrl } from '../lib/seo';
+import { absoluteUrl, href } from '../lib/seo';
 import { SITE } from '../config';
 
 const seo = {
@@ -82,6 +82,7 @@ const contactPageSchema = {
 
           <button class="btn-primary btn-primary--block" type="submit">Request My Consultation</button>
           <p class="form-status" role="status" aria-live="polite" data-form-status></p>
+          <p class="form-consent">By submitting, you agree we may use your information to respond to your inquiry; messages are delivered through our form provider (Formspree). Please don't include Social Security numbers or other sensitive information here — call (706) 232-8565 to share those securely. Submitting this form does not create a CPA-client relationship. See our <a href={href('/privacy/')}>Privacy Policy</a>.</p>
         </form>
 
         <!-- Engraved office register -->
