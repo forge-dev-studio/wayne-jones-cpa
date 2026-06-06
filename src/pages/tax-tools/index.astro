@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SchemaOrg from '../../components/SchemaOrg.astro';
+import CTASection from '../../components/CTASection.astro';
+import TaxDisclaimer from '../../components/TaxDisclaimer.astro';
+import { href, absoluteUrl } from '../../lib/seo';
+
+const seo = {
+  title: 'Free Tax Calculators & Tools | Wayne Jones, CPA — Rome, GA',
+  description:
+    'Free 2025 tax tools from a Rome, GA CPA: federal refund estimator, self-employment & quarterly tax calculator, and an S-corp vs. LLC savings calculator.',
+  canonical: '/tax-tools/',
+};
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Tax Tools', href: '/tax-tools/' },
+];
+
+const tools = [
+  {
+    title: 'Federal Tax Refund Estimator',
+    href: '/tax-tools/tax-refund-estimator/',
+    blurb:
+      'Estimate your 2025 federal refund or balance due in under a minute. Enter income, withholding, and credits.',
+  },
+  {
+    title: 'Self-Employment & Quarterly Tax Calculator',
+    href: '/tax-tools/self-employment-tax-calculator/',
+    blurb:
+      'Find your SE tax and quarterly payment amounts for 1099 and small-business income using 2025 IRS rates.',
+  },
+  {
+    title: 'S-Corp vs. LLC Tax Savings Calculator',
+    href: '/tax-tools/s-corp-vs-llc-calculator/',
+    blurb:
+      'See how much an S-corp election could save you in self-employment tax versus staying a sole-prop or single-member LLC.',
+  },
+];
+
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Free 2025 Tax Calculators — Wayne Jones, CPA',
+  itemListElement: tools.map((t, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: t.title,
+    url: absoluteUrl(t.href),
+  })),
+};
+---
+
+<BaseLayout seo={seo}>
+  <SchemaOrg schema={itemListSchema} />
+  <Breadcrumbs items={breadcrumbs} />
+  <section class="section-wrap section-wrap--prose tax-hub" aria-label="Tax tools">
+    <header>
+      <p class="eyebrow reveal" data-reveal>Free Tools — 2025 Tax Year</p>
+      <h1 class="section-title reveal" data-reveal style="--d:1">Tax Calculators &amp; Tools</h1>
+      <p class="section-deck reveal" data-reveal style="--d:2">Quick, free estimates built by a licensed CPA. Run the numbers yourself, then book a free consultation to make them exact.</p>
+    </header>
+    <ul class="tax-hub__list reveal" data-reveal style="--d:3">
+      {tools.map((t) => (
+        <li class="tax-hub__card">
+          <a href={href(t.href)}><h2>{t.title}</h2><p>{t.blurb}</p><span aria-hidden="true">Open tool &rarr;</span></a>
+        </li>
+      ))}
+    </ul>
+    <TaxDisclaimer />
+  </section>
+  <CTASection />
+</BaseLayout>
+
+<style>
+  .tax-hub { padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(40px, 5vw, 64px); }
+  .tax-hub__list { list-style: none; padding: 0; margin: 40px 0 0; display: grid; gap: 16px; }
+  .tax-hub__card a { display: block; text-decoration: none; border: 1px solid rgba(182,146,74,.4); background: var(--ivory-surface); box-shadow: var(--shadow-panel); padding: 22px 24px; transition: border-color .25s var(--ease); }
+  .tax-hub__card a:hover { border-color: var(--oxblood); }
+  .tax-hub__card h2 { font-family: var(--font-display); font-weight: 500; font-size: 1.2rem; color: var(--ink); margin: 0 0 6px; }
+  .tax-hub__card p { font-family: var(--font-body); font-weight: 300; font-size: 0.94rem; color: var(--ink-muted); margin: 0 0 10px; }
+  .tax-hub__card span { font-family: var(--font-display); font-weight: 500; font-size: 0.9rem; color: var(--oxblood); }
+</style>
