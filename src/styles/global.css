@@ -1388,6 +1388,46 @@ a { color: inherit; }
 }
 
 /* ============================================================
+   MOTION — polish pass (2026-06-08)
+   Calculator feedback, refined link underlines, button press.
+   All reduced-motion safe.
+   ============================================================ */
+
+/* Calculator headline — subtle rise+settle when a value recomputes (JS toggles .is-flash) */
+@keyframes calcSettle {
+  0%   { opacity: 0.4; transform: translateY(5px); }
+  100% { opacity: 1;   transform: translateY(0); }
+}
+.js .calc__headline.is-flash { animation: calcSettle 0.45s var(--ease); }
+
+/* Inline body links (article/service prose) — always-underlined for a11y,
+   refined gold underline that deepens and lifts on hover */
+.prose a {
+  color: var(--oxblood);
+  text-decoration: underline;
+  text-decoration-color: rgba(182, 146, 74, 0.55);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: text-decoration-color 0.25s var(--ease),
+              text-underline-offset 0.25s var(--ease),
+              color 0.2s var(--ease);
+}
+.prose a:hover {
+  color: var(--oxblood-deep);
+  text-decoration-color: var(--gold);
+  text-underline-offset: 3px;
+}
+
+/* Tactile button press */
+.btn-primary:active, .btn-ghost:active, .btn-ghost-pill:active { transform: translateY(1px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .calc__headline.is-flash { animation: none !important; }
+  .prose a { transition: none !important; }
+  .btn-primary:active, .btn-ghost:active, .btn-ghost-pill:active { transform: none !important; }
+}
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 @media (max-width: 1024px) {

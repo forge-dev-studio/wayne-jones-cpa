@@ -182,4 +182,20 @@
     });
   })();
 
+  /* ---------- Calculator result feedback (subtle pulse on recompute) ---------- */
+  (function calcPulse() {
+    if (reduceMotion) return;
+    var forms = Array.prototype.slice.call(document.querySelectorAll('.calc'));
+    if (!forms.length) return;
+    forms.forEach(function (form) {
+      var head = form.querySelector('.calc__headline');
+      if (!head) return;
+      form.addEventListener('input', function () {
+        head.classList.remove('is-flash');
+        void head.offsetWidth; // force reflow to restart the animation
+        head.classList.add('is-flash');
+      });
+    });
+  })();
+
 })();

@@ -76,8 +76,9 @@ const itemListSchema = {
 <style>
   .tax-hub { padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(40px, 5vw, 64px); }
   .tax-hub__list { list-style: none; padding: 0; margin: 40px 0 0; display: grid; gap: 16px; }
-  .tax-hub__card a { display: block; text-decoration: none; border: 1px solid rgba(182,146,74,.4); background: var(--ivory-surface); box-shadow: var(--shadow-panel); padding: 22px 24px; transition: border-color .25s var(--ease); }
-  .tax-hub__card a:hover { border-color: var(--oxblood); }
+  .tax-hub__card a { display: block; text-decoration: none; border: 1px solid rgba(182,146,74,.4); background: var(--ivory-surface); box-shadow: var(--shadow-panel); padding: 22px 24px; transition: border-color .25s var(--ease), transform .25s var(--ease), box-shadow .25s var(--ease); }
+  .tax-hub__card a:hover { border-color: var(--oxblood); transform: translateY(-3px); box-shadow: 0 36px 70px -44px rgba(18,32,54,0.38), 0 3px 8px -2px rgba(18,32,54,0.10); }
+  @media (prefers-reduced-motion: reduce) { .tax-hub__card a { transition: border-color .25s var(--ease); } .tax-hub__card a:hover { transform: none; } }
   .tax-hub__card h2 { font-family: var(--font-display); font-weight: 500; font-size: 1.2rem; color: var(--ink); margin: 0 0 6px; }
   .tax-hub__card p { font-family: var(--font-body); font-weight: 300; font-size: 0.94rem; color: var(--ink-muted); margin: 0 0 10px; }
   .tax-hub__card span { font-family: var(--font-display); font-weight: 500; font-size: 0.9rem; color: var(--oxblood); }
