@@ -426,8 +426,8 @@ a { color: inherit; }
   display: grid;
   grid-template-columns: 1fr 260px;
   min-height: min(calc(100vh - var(--header-h)), 640px);
-  padding-top: clamp(44px, 6vw, 76px);
-  padding-bottom: clamp(40px, 5vw, 64px);
+  padding-top: clamp(32px, 4.2vw, 56px);
+  padding-bottom: clamp(28px, 3.5vw, 46px);
   position: relative;
 }
 
@@ -478,7 +478,7 @@ a { color: inherit; }
   line-height: 0.95;
   letter-spacing: -0.02em;
   color: var(--ink);
-  margin-bottom: 36px;
+  margin-bottom: 30px;
   max-width: 18ch;
 }
 .hero__h1 em { font-style: italic; font-weight: 400; color: var(--oxblood); }
@@ -486,7 +486,7 @@ a { color: inherit; }
 .hero__pull {
   border-left: 2px solid var(--gold);
   padding-left: 20px;
-  margin-bottom: 44px;
+  margin-bottom: 34px;
   max-width: 56ch;
 }
 .hero__deck {
@@ -523,16 +523,16 @@ a { color: inherit; }
   z-index: 1;
   /* mounted panel elevation */
   background: var(--ivory-surface);
-  padding: 28px 24px 28px 28px;
+  padding: 22px 22px 22px 24px;
   border: 1px solid rgba(182,146,74,0.38);
   box-shadow: var(--shadow-panel), inset 0 0 0 1px rgba(182,146,74,0.10);
 }
 /* Hero ledger portrait — framed headshot leading the credentials card */
 .ledger__portrait {
   position: relative;
-  margin: 0 0 24px;
+  margin: 0 0 16px;
   aspect-ratio: 4 / 5;
-  max-height: 300px;
+  max-height: 240px;
   border: 1px solid rgba(182,146,74,0.45);
   background: var(--ink-mid);
   overflow: hidden;
@@ -573,13 +573,13 @@ a { color: inherit; }
 .ledger__seal-wrap {
   display: flex;
   justify-content: center;
-  padding-top: 8px;
-  padding-bottom: 32px;
+  padding-top: 4px;
+  padding-bottom: 16px;
 }
 .ledger__lines { flex: 1; display: flex; flex-direction: column; }
 .ledger__line {
   border-top: 1px solid rgba(182,146,74,0.22);
-  padding: 13px 0;
+  padding: 9px 0;
   display: flex;
   flex-direction: column;
   gap: 3px;
@@ -600,7 +600,7 @@ a { color: inherit; }
   letter-spacing: 0.01em;
 }
 .ledger__value em { font-style: italic; font-weight: 300; color: var(--ink-mid); }
-.ledger__est { padding-top: 28px; text-align: center; }
+.ledger__est { padding-top: 16px; text-align: center; }
 .ledger__est-text {
   font-family: var(--font-body);
   font-size: 0.6rem;
