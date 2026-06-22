@@ -54,6 +54,18 @@ import { href } from '../../lib/seo';
 
         <button class="btn-primary btn-primary--block" type="submit">Request My Consultation</button>
         <p class="form-status" role="status" aria-live="polite" data-form-status></p>
+
+        <div class="cert-form__done" data-form-done hidden tabindex="-1">
+          <span class="cert-form__done-seal" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="32" cy="32" r="30" stroke="#c8a24b" stroke-width="1.5"/>
+              <circle cx="32" cy="32" r="24.5" stroke="#c8a24b" stroke-width="0.75" opacity="0.55"/>
+              <path d="M21 33.5l7.8 7.8L44 24.2" stroke="#c8a24b" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <p class="cert-form__done-h">Request received</p>
+          <p class="cert-form__done-msg">Thank you — Wayne will personally be in touch shortly. For anything urgent, call <a href="tel:+17062328565">(706)&nbsp;232-8565</a>.</p>
+        </div>
         <p class="form-consent">By submitting, you agree we may use your information to respond to your inquiry; messages are delivered through our form provider (Formspree). Please don't include Social Security numbers or other sensitive information here — call (706) 232-8565 to share those securely. Submitting this form does not create a CPA-client relationship. See our <a href={href('/privacy/')}>Privacy Policy</a>.</p>
       </form>
 

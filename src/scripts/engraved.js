@@ -175,10 +175,19 @@
       e.preventDefault();
       if (typeof form.reportValidity === 'function' && !form.reportValidity()) return;
       if (status) {
-        status.textContent = 'Thank you — your request has been noted. Wayne will be in touch shortly.';
+        status.textContent = 'Request received — Wayne will personally be in touch shortly.';
         status.classList.add('is-success');
       }
       form.reset();
+      form.classList.add('is-sent');
+      var done = form.querySelector('[data-form-done]');
+      if (done) {
+        done.hidden = false;
+        if (typeof done.scrollIntoView === 'function') {
+          done.scrollIntoView({ block: 'center', behavior: reduceMotion ? 'auto' : 'smooth' });
+        }
+        if (typeof done.focus === 'function') { done.focus(); }
+      }
     });
   })();
 
