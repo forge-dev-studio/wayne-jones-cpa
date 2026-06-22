@@ -5,7 +5,6 @@ const ROOT = '/home/adminsynergycloud/wayne-jones-cpa';
   const b = await chromium.launch();
   const shots = [
     { html: 'previews/assets/og.html', w: 1200, h: 630, out: 'public/og/og-default.png' },
-    { html: 'previews/assets/headshot.html', w: 600, h: 750, out: 'public/images/wayne-headshot-placeholder.png' },
   ];
   for (const s of shots) {
     const p = await b.newPage({ viewport: { width: s.w, height: s.h }, deviceScaleFactor: 1 });
