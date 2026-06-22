@@ -1,4 +1,4 @@
-// Render the WJ tile, then emit apple-touch-icon (180) + favicon-32 (32) PNGs.
+// Render the WJ tile, then emit apple-touch-icon (180) + favicon-32 + favicon-16 PNGs.
 const { chromium } = require('playwright');
 const sharp = require('sharp');
 const path = require('path');
@@ -8,11 +8,16 @@ const ROOT = '/home/adminsynergycloud/wayne-jones-cpa';
   const p = await b.newPage({ viewport: { width: 180, height: 180 }, deviceScaleFactor: 2 });
   await p.goto('file://' + path.join(ROOT, 'previews/assets/icon.html'), { waitUntil: 'load' });
   try { await p.evaluate(() => document.fonts && document.fonts.ready); } catch (e) {}
-  await p.waitForTimeout(800);
+  await p.waitForTimeout(600);
   const buf = await p.screenshot({ clip: { x: 0, y: 0, width: 180, height: 180 } }); // 360x360 @2x
   await b.close();
-  const apple = await sharp(buf).resize(180, 180).png().toFile(path.join(ROOT, 'public/apple-touch-icon.png'));
-  const fav32 = await sharp(buf).resize(32, 32).png().toFile(path.join(ROOT, 'public/favicon-32.png'));
-  console.log('apple-touch-icon.png', apple.width + 'x' + apple.height, Math.round(apple.size / 1024) + 'KB');
-  console.log('favicon-32.png', fav32.width + 'x' + fav32.height, fav32.size + 'B');
+  const out = [
+    ['public/apple-touch-icon.png', 180],
+    ['public/favicon-32.png', 32],
+    ['public/favicon-16.png', 16],
+  ];
+  for (const [file, size] of out) {
+    const info = await sharp(buf).resize(size, size).png().toFile(path.join(ROOT, file));
+    console.log(file, info.width + 'x' + info.height, info.size + 'B');
+  }
 })().catch((e) => { console.error(e.message); process.exit(1); });
