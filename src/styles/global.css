@@ -424,7 +424,9 @@ a { color: inherit; }
 }
 .hero__grid {
   display: grid;
-  grid-template-columns: 1fr 260px;
+  grid-template-columns: minmax(0, 600px) 360px;
+  column-gap: clamp(40px, 5vw, 84px);
+  justify-content: center;
   min-height: min(calc(100vh - var(--header-h)), 640px);
   padding-top: clamp(32px, 4.2vw, 56px);
   padding-bottom: clamp(28px, 3.5vw, 46px);
@@ -474,11 +476,11 @@ a { color: inherit; }
   font-family: var(--font-display);
   font-optical-sizing: auto;
   font-weight: 500;
-  font-size: clamp(3.2rem, 5.8vw, 6.8rem);
+  font-size: clamp(3.2rem, 6.4vw, 7.6rem);
   line-height: 0.95;
   letter-spacing: -0.02em;
   color: var(--ink);
-  margin-bottom: 30px;
+  margin-bottom: 44px;
   max-width: 18ch;
 }
 .hero__h1 em { font-style: italic; font-weight: 400; color: var(--oxblood); }
@@ -486,8 +488,8 @@ a { color: inherit; }
 .hero__pull {
   border-left: 2px solid var(--gold);
   padding-left: 20px;
-  margin-bottom: 34px;
-  max-width: 56ch;
+  margin-bottom: 48px;
+  max-width: 64ch;
 }
 .hero__deck {
   font-family: var(--font-display);
@@ -532,7 +534,7 @@ a { color: inherit; }
   position: relative;
   margin: 0 0 16px;
   aspect-ratio: 4 / 5;
-  max-height: 240px;
+  max-height: 300px;
   border: 1px solid rgba(182,146,74,0.45);
   background: var(--ink-mid);
   overflow: hidden;
